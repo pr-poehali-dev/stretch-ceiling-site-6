@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 
 const HERO_IMG = "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/a02a971b-162d-411f-a319-6cf1ec4dffeb.jpg";
@@ -89,6 +90,7 @@ export default function Index() {
   const [activeSection, setActiveSection] = useState("home");
   const [menuOpen, setMenuOpen] = useState(false);
   const [calcRoom, setCalcRoom] = useState(ROOMS[0]);
+  const navigate = useNavigate();
   const [calcWidth, setCalcWidth] = useState(5.5);
   const [calcHeight, setCalcHeight] = useState(4.2);
   const [calcType, setCalcType] = useState(TYPES[0]);
@@ -317,6 +319,18 @@ export default function Index() {
               </SectionReveal>
             ))}
           </div>
+
+          {/* CTA */}
+          <SectionReveal>
+            <div className="mt-10 text-center">
+              <button onClick={() => navigate("/portfolio")}
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl font-bold text-base transition-all hover-lift"
+                style={{ background: "rgba(124,58,237,0.15)", border: "1px solid rgba(124,58,237,0.35)", color: "#A78BFA" }}>
+                Смотреть все работы
+                <Icon name="ArrowRight" size={18} />
+              </button>
+            </div>
+          </SectionReveal>
         </div>
       </section>
 
