@@ -29,8 +29,8 @@
     --brand-primary: #7c3aed;
     --brand-secondary: #06b6d4;
     --brand-accent: #f59e0b;
-    --brand-dark: #0f0a1e;
-    --brand-dark2: #1a1030;
+    --brand-dark: #1c1535;
+    --brand-dark2: #231b42;
   }
 }
 
@@ -213,7 +213,7 @@
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0f0a1e;
+  background: #1c1535;
 }
 ::-webkit-scrollbar-thumb {
   background: #7c3aed;

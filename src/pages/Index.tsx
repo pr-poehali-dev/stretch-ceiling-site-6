@@ -134,7 +134,7 @@ export default function Index() {
   };
 
   return (
-    <div className="min-h-screen" style={{ background: "#0F0A1E", color: "#fff" }}>
+    <div className="min-h-screen" style={{ background: "#1c1535", color: "#fff" }}>
 
       {/* NAVBAR */}
       <nav className="fixed top-0 left-0 right-0 z-50 glass" style={{ borderBottom: "1px solid rgba(124,58,237,0.2)" }}>
@@ -192,7 +192,7 @@ export default function Index() {
       <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0">
           <img src={HERO_IMG} alt="Натяжные потолки" className="w-full h-full object-cover opacity-25" />
-          <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(15,10,30,0.97) 0%, rgba(124,58,237,0.25) 50%, rgba(15,10,30,0.93) 100%)" }} />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(28,21,53,0.97) 0%, rgba(124,58,237,0.25) 50%, rgba(28,21,53,0.93) 100%)" }} />
         </div>
         <div className="absolute top-20 right-10 w-96 h-96 rounded-full opacity-20 animate-float"
           style={{ background: "radial-gradient(circle, #7C3AED 0%, transparent 70%)", filter: "blur(60px)" }} />
@@ -247,7 +247,7 @@ export default function Index() {
       </section>
 
       {/* SERVICES */}
-      <section id="services" className="py-24" style={{ background: "#0F0A1E" }}>
+      <section id="services" className="py-24" style={{ background: "#1c1535" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <SectionReveal>
             <div className="text-center mb-16">
@@ -279,7 +279,7 @@ export default function Index() {
       </section>
 
       {/* PORTFOLIO */}
-      <section id="portfolio" className="py-24" style={{ background: "#130D22" }}>
+      <section id="portfolio" className="py-24" style={{ background: "#231b42" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <SectionReveal>
             <div className="text-center mb-16">
@@ -321,7 +321,7 @@ export default function Index() {
       </section>
 
       {/* GALLERY */}
-      <section id="gallery" className="py-24" style={{ background: "#0F0A1E" }}>
+      <section id="gallery" className="py-24" style={{ background: "#1c1535" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <SectionReveal>
             <div className="text-center mb-16">
@@ -365,7 +365,7 @@ export default function Index() {
       </section>
 
       {/* CALCULATOR */}
-      <section id="calculator" className="py-24" style={{ background: "#130D22" }}>
+      <section id="calculator" className="py-24" style={{ background: "#231b42" }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <SectionReveal>
             <div className="text-center mb-12">
@@ -459,7 +459,7 @@ export default function Index() {
       </section>
 
       {/* REVIEWS */}
-      <section id="reviews" className="py-24" style={{ background: "#0F0A1E" }}>
+      <section id="reviews" className="py-24" style={{ background: "#1c1535" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <SectionReveal>
             <div className="text-center mb-16">
@@ -498,7 +498,7 @@ export default function Index() {
       </section>
 
       {/* ABOUT */}
-      <section id="about" className="py-24" style={{ background: "#130D22" }}>
+      <section id="about" className="py-24" style={{ background: "#231b42" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <SectionReveal>
@@ -548,7 +548,7 @@ export default function Index() {
       </section>
 
       {/* CONTACTS */}
-      <section id="contacts" className="py-24" style={{ background: "#0F0A1E" }}>
+      <section id="contacts" className="py-24" style={{ background: "#1c1535" }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <SectionReveal>
             <div className="text-center mb-16">
@@ -644,7 +644,7 @@ export default function Index() {
       </section>
 
       {/* FOOTER */}
-      <footer className="py-8 text-center" style={{ borderTop: "1px solid rgba(255,255,255,0.06)", background: "#0A0618" }}>
+      <footer className="py-8 text-center" style={{ borderTop: "1px solid rgba(255,255,255,0.06)", background: "#160f2e" }}>
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <div className="w-7 h-7 rounded-lg flex items-center justify-center"
