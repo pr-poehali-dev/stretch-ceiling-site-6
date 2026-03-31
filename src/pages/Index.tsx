@@ -1,14 +1,668 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useState, useEffect, useRef } from "react";
+import Icon from "@/components/ui/icon";
 
-const Index = () => {
+const HERO_IMG = "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/a02a971b-162d-411f-a319-6cf1ec4dffeb.jpg";
+
+const services = [
+  { icon: "Sparkles", title: "Глянцевые потолки", desc: "Зеркальный эффект, визуально увеличивают пространство", price: "от 350 ₽/м²", color: "#7C3AED" },
+  { icon: "Layers", title: "Матовые потолки", desc: "Элегантная бархатистая поверхность, скрывает неровности", price: "от 280 ₽/м²", color: "#06B6D4" },
+  { icon: "Zap", title: "Сатиновые потолки", desc: "Лёгкий блеск, универсальное решение для любого интерьера", price: "от 320 ₽/м²", color: "#F59E0B" },
+  { icon: "Star", title: "Звёздное небо", desc: "Оптоволоконная подсветка, создаёт атмосферу космоса", price: "от 1200 ₽/м²", color: "#EC4899" },
+  { icon: "Grid3x3", title: "Многоуровневые", desc: "Сложные конструкции любой геометрии и форм", price: "от 650 ₽/м²", color: "#10B981" },
+  { icon: "Lightbulb", title: "Световые линии", desc: "Встроенные LED-профили, трендовый дизайн 2024–2025", price: "от 480 ₽/м²", color: "#F97316" },
+];
+
+const portfolio = [
+  { room: "Гостиная", style: "Современный минимализм", area: "28 м²", color: "#7C3AED" },
+  { room: "Спальня", style: "Звёздное небо", area: "18 м²", color: "#06B6D4" },
+  { room: "Кухня", style: "Белый глянец", area: "14 м²", color: "#F59E0B" },
+  { room: "Детская", style: "Мягкие тона", area: "12 м²", color: "#EC4899" },
+  { room: "Ванная", style: "Влагостойкий", area: "8 м²", color: "#10B981" },
+  { room: "Офис", style: "Деловой стиль", area: "55 м²", color: "#F97316" },
+];
+
+const reviews = [
+  { name: "Анастасия К.", rating: 5, text: "Сделали потолок в гостиной и спальне. Всё аккуратно, быстро, без пыли. Мастер объяснил все нюансы. Очень довольна результатом!", city: "Москва", avatar: "А" },
+  { name: "Дмитрий В.", rating: 5, text: "Заказал многоуровневый потолок с подсветкой. Получилось шикарно! Соседи просят контакты. Работают профессионально, цены честные.", city: "СПб", avatar: "Д" },
+  { name: "Марина С.", rating: 5, text: "Обратилась по рекомендации. Замер сделали бесплатно, предложили несколько вариантов дизайна. Результат превзошёл ожидания!", city: "Казань", avatar: "М" },
+  { name: "Алексей П.", rating: 5, text: "Второй раз заказываю у них. Качество стабильно высокое. Звёздное небо в детской — ребёнок в восторге!", city: "Екатеринбург", avatar: "А" },
+];
+
+const stats = [
+  { value: "2400+", label: "Выполненных объектов" },
+  { value: "8", label: "Лет на рынке" },
+  { value: "1 день", label: "Монтаж в среднем" },
+  { value: "15 лет", label: "Гарантия на потолок" },
+];
+
+const ROOMS = [
+  { id: "living", label: "Гостиная", default: { w: 5.5, h: 4.2 } },
+  { id: "bedroom", label: "Спальня", default: { w: 4.0, h: 3.5 } },
+  { id: "kitchen", label: "Кухня", default: { w: 3.5, h: 3.0 } },
+  { id: "bath", label: "Ванная", default: { w: 2.5, h: 2.0 } },
+  { id: "custom", label: "Своя", default: { w: 4, h: 3 } },
+];
+
+const TYPES = [
+  { id: "mat", label: "Матовый", price: 280 },
+  { id: "gloss", label: "Глянцевый", price: 350 },
+  { id: "satin", label: "Сатиновый", price: 320 },
+  { id: "stars", label: "Звёздное небо", price: 1200 },
+  { id: "multi", label: "Многоуровневый", price: 650 },
+  { id: "led", label: "LED подсветка", price: 480 },
+];
+
+function useInView(threshold = 0.15) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [inView, setInView] = useState(false);
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setInView(true); },
+      { threshold }
+    );
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, []);
+  return { ref, inView };
+}
+
+function SectionReveal({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  const { ref, inView } = useInView();
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4 color-black text-black">Добро пожаловать!</h1>
-        <p className="text-xl text-gray-600">тут будет отображаться ваш проект</p>
-      </div>
+    <div ref={ref} className={`section-reveal ${inView ? "visible" : ""} ${className}`}>
+      {children}
     </div>
   );
-};
+}
 
-export default Index;
+const galleryItems = [
+  { title: "Глянец в гостиной", style: "Современный", bg: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)", emoji: "✨" },
+  { title: "Матовый спальня", style: "Скандинавский", bg: "linear-gradient(135deg, #06b6d4 0%, #0891b2 100%)", emoji: "🛏️" },
+  { title: "LED подсветка", style: "Хай-тек", bg: "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)", emoji: "💡" },
+  { title: "Звёздное небо", style: "Романтик", bg: "linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #7C3AED 100%)", emoji: "⭐" },
+  { title: "Многоуровневый", style: "Лофт", bg: "linear-gradient(135deg, #10b981 0%, #059669 100%)", emoji: "🏗️" },
+  { title: "Кухня сатин", style: "Классика", bg: "linear-gradient(135deg, #ec4899 0%, #be185d 100%)", emoji: "🍽️" },
+];
+
+export default function Index() {
+  const [activeSection, setActiveSection] = useState("home");
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [calcRoom, setCalcRoom] = useState(ROOMS[0]);
+  const [calcWidth, setCalcWidth] = useState(5.5);
+  const [calcHeight, setCalcHeight] = useState(4.2);
+  const [calcType, setCalcType] = useState(TYPES[0]);
+  const [calcResult, setCalcResult] = useState<number | null>(null);
+  const [activeGallery, setActiveGallery] = useState(0);
+  const [formData, setFormData] = useState({ name: "", phone: "", comment: "" });
+  const [formSent, setFormSent] = useState(false);
+
+  const navItems = [
+    { id: "home", label: "Главная" },
+    { id: "services", label: "Услуги" },
+    { id: "portfolio", label: "Портфолио" },
+    { id: "gallery", label: "Галерея" },
+    { id: "calculator", label: "Калькулятор" },
+    { id: "reviews", label: "Отзывы" },
+    { id: "about", label: "О нас" },
+    { id: "contacts", label: "Контакты" },
+  ];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY + 100;
+      navItems.forEach(n => {
+        const section = document.getElementById(n.id);
+        if (section && scrollY >= section.offsetTop && scrollY < section.offsetTop + section.offsetHeight) {
+          setActiveSection(n.id);
+        }
+      });
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    setMenuOpen(false);
+  };
+
+  const calculate = () => {
+    const area = calcWidth * calcHeight;
+    const total = Math.ceil(area * calcType.price);
+    setCalcResult(total);
+  };
+
+  return (
+    <div className="min-h-screen" style={{ background: "#0F0A1E", color: "#fff" }}>
+
+      {/* NAVBAR */}
+      <nav className="fixed top-0 left-0 right-0 z-50 glass" style={{ borderBottom: "1px solid rgba(124,58,237,0.2)" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+          <div className="flex items-center gap-2 cursor-pointer" onClick={() => scrollTo("home")}>
+            <div className="w-8 h-8 rounded-lg flex items-center justify-center animate-pulse-glow"
+              style={{ background: "linear-gradient(135deg, #7C3AED, #06B6D4)" }}>
+              <Icon name="Layers" size={18} className="text-white" />
+            </div>
+            <span className="text-lg font-bold" style={{ fontFamily: "Oswald, sans-serif", letterSpacing: "0.05em" }}>
+              <span className="gradient-text">ПОТОЛОК</span>
+              <span className="text-white">ПРО</span>
+            </span>
+          </div>
+
+          <div className="hidden lg:flex items-center gap-1">
+            {navItems.map(item => (
+              <button key={item.id} onClick={() => scrollTo(item.id)}
+                className="px-3 py-1.5 rounded-lg text-sm transition-all duration-200 font-medium"
+                style={{
+                  color: activeSection === item.id ? "#fff" : "rgba(255,255,255,0.6)",
+                  background: activeSection === item.id ? "linear-gradient(135deg, rgba(124,58,237,0.4), rgba(6,182,212,0.2))" : "transparent",
+                }}>
+                {item.label}
+              </button>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-3">
+            <a href="tel:+79001234567" className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all hover-lift"
+              style={{ background: "linear-gradient(135deg, #7C3AED, #06B6D4)", color: "#fff" }}>
+              <Icon name="Phone" size={14} />
+              +7 (900) 123-45-67
+            </a>
+            <button className="lg:hidden p-2 rounded-lg glass" onClick={() => setMenuOpen(!menuOpen)}>
+              <Icon name={menuOpen ? "X" : "Menu"} size={20} />
+            </button>
+          </div>
+        </div>
+
+        {menuOpen && (
+          <div className="lg:hidden px-4 pb-4 flex flex-col gap-1" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+            {navItems.map(item => (
+              <button key={item.id} onClick={() => scrollTo(item.id)}
+                className="py-2.5 px-4 rounded-lg text-left text-sm font-medium transition-all"
+                style={{ color: "rgba(255,255,255,0.8)", background: activeSection === item.id ? "rgba(124,58,237,0.2)" : "transparent" }}>
+                {item.label}
+              </button>
+            ))}
+          </div>
+        )}
+      </nav>
+
+      {/* HERO */}
+      <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
+        <div className="absolute inset-0">
+          <img src={HERO_IMG} alt="Натяжные потолки" className="w-full h-full object-cover opacity-25" />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(15,10,30,0.97) 0%, rgba(124,58,237,0.25) 50%, rgba(15,10,30,0.93) 100%)" }} />
+        </div>
+        <div className="absolute top-20 right-10 w-96 h-96 rounded-full opacity-20 animate-float"
+          style={{ background: "radial-gradient(circle, #7C3AED 0%, transparent 70%)", filter: "blur(60px)" }} />
+        <div className="absolute bottom-20 left-10 w-72 h-72 rounded-full opacity-15 animate-float delay-300"
+          style={{ background: "radial-gradient(circle, #06B6D4 0%, transparent 70%)", filter: "blur(40px)" }} />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 pt-24 pb-36">
+          <div className="max-w-3xl">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold mb-6 animate-fade-in-up"
+              style={{ background: "rgba(124,58,237,0.2)", border: "1px solid rgba(124,58,237,0.4)", color: "#A78BFA" }}>
+              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse inline-block" />
+              Монтаж от 1 дня · Гарантия 15 лет
+            </div>
+            <h1 className="text-5xl sm:text-6xl lg:text-8xl font-black leading-none mb-6 animate-fade-in-up delay-100"
+              style={{ fontFamily: "Oswald, sans-serif", letterSpacing: "-0.02em" }}>
+              НАТЯЖНЫЕ
+              <br />
+              <span className="gradient-text">ПОТОЛКИ</span>
+              <br />
+              <span className="text-white">ПОД КЛЮЧ</span>
+            </h1>
+            <p className="text-lg sm:text-xl mb-10 animate-fade-in-up delay-200"
+              style={{ color: "rgba(255,255,255,0.65)", lineHeight: 1.7, maxWidth: "500px" }}>
+              Профессиональная установка натяжных потолков любой сложности. Замер бесплатно. Работаем по всему городу.
+            </p>
+            <div className="flex flex-wrap gap-4 animate-fade-in-up delay-300">
+              <button onClick={() => scrollTo("contacts")}
+                className="px-8 py-4 rounded-2xl font-bold text-lg transition-all hover-lift animate-pulse-glow"
+                style={{ background: "linear-gradient(135deg, #7C3AED, #06B6D4)", color: "#fff" }}>
+                Бесплатный замер
+              </button>
+              <button onClick={() => scrollTo("calculator")}
+                className="px-8 py-4 rounded-2xl font-bold text-lg transition-all hover-lift"
+                style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)", color: "#fff" }}>
+                Рассчитать стоимость
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div className="absolute bottom-0 left-0 right-0 z-10"
+          style={{ background: "rgba(124,58,237,0.12)", borderTop: "1px solid rgba(124,58,237,0.2)", backdropFilter: "blur(10px)" }}>
+          <div className="max-w-7xl mx-auto px-4 py-5 grid grid-cols-2 sm:grid-cols-4 gap-4">
+            {stats.map((s, i) => (
+              <div key={i} className="text-center">
+                <div className="text-2xl sm:text-3xl font-black gradient-text" style={{ fontFamily: "Oswald, sans-serif" }}>{s.value}</div>
+                <div className="text-xs sm:text-sm" style={{ color: "rgba(255,255,255,0.5)" }}>{s.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SERVICES */}
+      <section id="services" className="py-24" style={{ background: "#0F0A1E" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <SectionReveal>
+            <div className="text-center mb-16">
+              <span className="text-sm font-semibold tracking-widest uppercase mb-3 block" style={{ color: "#7C3AED" }}>Наши услуги</span>
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black" style={{ fontFamily: "Oswald, sans-serif" }}>
+                <span className="gradient-text">ВСЕ ВИДЫ</span> ПОТОЛКОВ
+              </h2>
+            </div>
+          </SectionReveal>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {services.map((s, i) => (
+              <SectionReveal key={i}>
+                <div className="group p-6 rounded-2xl hover-lift cursor-pointer h-full transition-all duration-300"
+                  style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}
+                  onMouseEnter={e => (e.currentTarget.style.borderColor = s.color + "50")}
+                  onMouseLeave={e => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.06)")}>
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
+                    style={{ background: s.color + "20" }}>
+                    <Icon name={s.icon as any} size={24} style={{ color: s.color }} />
+                  </div>
+                  <h3 className="text-xl font-bold mb-2 text-white" style={{ fontFamily: "Oswald, sans-serif" }}>{s.title}</h3>
+                  <p className="text-sm mb-4" style={{ color: "rgba(255,255,255,0.55)", lineHeight: 1.6 }}>{s.desc}</p>
+                  <div className="font-bold text-lg" style={{ color: s.color }}>{s.price}</div>
+                </div>
+              </SectionReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* PORTFOLIO */}
+      <section id="portfolio" className="py-24" style={{ background: "#130D22" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <SectionReveal>
+            <div className="text-center mb-16">
+              <span className="text-sm font-semibold tracking-widest uppercase mb-3 block" style={{ color: "#06B6D4" }}>Наши работы</span>
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black" style={{ fontFamily: "Oswald, sans-serif" }}>
+                <span className="gradient-text">ПОРТФОЛИО</span>
+              </h2>
+            </div>
+          </SectionReveal>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {portfolio.map((p, i) => (
+              <SectionReveal key={i}>
+                <div className="group rounded-2xl overflow-hidden hover-lift cursor-pointer"
+                  style={{ border: "1px solid rgba(255,255,255,0.06)" }}>
+                  <div className="h-52 flex items-end p-5 relative overflow-hidden"
+                    style={{ background: `linear-gradient(135deg, ${p.color}25 0%, ${p.color}55 100%)` }}>
+                    <div className="absolute inset-0 opacity-10"
+                      style={{ background: "repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.05) 10px, rgba(255,255,255,0.05) 20px)" }} />
+                    <div className="absolute top-4 right-4">
+                      <span className="px-3 py-1 rounded-full text-xs font-bold"
+                        style={{ background: p.color + "30", color: p.color, border: `1px solid ${p.color}40` }}>
+                        {p.area}
+                      </span>
+                    </div>
+                    <div>
+                      <div className="text-white font-black text-xl" style={{ fontFamily: "Oswald, sans-serif" }}>{p.room}</div>
+                      <div className="text-sm" style={{ color: "rgba(255,255,255,0.6)" }}>{p.style}</div>
+                    </div>
+                  </div>
+                  <div className="p-4 flex items-center justify-between" style={{ background: "rgba(255,255,255,0.03)" }}>
+                    <span className="text-sm font-medium" style={{ color: "rgba(255,255,255,0.5)" }}>Посмотреть детали</span>
+                    <Icon name="ArrowRight" size={16} style={{ color: p.color }} />
+                  </div>
+                </div>
+              </SectionReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* GALLERY */}
+      <section id="gallery" className="py-24" style={{ background: "#0F0A1E" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <SectionReveal>
+            <div className="text-center mb-16">
+              <span className="text-sm font-semibold tracking-widest uppercase mb-3 block" style={{ color: "#F59E0B" }}>Вдохновение</span>
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black" style={{ fontFamily: "Oswald, sans-serif" }}>
+                <span className="gradient-text">ГАЛЕРЕЯ</span> ДИЗАЙНОВ
+              </h2>
+            </div>
+          </SectionReveal>
+          <div className="flex gap-3 mb-6 flex-wrap justify-center">
+            {galleryItems.map((g, i) => (
+              <button key={i} onClick={() => setActiveGallery(i)}
+                className="px-4 py-2 rounded-xl text-sm font-medium transition-all"
+                style={{
+                  background: activeGallery === i ? "linear-gradient(135deg, #7C3AED, #06B6D4)" : "rgba(255,255,255,0.06)",
+                  color: activeGallery === i ? "#fff" : "rgba(255,255,255,0.6)",
+                  border: "1px solid " + (activeGallery === i ? "transparent" : "rgba(255,255,255,0.08)"),
+                }}>
+                {g.title}
+              </button>
+            ))}
+          </div>
+          <SectionReveal>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+              {galleryItems.map((g, i) => (
+                <div key={i} onClick={() => setActiveGallery(i)}
+                  className="rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover-lift flex flex-col items-center justify-center"
+                  style={{
+                    height: i === 0 || i === 5 ? "280px" : "200px",
+                    background: g.bg,
+                    border: activeGallery === i ? "2px solid #7C3AED" : "2px solid transparent",
+                  }}>
+                  <div className="text-4xl mb-2">{g.emoji}</div>
+                  <div className="font-bold text-white text-lg text-center px-4" style={{ fontFamily: "Oswald, sans-serif" }}>{g.title}</div>
+                  <div className="text-sm mt-1" style={{ color: "rgba(255,255,255,0.7)" }}>{g.style}</div>
+                </div>
+              ))}
+            </div>
+          </SectionReveal>
+        </div>
+      </section>
+
+      {/* CALCULATOR */}
+      <section id="calculator" className="py-24" style={{ background: "#130D22" }}>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <SectionReveal>
+            <div className="text-center mb-12">
+              <span className="text-sm font-semibold tracking-widest uppercase mb-3 block" style={{ color: "#10B981" }}>Онлайн-расчёт</span>
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black" style={{ fontFamily: "Oswald, sans-serif" }}>
+                <span className="gradient-text">КАЛЬКУЛЯТОР</span>
+              </h2>
+              <p className="mt-4 text-base" style={{ color: "rgba(255,255,255,0.5)" }}>Узнайте примерную стоимость за 30 секунд</p>
+            </div>
+          </SectionReveal>
+          <SectionReveal>
+            <div className="rounded-3xl p-6 sm:p-8" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(124,58,237,0.2)" }}>
+              <div className="mb-8">
+                <label className="text-sm font-semibold uppercase tracking-wider mb-3 block" style={{ color: "rgba(255,255,255,0.5)" }}>Тип помещения</label>
+                <div className="flex flex-wrap gap-2">
+                  {ROOMS.map(r => (
+                    <button key={r.id} onClick={() => { setCalcRoom(r); setCalcWidth(r.default.w); setCalcHeight(r.default.h); }}
+                      className="px-4 py-2 rounded-xl text-sm font-medium transition-all"
+                      style={{
+                        background: calcRoom.id === r.id ? "linear-gradient(135deg, #7C3AED, #06B6D4)" : "rgba(255,255,255,0.06)",
+                        color: "#fff",
+                        border: "1px solid " + (calcRoom.id === r.id ? "transparent" : "rgba(255,255,255,0.08)"),
+                      }}>
+                      {r.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-6 mb-8">
+                <div>
+                  <label className="text-sm font-semibold uppercase tracking-wider mb-2 block" style={{ color: "rgba(255,255,255,0.5)" }}>
+                    Длина: <span className="text-white">{calcWidth} м</span>
+                  </label>
+                  <input type="range" min="1" max="15" step="0.5" value={calcWidth}
+                    onChange={e => setCalcWidth(+e.target.value)}
+                    className="w-full h-2 rounded-full appearance-none cursor-pointer"
+                    style={{ accentColor: "#7C3AED" }} />
+                </div>
+                <div>
+                  <label className="text-sm font-semibold uppercase tracking-wider mb-2 block" style={{ color: "rgba(255,255,255,0.5)" }}>
+                    Ширина: <span className="text-white">{calcHeight} м</span>
+                  </label>
+                  <input type="range" min="1" max="15" step="0.5" value={calcHeight}
+                    onChange={e => setCalcHeight(+e.target.value)}
+                    className="w-full h-2 rounded-full appearance-none cursor-pointer"
+                    style={{ accentColor: "#7C3AED" }} />
+                </div>
+              </div>
+              <div className="mb-8">
+                <label className="text-sm font-semibold uppercase tracking-wider mb-3 block" style={{ color: "rgba(255,255,255,0.5)" }}>Вид потолка</label>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                  {TYPES.map(t => (
+                    <button key={t.id} onClick={() => setCalcType(t)}
+                      className="p-3 rounded-xl text-left transition-all"
+                      style={{
+                        background: calcType.id === t.id ? "rgba(124,58,237,0.2)" : "rgba(255,255,255,0.04)",
+                        border: "1px solid " + (calcType.id === t.id ? "#7C3AED" : "rgba(255,255,255,0.08)"),
+                      }}>
+                      <div className="font-semibold text-sm text-white">{t.label}</div>
+                      <div className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.45)" }}>от {t.price} ₽/м²</div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <div className="flex flex-col sm:flex-row items-center gap-4">
+                <div className="flex-1 p-4 rounded-2xl text-center w-full" style={{ background: "rgba(124,58,237,0.1)", border: "1px solid rgba(124,58,237,0.2)" }}>
+                  <div className="text-2xl font-black gradient-text" style={{ fontFamily: "Oswald, sans-serif" }}>{(calcWidth * calcHeight).toFixed(1)} м²</div>
+                  <div className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.45)" }}>Площадь потолка</div>
+                </div>
+                <button onClick={calculate}
+                  className="px-8 py-4 rounded-2xl font-bold text-lg transition-all hover-lift w-full sm:w-auto"
+                  style={{ background: "linear-gradient(135deg, #7C3AED, #06B6D4)", color: "#fff" }}>
+                  Рассчитать
+                </button>
+                {calcResult && (
+                  <div className="flex-1 p-4 rounded-2xl text-center animate-fade-in w-full"
+                    style={{ background: "rgba(6,182,212,0.1)", border: "1px solid rgba(6,182,212,0.2)" }}>
+                    <div className="text-2xl font-black" style={{ color: "#06B6D4", fontFamily: "Oswald, sans-serif" }}>
+                      ~{calcResult.toLocaleString("ru-RU")} ₽
+                    </div>
+                    <div className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.45)" }}>Примерная стоимость</div>
+                  </div>
+                )}
+              </div>
+              <p className="text-center text-xs mt-4" style={{ color: "rgba(255,255,255,0.3)" }}>
+                * Финальная стоимость уточняется при бесплатном замере
+              </p>
+            </div>
+          </SectionReveal>
+        </div>
+      </section>
+
+      {/* REVIEWS */}
+      <section id="reviews" className="py-24" style={{ background: "#0F0A1E" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <SectionReveal>
+            <div className="text-center mb-16">
+              <span className="text-sm font-semibold tracking-widest uppercase mb-3 block" style={{ color: "#EC4899" }}>Клиенты о нас</span>
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black" style={{ fontFamily: "Oswald, sans-serif" }}>
+                <span className="gradient-text">ОТЗЫВЫ</span>
+              </h2>
+            </div>
+          </SectionReveal>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {reviews.map((r, i) => (
+              <SectionReveal key={i}>
+                <div className="p-5 rounded-2xl h-full hover-lift"
+                  style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-11 h-11 rounded-full flex items-center justify-center font-bold text-white text-base"
+                      style={{ background: "linear-gradient(135deg, #7C3AED, #06B6D4)" }}>
+                      {r.avatar}
+                    </div>
+                    <div>
+                      <div className="font-semibold text-sm text-white">{r.name}</div>
+                      <div className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{r.city}</div>
+                    </div>
+                  </div>
+                  <div className="flex gap-0.5 mb-3">
+                    {[...Array(r.rating)].map((_, j) => (
+                      <span key={j} style={{ color: "#F59E0B" }}>★</span>
+                    ))}
+                  </div>
+                  <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.6)" }}>{r.text}</p>
+                </div>
+              </SectionReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ABOUT */}
+      <section id="about" className="py-24" style={{ background: "#130D22" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <SectionReveal>
+              <div>
+                <span className="text-sm font-semibold tracking-widest uppercase mb-3 block" style={{ color: "#7C3AED" }}>Кто мы</span>
+                <h2 className="text-4xl sm:text-5xl font-black mb-6" style={{ fontFamily: "Oswald, sans-serif", lineHeight: 1.1 }}>
+                  О <span className="gradient-text">КОМПАНИИ</span>
+                </h2>
+                <p className="text-base leading-relaxed mb-5" style={{ color: "rgba(255,255,255,0.65)" }}>
+                  Мы — команда профессионалов с 8-летним опытом установки натяжных потолков. За это время мы выполнили более 2400 объектов, от небольших ванных комнат до просторных офисных помещений.
+                </p>
+                <p className="text-base leading-relaxed mb-8" style={{ color: "rgba(255,255,255,0.65)" }}>
+                  Работаем только с сертифицированными материалами европейских производителей. Даём гарантию 15 лет на всю продукцию и монтаж.
+                </p>
+                <div className="grid grid-cols-2 gap-4">
+                  {[
+                    { icon: "Shield", label: "Гарантия 15 лет", color: "#7C3AED" },
+                    { icon: "Clock", label: "Монтаж от 1 дня", color: "#06B6D4" },
+                    { icon: "Truck", label: "Бесплатный замер", color: "#F59E0B" },
+                    { icon: "Award", label: "Сертификаты", color: "#10B981" },
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-center gap-3 p-3 rounded-xl"
+                      style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+                      <Icon name={item.icon as any} size={20} style={{ color: item.color }} />
+                      <span className="text-sm font-medium text-white">{item.label}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </SectionReveal>
+            <SectionReveal>
+              <div className="grid grid-cols-2 gap-4">
+                {stats.map((s, i) => (
+                  <div key={i} className="p-6 rounded-2xl text-center hover-lift"
+                    style={{
+                      background: i % 2 === 0 ? "linear-gradient(135deg, rgba(124,58,237,0.18), rgba(124,58,237,0.04))" : "linear-gradient(135deg, rgba(6,182,212,0.18), rgba(6,182,212,0.04))",
+                      border: "1px solid " + (i % 2 === 0 ? "rgba(124,58,237,0.2)" : "rgba(6,182,212,0.2)"),
+                    }}>
+                    <div className="text-3xl sm:text-4xl font-black gradient-text mb-1" style={{ fontFamily: "Oswald, sans-serif" }}>{s.value}</div>
+                    <div className="text-xs sm:text-sm" style={{ color: "rgba(255,255,255,0.5)" }}>{s.label}</div>
+                  </div>
+                ))}
+              </div>
+            </SectionReveal>
+          </div>
+        </div>
+      </section>
+
+      {/* CONTACTS */}
+      <section id="contacts" className="py-24" style={{ background: "#0F0A1E" }}>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <SectionReveal>
+            <div className="text-center mb-16">
+              <span className="text-sm font-semibold tracking-widest uppercase mb-3 block" style={{ color: "#F97316" }}>Свяжитесь с нами</span>
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black" style={{ fontFamily: "Oswald, sans-serif" }}>
+                <span className="gradient-text">КОНТАКТЫ</span>
+              </h2>
+            </div>
+          </SectionReveal>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            <SectionReveal>
+              <div className="rounded-3xl p-6 sm:p-8" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(124,58,237,0.2)" }}>
+                <h3 className="text-2xl font-bold mb-6 text-white" style={{ fontFamily: "Oswald, sans-serif" }}>Заявка на замер</h3>
+                {formSent ? (
+                  <div className="text-center py-12 animate-fade-in">
+                    <div className="text-5xl mb-4">🎉</div>
+                    <div className="text-xl font-bold text-white mb-2">Заявка отправлена!</div>
+                    <div style={{ color: "rgba(255,255,255,0.5)" }}>Мы перезвоним вам в течение 30 минут</div>
+                  </div>
+                ) : (
+                  <div className="flex flex-col gap-4">
+                    <div>
+                      <label className="text-sm font-medium mb-1.5 block" style={{ color: "rgba(255,255,255,0.5)" }}>Ваше имя</label>
+                      <input type="text" placeholder="Иван Петров" value={formData.name}
+                        onChange={e => setFormData({ ...formData, name: e.target.value })}
+                        className="w-full px-4 py-3 rounded-xl text-white placeholder:text-white/30 outline-none transition-all"
+                        style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }} />
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium mb-1.5 block" style={{ color: "rgba(255,255,255,0.5)" }}>Телефон</label>
+                      <input type="tel" placeholder="+7 (___) ___-__-__" value={formData.phone}
+                        onChange={e => setFormData({ ...formData, phone: e.target.value })}
+                        className="w-full px-4 py-3 rounded-xl text-white placeholder:text-white/30 outline-none transition-all"
+                        style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }} />
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium mb-1.5 block" style={{ color: "rgba(255,255,255,0.5)" }}>Комментарий</label>
+                      <textarea rows={3} placeholder="Расскажите о вашем проекте..." value={formData.comment}
+                        onChange={e => setFormData({ ...formData, comment: e.target.value })}
+                        className="w-full px-4 py-3 rounded-xl text-white placeholder:text-white/30 outline-none resize-none transition-all"
+                        style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }} />
+                    </div>
+                    <button onClick={() => { if (formData.name && formData.phone) setFormSent(true); }}
+                      className="w-full py-4 rounded-2xl font-bold text-lg transition-all hover-lift mt-2"
+                      style={{ background: "linear-gradient(135deg, #7C3AED, #06B6D4)", color: "#fff" }}>
+                      Заказать бесплатный замер
+                    </button>
+                    <p className="text-xs text-center" style={{ color: "rgba(255,255,255,0.3)" }}>
+                      Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности
+                    </p>
+                  </div>
+                )}
+              </div>
+            </SectionReveal>
+            <SectionReveal>
+              <div className="flex flex-col gap-5">
+                {[
+                  { icon: "Phone", label: "Телефон", value: "+7 (900) 123-45-67", sub: "Ежедневно с 8:00 до 21:00", color: "#7C3AED" },
+                  { icon: "MessageCircle", label: "WhatsApp / Telegram", value: "+7 (900) 123-45-67", sub: "Ответим в течение 5 минут", color: "#06B6D4" },
+                  { icon: "MapPin", label: "Адрес офиса", value: "ул. Строителей, 15, офис 301", sub: "г. Москва", color: "#F59E0B" },
+                  { icon: "Mail", label: "Email", value: "info@potolokpro.ru", sub: "Для деловых запросов", color: "#10B981" },
+                ].map((c, i) => (
+                  <div key={i} className="flex items-start gap-4 p-5 rounded-2xl hover-lift transition-all"
+                    style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+                    <div className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
+                      style={{ background: c.color + "20" }}>
+                      <Icon name={c.icon as any} size={20} style={{ color: c.color }} />
+                    </div>
+                    <div>
+                      <div className="text-xs mb-0.5" style={{ color: "rgba(255,255,255,0.4)" }}>{c.label}</div>
+                      <div className="font-semibold text-white">{c.value}</div>
+                      <div className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.4)" }}>{c.sub}</div>
+                    </div>
+                  </div>
+                ))}
+                <div className="flex gap-3 mt-2">
+                  {[
+                    { icon: "Send", label: "Telegram", color: "#06B6D4" },
+                    { icon: "MessageSquare", label: "VK", color: "#5B8DD9" },
+                    { icon: "Instagram", label: "Instagram", color: "#EC4899" },
+                  ].map((s, i) => (
+                    <button key={i} className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl font-medium text-sm transition-all hover-lift"
+                      style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", color: s.color }}>
+                      <Icon name={s.icon as any} size={16} />
+                      {s.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </SectionReveal>
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="py-8 text-center" style={{ borderTop: "1px solid rgba(255,255,255,0.06)", background: "#0A0618" }}>
+        <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-2">
+            <div className="w-7 h-7 rounded-lg flex items-center justify-center"
+              style={{ background: "linear-gradient(135deg, #7C3AED, #06B6D4)" }}>
+              <Icon name="Layers" size={14} className="text-white" />
+            </div>
+            <span className="font-bold text-sm" style={{ fontFamily: "Oswald, sans-serif" }}>
+              <span className="gradient-text">ПОТОЛОК</span>
+              <span className="text-white">ПРО</span>
+            </span>
+          </div>
+          <div className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>© 2025 ПотолокПРО. Все права защищены.</div>
+          <div className="flex gap-4 text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
+            <button className="hover:text-white transition-colors">Политика конфиденциальности</button>
+            <button className="hover:text-white transition-colors">Оферта</button>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
