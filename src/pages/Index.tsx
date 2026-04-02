@@ -167,10 +167,7 @@ export default function Index() {
 
           <div className="flex items-center gap-3">
             <a href="tel:+79001234567" className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all hover-lift"
-              style={{ background: "linear-gradient(135deg, #7C3AED, #06B6D4)", color: "#fff" }}>
-              <Icon name="Phone" size={14} />
-              +7 (900) 123-45-67
-            </a>
+              style={{ background: "linear-gradient(135deg, #7C3AED, #06B6D4)", color: "#fff" }}>+7 (929) 032-63-45</a>
             <button className="lg:hidden p-2 rounded-lg glass" onClick={() => setMenuOpen(!menuOpen)}>
               <Icon name={menuOpen ? "X" : "Menu"} size={20} />
             </button>
