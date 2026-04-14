@@ -250,6 +250,46 @@ export default function Index() {
         </div>
       </section>
 
+      {/* WHY US */}
+      <section className="py-24" style={{ background: "#231b42" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <SectionReveal>
+            <div className="text-center mb-14">
+              <span className="text-sm font-semibold tracking-widest uppercase mb-3 block" style={{ color: "#F59E0B" }}>Наши преимущества</span>
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black" style={{ fontFamily: "Oswald, sans-serif" }}>
+                ПОЧЕМУ ВЫБИРАЮТ <span className="gradient-text">НАС</span>
+              </h2>
+            </div>
+          </SectionReveal>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {[
+              { icon: "FileText", title: "Работаем по договору", desc: "Фиксируем все условия, цену и сроки. Никаких устных договорённостей.", color: "#7C3AED" },
+              { icon: "ShieldCheck", title: "Гарантия 15 лет", desc: "Официальная гарантия на полотно и монтаж. Подтверждено документально.", color: "#06B6D4" },
+              { icon: "Award", title: "Опыт более 8 лет", desc: "Более 2000 успешных объектов. Умеем работать с любыми задачами.", color: "#F59E0B" },
+              { icon: "Layers", title: "Любая сложность", desc: "Многоуровневые, криволинейные, с подсветкой — беремся за всё.", color: "#10B981" },
+              { icon: "Sparkles", title: "Чистый монтаж", desc: "Работаем аккуратно: без пыли, строительного мусора и лишних хлопот.", color: "#EC4899" },
+              { icon: "Receipt", title: "Прозрачная смета", desc: "Никаких скрытых доплат. Цена в смете — цена при оплате.", color: "#F97316" },
+              { icon: "Ruler", title: "Замер и расчёт бесплатно", desc: "Приедем, измерим, рассчитаем точную стоимость — совершенно бесплатно.", color: "#A78BFA" },
+              { icon: "Clock", title: "Монтаж за 1 день", desc: "Устанавливаем потолок быстро — большинство объектов за один день.", color: "#34D399" },
+            ].map((item, i) => (
+              <SectionReveal key={i}>
+                <div className="group p-6 rounded-2xl h-full transition-all duration-300 hover-lift"
+                  style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}
+                  onMouseEnter={e => (e.currentTarget.style.borderColor = item.color + "50")}
+                  onMouseLeave={e => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.06)")}>
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
+                    style={{ background: item.color + "20" }}>
+                    <Icon name={item.icon as any} size={22} style={{ color: item.color }} />
+                  </div>
+                  <h3 className="font-bold text-white text-base mb-2 leading-snug" style={{ fontFamily: "Oswald, sans-serif" }}>{item.title}</h3>
+                  <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>{item.desc}</p>
+                </div>
+              </SectionReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* SERVICES */}
       <section id="services" className="py-24" style={{ background: "#1c1535" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
