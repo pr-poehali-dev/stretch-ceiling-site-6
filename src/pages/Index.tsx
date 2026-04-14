@@ -141,15 +141,20 @@ export default function Index() {
       {/* NAVBAR */}
       <nav className="fixed top-0 left-0 right-0 z-50 glass" style={{ borderBottom: "1px solid rgba(124,58,237,0.2)" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
-          <div className="flex items-center gap-2 cursor-pointer" onClick={() => scrollTo("home")}>
-            <div className="w-8 h-8 rounded-lg flex items-center justify-center animate-pulse-glow"
-              style={{ background: "linear-gradient(135deg, #7C3AED, #06B6D4)" }}>
-              <Icon name="Layers" size={18} className="text-white" />
+          <div className="flex items-center gap-3 cursor-pointer" onClick={() => scrollTo("home")}>
+            {/* Логотип LeKo */}
+            <div className="relative flex items-center justify-center" style={{ width: 40, height: 40 }}>
+              <div className="absolute inset-0 rounded-xl animate-pulse-glow"
+                style={{ background: "linear-gradient(135deg, #7C3AED, #06B6D4)" }} />
+              <span className="relative font-black text-white" style={{ fontSize: 15, fontFamily: "Oswald, sans-serif", letterSpacing: "-0.5px" }}>Le</span>
+              <span className="relative font-black" style={{ fontSize: 15, fontFamily: "Oswald, sans-serif", color: "#F59E0B", letterSpacing: "-0.5px" }}>Ko</span>
             </div>
-            <span className="text-lg font-bold" style={{ fontFamily: "Oswald, sans-serif", letterSpacing: "0.05em" }}>
-              <span className="gradient-text">ПОТОЛОК</span>
-              <span className="text-white">ПРО</span>
-            </span>
+            <div className="flex flex-col leading-none">
+              <span className="font-black" style={{ fontFamily: "Oswald, sans-serif", fontSize: 17, letterSpacing: "0.04em" }}>
+                <span className="text-white">Потолки</span><span className="gradient-text">LeKo</span>
+              </span>
+              <span style={{ fontSize: 9, color: "rgba(255,255,255,0.45)", letterSpacing: "0.15em", textTransform: "uppercase" }}>натяжные потолки</span>
+            </div>
           </div>
 
           <div className="hidden lg:flex items-center gap-1">
