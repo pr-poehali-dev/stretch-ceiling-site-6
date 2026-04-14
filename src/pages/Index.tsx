@@ -7,48 +7,16 @@ const HERO_IMG =
   "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/a02a971b-162d-411f-a319-6cf1ec4dffeb.jpg";
 
 const services = [
-  {
-    icon: "Sparkles",
-    title: "ПВХ полотна",
-    desc: "Матовые, сатиновые и глянцевые полотна",
-    price: "от 350 ₽/м²",
-    color: "#7C3AED",
-  },
-  {
-    icon: "Layers",
-    title: "Тканевые потолки",
-    desc: "Экологичность",
-    price: "от 280 ₽/м²",
-    color: "#06B6D4",
-  },
-  {
-    icon: "Zap",
-    title: "Сатиновые потолки",
-    desc: "Лёгкий блеск, универсальное решение для любого интерьера",
-    price: "от 320 ₽/м²",
-    color: "#F59E0B",
-  },
-  {
-    icon: "Star",
-    title: "Звёздное небо",
-    desc: "Оптоволоконная подсветка, создаёт атмосферу космоса",
-    price: "от 1200 ₽/м²",
-    color: "#EC4899",
-  },
-  {
-    icon: "Grid3x3",
-    title: "Многоуровневые",
-    desc: "Сложные конструкции любой геометрии и форм",
-    price: "от 650 ₽/м²",
-    color: "#10B981",
-  },
-  {
-    icon: "Lightbulb",
-    title: "Световые линии",
-    desc: "Встроенные LED-профили, трендовый дизайн 2024–2025",
-    price: "от 480 ₽/м²",
-    color: "#F97316",
-  },
+  { icon: "Layers", title: "ПВХ полотна", desc: "Матовые, сатиновые и глянцевые — классика на все случаи жизни", color: "#7C3AED" },
+  { icon: "Wind", title: "Тканевые потолки", desc: "Экологичный материал без запаха, дышащая структура", color: "#06B6D4" },
+  { icon: "Lightbulb", title: "Потолки с подсветкой", desc: "Встроенная LED-подсветка любой конфигурации и яркости", color: "#F59E0B" },
+  { icon: "Blinds", title: "Скрытые карнизы для штор", desc: "Элегантное решение — штора выезжает прямо из потолка", color: "#10B981" },
+  { icon: "Minus", title: "Световые линии", desc: "Тонкие светящиеся полосы — трендовый дизайн 2024–2025", color: "#EC4899" },
+  { icon: "Sun", title: "Световые потолки", desc: "Равномерное мягкое свечение по всей площади потолка", color: "#F97316" },
+  { icon: "SeparatorHorizontal", title: "Теневое примыкание", desc: "Тёмный зазор между стеной и потолком — эффект парения", color: "#A78BFA" },
+  { icon: "Crosshair", title: "Трековое освещение", desc: "Регулируемые споты на рельсе — акцентный и функциональный свет", color: "#34D399" },
+  { icon: "Droplets", title: "Слив воды", desc: "Специальный клапан для безопасного отвода воды при затоплении", color: "#38BDF8" },
+  { icon: "Wrench", title: "Ремонт натяжных потолков", desc: "Устраняем порезы, провисания и следы от затоплений", color: "#FB923C" },
 ];
 
 const portfolio = [
@@ -674,13 +642,13 @@ export default function Index() {
                 className="text-sm font-semibold tracking-widest uppercase mb-3 block"
                 style={{ color: "#7C3AED" }}
               >
-                Наши услуги
+                Что мы делаем
               </span>
               <h2
                 className="text-4xl sm:text-5xl lg:text-6xl font-black"
                 style={{ fontFamily: "Oswald, sans-serif" }}
               >
-                <span className="gradient-text">ВСЕ ВИДЫ</span> ПОТОЛКОВ
+                <span className="gradient-text">НАШИ</span> УСЛУГИ
               </h2>
             </div>
           </SectionReveal>
@@ -718,14 +686,11 @@ export default function Index() {
                     {s.title}
                   </h3>
                   <p
-                    className="text-sm mb-4"
+                    className="text-sm"
                     style={{ color: "rgba(255,255,255,0.55)", lineHeight: 1.6 }}
                   >
                     {s.desc}
                   </p>
-                  <div className="font-bold text-lg" style={{ color: s.color }}>
-                    {s.price}
-                  </div>
                 </div>
               </SectionReveal>
             ))}
