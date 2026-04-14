@@ -15,12 +15,12 @@ const services = [
 ];
 
 const portfolio = [
-  { room: "Гостиная", style: "Современный минимализм", area: "28 м²", color: "#7C3AED" },
-  { room: "Спальня", style: "Звёздное небо", area: "18 м²", color: "#06B6D4" },
-  { room: "Кухня", style: "Белый глянец", area: "14 м²", color: "#F59E0B" },
-  { room: "Детская", style: "Мягкие тона", area: "12 м²", color: "#EC4899" },
-  { room: "Ванная", style: "Влагостойкий", area: "8 м²", color: "#10B981" },
-  { room: "Офис", style: "Деловой стиль", area: "55 м²", color: "#F97316" },
+  { room: "Гостиная", style: "Современный минимализм", area: "28 м²", color: "#7C3AED", img: "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/0030f253-ddcf-4294-81d6-718f50e85b12.jpg" },
+  { room: "Спальня", style: "Звёздное небо", area: "18 м²", color: "#06B6D4", img: "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/3e379fc3-63f7-4a8e-ad11-2fc7e39d0390.jpg" },
+  { room: "Кухня", style: "Белый глянец", area: "14 м²", color: "#F59E0B", img: "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/a97d908f-bf0e-4934-8964-2ac12b153761.jpg" },
+  { room: "Детская", style: "Мягкие тона", area: "12 м²", color: "#EC4899", img: "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/aced47a1-913b-4549-83ca-0f26f70bda34.jpg" },
+  { room: "Ванная", style: "Влагостойкий", area: "8 м²", color: "#10B981", img: "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/b597b316-ff60-4076-ac91-c89673616cc8.jpg" },
+  { room: "Офис", style: "Деловой стиль", area: "55 м²", color: "#F97316", img: "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/98520ffa-b665-4daf-9fff-b69461c55dc9.jpg" },
 ];
 
 const reviews = [
@@ -297,20 +297,21 @@ export default function Index() {
             {portfolio.map((p, i) => (
               <SectionReveal key={i}>
                 <div className="group rounded-2xl overflow-hidden hover-lift cursor-pointer"
-                  style={{ border: "1px solid rgba(255,255,255,0.06)" }}>
-                  <div className="h-52 flex items-end p-5 relative overflow-hidden"
-                    style={{ background: `linear-gradient(135deg, ${p.color}25 0%, ${p.color}55 100%)` }}>
-                    <div className="absolute inset-0 opacity-10"
-                      style={{ background: "repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.05) 10px, rgba(255,255,255,0.05) 20px)" }} />
-                    <div className="absolute top-4 right-4">
+                  style={{ border: "1px solid rgba(255,255,255,0.06)" }}
+                  onMouseEnter={e => (e.currentTarget.style.borderColor = p.color + "55")}
+                  onMouseLeave={e => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.06)")}>
+                  <div className="h-52 relative overflow-hidden">
+                    <img src={p.img} alt={p.room} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                    <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 60%)" }} />
+                    <div className="absolute top-3 right-3">
                       <span className="px-3 py-1 rounded-full text-xs font-bold"
-                        style={{ background: p.color + "30", color: p.color, border: `1px solid ${p.color}40` }}>
+                        style={{ background: "rgba(0,0,0,0.5)", color: "#fff", backdropFilter: "blur(6px)", border: `1px solid ${p.color}60` }}>
                         {p.area}
                       </span>
                     </div>
-                    <div>
-                      <div className="text-white font-black text-xl" style={{ fontFamily: "Oswald, sans-serif" }}>{p.room}</div>
-                      <div className="text-sm" style={{ color: "rgba(255,255,255,0.6)" }}>{p.style}</div>
+                    <div className="absolute bottom-4 left-4">
+                      <div className="text-white font-black text-xl" style={{ fontFamily: "Oswald, sans-serif", textShadow: "0 1px 6px rgba(0,0,0,0.8)" }}>{p.room}</div>
+                      <div className="text-sm" style={{ color: "rgba(255,255,255,0.75)", textShadow: "0 1px 4px rgba(0,0,0,0.8)" }}>{p.style}</div>
                     </div>
                   </div>
                   <div className="p-4 flex items-center justify-between" style={{ background: "rgba(255,255,255,0.03)" }}>
