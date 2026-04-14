@@ -78,12 +78,12 @@ function SectionReveal({ children, className = "" }: { children: React.ReactNode
 }
 
 const galleryItems = [
-  { title: "Глянец в гостиной", style: "Современный", bg: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)", emoji: "✨" },
-  { title: "Матовый спальня", style: "Скандинавский", bg: "linear-gradient(135deg, #06b6d4 0%, #0891b2 100%)", emoji: "🛏️" },
-  { title: "LED подсветка", style: "Хай-тек", bg: "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)", emoji: "💡" },
-  { title: "Звёздное небо", style: "Романтик", bg: "linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #7C3AED 100%)", emoji: "⭐" },
-  { title: "Многоуровневый", style: "Лофт", bg: "linear-gradient(135deg, #10b981 0%, #059669 100%)", emoji: "🏗️" },
-  { title: "Кухня сатин", style: "Классика", bg: "linear-gradient(135deg, #ec4899 0%, #be185d 100%)", emoji: "🍽️" },
+  { title: "Теневое примыкание", style: "Парящий эффект", color: "#7C3AED", img: "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/c2d71982-909a-4be8-9f69-9b4890cad08e.jpg" },
+  { title: "Скрытые карнизы", style: "Скрытая гардина", color: "#06B6D4", img: "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/a124141f-cbd7-4fe8-9aab-a16c825ef96f.jpg" },
+  { title: "Парящий потолок", style: "Лёгкость пространства", color: "#F59E0B", img: "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/3856537a-b293-449e-a5e4-a6a59600a9a2.jpg" },
+  { title: "Световой потолок", style: "Мягкий свет", color: "#10B981", img: "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/f633a894-5402-496f-8ba6-a8facdb5defb.jpg" },
+  { title: "Световые линии", style: "Хай-тек", color: "#EC4899", img: "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/f6d08b1d-9296-4d39-8ded-4804dc169e2a.jpg" },
+  { title: "Трековое освещение", style: "Акцентный свет", color: "#F97316", img: "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/1fe33f53-9f2e-496f-ad3a-5c9552b87b7e.jpg" },
 ];
 
 export default function Index() {
@@ -359,15 +359,24 @@ export default function Index() {
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               {galleryItems.map((g, i) => (
                 <div key={i} onClick={() => setActiveGallery(i)}
-                  className="rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover-lift flex flex-col items-center justify-center"
+                  className="rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover-lift relative group"
                   style={{
                     height: i === 0 || i === 5 ? "280px" : "200px",
-                    background: g.bg,
-                    border: activeGallery === i ? "2px solid #7C3AED" : "2px solid transparent",
+                    border: activeGallery === i ? `2px solid ${g.color}` : "2px solid transparent",
                   }}>
-                  <div className="text-4xl mb-2">{g.emoji}</div>
-                  <div className="font-bold text-white text-lg text-center px-4" style={{ fontFamily: "Oswald, sans-serif" }}>{g.title}</div>
-                  <div className="text-sm mt-1" style={{ color: "rgba(255,255,255,0.7)" }}>{g.style}</div>
+                  <img src={g.img} alt={g.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                  <div className="absolute inset-0 transition-opacity duration-300"
+                    style={{ background: activeGallery === i ? "rgba(0,0,0,0.45)" : "rgba(0,0,0,0.3)" }} />
+                  <div className="absolute bottom-0 left-0 right-0 p-4">
+                    <div className="font-bold text-white text-base leading-tight mb-0.5" style={{ fontFamily: "Oswald, sans-serif", textShadow: "0 1px 4px rgba(0,0,0,0.8)" }}>{g.title}</div>
+                    <div className="text-xs" style={{ color: "rgba(255,255,255,0.75)", textShadow: "0 1px 3px rgba(0,0,0,0.8)" }}>{g.style}</div>
+                  </div>
+                  {activeGallery === i && (
+                    <div className="absolute top-3 right-3 w-6 h-6 rounded-full flex items-center justify-center"
+                      style={{ background: g.color }}>
+                      <Icon name="Check" size={13} className="text-white" />
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
