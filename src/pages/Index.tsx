@@ -192,9 +192,19 @@ const galleryItems = [
   },
 ];
 
+const HERO_SLIDES = [
+  "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/a02a971b-162d-411f-a319-6cf1ec4dffeb.jpg",
+  "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/0030f253-ddcf-4294-81d6-718f50e85b12.jpg",
+  "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/3e379fc3-63f7-4a8e-ad11-2fc7e39d0390.jpg",
+  "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/a97d908f-bf0e-4934-8964-2ac12b153761.jpg",
+  "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/aced47a1-913b-4549-83ca-0f26f70bda34.jpg",
+  "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/b597b316-ff60-4076-ac91-c89673616cc8.jpg",
+];
+
 export default function Index() {
   const [activeSection, setActiveSection] = useState("home");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [heroSlide, setHeroSlide] = useState(0);
   const [calcRoom, setCalcRoom] = useState(ROOMS[0]);
   const navigate = useNavigate();
   const [calcWidth, setCalcWidth] = useState(5.5);
@@ -219,6 +229,13 @@ export default function Index() {
     { id: "about", label: "О нас" },
     { id: "contacts", label: "Контакты" },
   ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setHeroSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -395,22 +412,21 @@ export default function Index() {
         className="relative min-h-screen flex items-center overflow-hidden"
       >
         <div className="absolute inset-0">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="w-full h-full object-cover"
-            style={{ opacity: 0.28 }}
-          >
-            <source src="https://videos.pexels.com/video-files/5377667/5377667-hd_1280_720_25fps.mp4" type="video/mp4" />
-            <img src={HERO_IMG} alt="Натяжные потолки" className="w-full h-full object-cover" />
-          </video>
+          {HERO_SLIDES.map((src, i) => (
+            <img
+              key={src}
+              src={src}
+              alt="Натяжные потолки"
+              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
+              style={{ opacity: i === heroSlide ? 0.28 : 0, zIndex: i === heroSlide ? 1 : 0 }}
+            />
+          ))}
           <div
             className="absolute inset-0"
             style={{
               background:
                 "linear-gradient(135deg, rgba(28,21,53,0.97) 0%, rgba(124,58,237,0.25) 50%, rgba(28,21,53,0.93) 100%)",
+              zIndex: 2,
             }}
           />
         </div>
@@ -448,6 +464,23 @@ export default function Index() {
             НАТЯЖНЫЕ ПОТОЛКИ
           </span>
         </div>
+
+        {/* Точки слайдера */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+          {HERO_SLIDES.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setHeroSlide(i)}
+              className="rounded-full transition-all duration-300"
+              style={{
+                width: i === heroSlide ? 28 : 8,
+                height: 8,
+                background: i === heroSlide ? "linear-gradient(135deg, #7C3AED, #06B6D4)" : "rgba(255,255,255,0.35)",
+              }}
+            />
+          ))}
+        </div>
+
         <div
           className="absolute top-20 right-10 w-96 h-96 rounded-full opacity-20 animate-float"
           style={{
