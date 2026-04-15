@@ -395,11 +395,17 @@ export default function Index() {
         className="relative min-h-screen flex items-center overflow-hidden"
       >
         <div className="absolute inset-0">
-          <img
-            src={HERO_IMG}
-            alt="Натяжные потолки"
-            className="w-full h-full object-cover opacity-25"
-          />
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover"
+            style={{ opacity: 0.28 }}
+          >
+            <source src="https://videos.pexels.com/video-files/5377667/5377667-hd_1280_720_25fps.mp4" type="video/mp4" />
+            <img src={HERO_IMG} alt="Натяжные потолки" className="w-full h-full object-cover" />
+          </video>
           <div
             className="absolute inset-0"
             style={{
@@ -407,6 +413,40 @@ export default function Index() {
                 "linear-gradient(135deg, rgba(28,21,53,0.97) 0%, rgba(124,58,237,0.25) 50%, rgba(28,21,53,0.93) 100%)",
             }}
           />
+        </div>
+
+        {/* Логотип LeKo поверх видео */}
+        <div
+          className="absolute top-1/2 right-12 -translate-y-1/2 z-10 hidden lg:flex flex-col items-center gap-3 select-none pointer-events-none"
+          style={{ opacity: 0.13 }}
+        >
+          <div
+            className="rounded-3xl flex items-center justify-center"
+            style={{
+              width: 180,
+              height: 180,
+              background: "linear-gradient(135deg, #7C3AED, #06B6D4)",
+            }}
+          >
+            <span
+              className="font-black text-white"
+              style={{ fontSize: 72, fontFamily: "Oswald, sans-serif", letterSpacing: "-2px" }}
+            >
+              Le
+            </span>
+            <span
+              className="font-black"
+              style={{ fontSize: 72, fontFamily: "Oswald, sans-serif", color: "#F59E0B", letterSpacing: "-2px" }}
+            >
+              Ko
+            </span>
+          </div>
+          <span
+            className="text-white font-bold tracking-widest uppercase"
+            style={{ fontFamily: "Oswald, sans-serif", fontSize: 18, letterSpacing: "0.2em" }}
+          >
+            НАТЯЖНЫЕ ПОТОЛКИ
+          </span>
         </div>
         <div
           className="absolute top-20 right-10 w-96 h-96 rounded-full opacity-20 animate-float"
