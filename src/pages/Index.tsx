@@ -418,14 +418,14 @@ export default function Index() {
               src={src}
               alt="Натяжные потолки"
               className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
-              style={{ opacity: i === heroSlide ? 0.28 : 0, zIndex: i === heroSlide ? 1 : 0 }}
+              style={{ opacity: i === heroSlide ? 0.6 : 0, zIndex: i === heroSlide ? 1 : 0 }}
             />
           ))}
           <div
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(135deg, rgba(28,21,53,0.97) 0%, rgba(124,58,237,0.25) 50%, rgba(28,21,53,0.93) 100%)",
+                "linear-gradient(135deg, rgba(28,21,53,0.82) 0%, rgba(124,58,237,0.15) 50%, rgba(28,21,53,0.78) 100%)",
               zIndex: 2,
             }}
           />
