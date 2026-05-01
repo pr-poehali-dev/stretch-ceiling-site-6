@@ -211,9 +211,9 @@ export default function Index() {
   const [calcHeight, setCalcHeight] = useState(4.2);
   const [calcType, setCalcType] = useState(TYPES[0]);
   const [calcResult, setCalcResult] = useState<number | null>(null);
-  const [optKarniz, setOptKarniz] = useState(false);
-  const [optFloating, setOptFloating] = useState(false);
-  const [optShadow, setOptShadow] = useState(false);
+  const [optKarniz, setOptKarniz] = useState("");
+  const [optFloating, setOptFloating] = useState("");
+  const [optShadow, setOptShadow] = useState("");
   const [activeGallery, setActiveGallery] = useState(0);
   const [formData, setFormData] = useState({
     name: "",
@@ -265,11 +265,10 @@ export default function Index() {
 
   const calculate = () => {
     const area = calcWidth * calcHeight;
-    const perimeter = 2 * (calcWidth + calcHeight);
     let total = Math.ceil(area * calcType.price);
-    if (optKarniz) total += Math.ceil(perimeter * 3200);
-    if (optFloating) total += Math.ceil(perimeter * 1800);
-    if (optShadow) total += Math.ceil(perimeter * 800);
+    if (parseFloat(optKarniz) > 0) total += Math.ceil(parseFloat(optKarniz) * 3200);
+    if (parseFloat(optFloating) > 0) total += Math.ceil(parseFloat(optFloating) * 1800);
+    if (parseFloat(optShadow) > 0) total += Math.ceil(parseFloat(optShadow) * 800);
     setCalcResult(total);
   };
 
@@ -1166,33 +1165,45 @@ export default function Index() {
                 </label>
                 <div className="flex flex-col gap-3">
                   {[
-                    { state: optKarniz, setter: setOptKarniz, label: "Скрытый карниз", price: "3 200 ₽/пог. м" },
-                    { state: optFloating, setter: setOptFloating, label: "Парящий потолок", price: "1 800 ₽/пог. м" },
-                    { state: optShadow, setter: setOptShadow, label: "Теневой потолок", price: "800 ₽/пог. м" },
+                    { value: optKarniz, setter: setOptKarniz, label: "Скрытый карниз", price: "3 200 ₽/пог. м", perM: 3200 },
+                    { value: optFloating, setter: setOptFloating, label: "Парящий потолок", price: "1 800 ₽/пог. м", perM: 1800 },
+                    { value: optShadow, setter: setOptShadow, label: "Теневой потолок", price: "800 ₽/пог. м", perM: 800 },
                   ].map((opt) => (
-                    <button
+                    <div
                       key={opt.label}
-                      onClick={() => opt.setter(!opt.state)}
-                      className="flex items-center justify-between p-3 rounded-xl transition-all text-left"
+                      className="flex items-center gap-3 p-3 rounded-xl"
                       style={{
-                        background: opt.state ? "rgba(124,58,237,0.2)" : "rgba(255,255,255,0.04)",
-                        border: "1px solid " + (opt.state ? "#7C3AED" : "rgba(255,255,255,0.08)"),
+                        background: parseFloat(opt.value) > 0 ? "rgba(124,58,237,0.15)" : "rgba(255,255,255,0.04)",
+                        border: "1px solid " + (parseFloat(opt.value) > 0 ? "rgba(124,58,237,0.5)" : "rgba(255,255,255,0.08)"),
                       }}
                     >
-                      <div className="flex items-center gap-3">
-                        <div
-                          className="w-5 h-5 rounded-md flex items-center justify-center flex-shrink-0"
-                          style={{
-                            background: opt.state ? "linear-gradient(135deg, #7C3AED, #06B6D4)" : "rgba(255,255,255,0.1)",
-                            border: opt.state ? "none" : "1px solid rgba(255,255,255,0.2)",
-                          }}
-                        >
-                          {opt.state && <span className="text-white text-xs font-bold">✓</span>}
-                        </div>
-                        <span className="font-semibold text-sm text-white">{opt.label}</span>
+                      <div className="flex-1">
+                        <div className="font-semibold text-sm text-white">{opt.label}</div>
+                        <div className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.4)" }}>{opt.price}</div>
                       </div>
-                      <span className="text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>{opt.price}</span>
-                    </button>
+                      <div className="flex items-center gap-2">
+                        <input
+                          type="number"
+                          min="0"
+                          step="0.5"
+                          placeholder="0"
+                          value={opt.value}
+                          onChange={(e) => opt.setter(e.target.value)}
+                          className="w-20 text-center rounded-lg py-1.5 px-2 text-sm font-semibold outline-none"
+                          style={{
+                            background: "rgba(255,255,255,0.08)",
+                            border: "1px solid rgba(124,58,237,0.4)",
+                            color: "#fff",
+                          }}
+                        />
+                        <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>м</span>
+                      </div>
+                      {parseFloat(opt.value) > 0 && (
+                        <div className="text-sm font-bold" style={{ color: "#06B6D4", minWidth: 80, textAlign: "right" }}>
+                          +{(Math.ceil(parseFloat(opt.value) * opt.perM)).toLocaleString("ru-RU")} ₽
+                        </div>
+                      )}
+                    </div>
                   ))}
                 </div>
               </div>
