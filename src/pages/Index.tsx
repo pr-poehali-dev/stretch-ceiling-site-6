@@ -111,12 +111,10 @@ const ROOMS = [
 ];
 
 const TYPES = [
-  { id: "mat", label: "Матовый", price: 280 },
-  { id: "gloss", label: "Глянцевый", price: 350 },
-  { id: "satin", label: "Сатиновый", price: 320 },
-  { id: "stars", label: "Звёздное небо", price: 1200 },
-  { id: "multi", label: "Многоуровневый", price: 650 },
-  { id: "led", label: "LED подсветка", price: 480 },
+  { id: "mat", label: "Матовый", price: 700 },
+  { id: "gloss", label: "Глянцевый", price: 700 },
+  { id: "satin", label: "Сатиновый", price: 750 },
+  { id: "light", label: "Световой", price: 2500 },
 ];
 
 function useInView(threshold = 0.15) {
@@ -1145,12 +1143,6 @@ export default function Index() {
                     >
                       <div className="font-semibold text-sm text-white">
                         {t.label}
-                      </div>
-                      <div
-                        className="text-xs mt-0.5"
-                        style={{ color: "rgba(255,255,255,0.45)" }}
-                      >
-                        от {t.price} ₽/м²
                       </div>
                     </button>
                   ))}
