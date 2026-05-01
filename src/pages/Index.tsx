@@ -211,6 +211,9 @@ export default function Index() {
   const [calcHeight, setCalcHeight] = useState(4.2);
   const [calcType, setCalcType] = useState(TYPES[0]);
   const [calcResult, setCalcResult] = useState<number | null>(null);
+  const [optKarniz, setOptKarniz] = useState(false);
+  const [optFloating, setOptFloating] = useState(false);
+  const [optShadow, setOptShadow] = useState(false);
   const [activeGallery, setActiveGallery] = useState(0);
   const [formData, setFormData] = useState({
     name: "",
@@ -262,7 +265,11 @@ export default function Index() {
 
   const calculate = () => {
     const area = calcWidth * calcHeight;
-    const total = Math.ceil(area * calcType.price);
+    const perimeter = 2 * (calcWidth + calcHeight);
+    let total = Math.ceil(area * calcType.price);
+    if (optKarniz) total += Math.ceil(perimeter * 3200);
+    if (optFloating) total += Math.ceil(area * 1800);
+    if (optShadow) total += Math.ceil(perimeter * 800);
     setCalcResult(total);
   };
 
