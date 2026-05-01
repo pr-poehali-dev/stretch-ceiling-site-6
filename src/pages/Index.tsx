@@ -872,22 +872,7 @@ export default function Index() {
                       </div>
                     </div>
                   </div>
-                  <div
-                    className="p-4 flex items-center justify-between"
-                    style={{ background: "rgba(255,255,255,0.03)" }}
-                  >
-                    <span
-                      className="text-sm font-medium"
-                      style={{ color: "rgba(255,255,255,0.5)" }}
-                    >
-                      Посмотреть детали
-                    </span>
-                    <Icon
-                      name="ArrowRight"
-                      size={16}
-                      style={{ color: p.color }}
-                    />
-                  </div>
+
                 </div>
               </SectionReveal>
             ))}
