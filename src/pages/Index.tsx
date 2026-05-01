@@ -156,37 +156,49 @@ const galleryItems = [
     title: "Теневое примыкание",
     style: "Парящий эффект",
     color: "#7C3AED",
-    img: "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/c2d71982-909a-4be8-9f69-9b4890cad08e.jpg",
+    imgs: [
+      "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/c2d71982-909a-4be8-9f69-9b4890cad08e.jpg",
+    ],
   },
   {
     title: "Скрытые карнизы",
     style: "Скрытая гардина",
     color: "#06B6D4",
-    img: "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/a124141f-cbd7-4fe8-9aab-a16c825ef96f.jpg",
+    imgs: [
+      "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/a124141f-cbd7-4fe8-9aab-a16c825ef96f.jpg",
+    ],
   },
   {
     title: "Парящий потолок",
     style: "Лёгкость пространства",
     color: "#F59E0B",
-    img: "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/3856537a-b293-449e-a5e4-a6a59600a9a2.jpg",
+    imgs: [
+      "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/3856537a-b293-449e-a5e4-a6a59600a9a2.jpg",
+    ],
   },
   {
     title: "Световой потолок",
     style: "Мягкий свет",
     color: "#10B981",
-    img: "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/f633a894-5402-496f-8ba6-a8facdb5defb.jpg",
+    imgs: [
+      "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/f633a894-5402-496f-8ba6-a8facdb5defb.jpg",
+    ],
   },
   {
     title: "Световые линии",
     style: "Хай-тек",
     color: "#EC4899",
-    img: "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/f6d08b1d-9296-4d39-8ded-4804dc169e2a.jpg",
+    imgs: [
+      "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/f6d08b1d-9296-4d39-8ded-4804dc169e2a.jpg",
+    ],
   },
   {
     title: "Трековое освещение",
     style: "Акцентный свет",
     color: "#F97316",
-    img: "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/1fe33f53-9f2e-496f-ad3a-5c9552b87b7e.jpg",
+    imgs: [
+      "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/1fe33f53-9f2e-496f-ad3a-5c9552b87b7e.jpg",
+    ],
   },
 ];
 
@@ -213,6 +225,7 @@ export default function Index() {
   const [optFloating, setOptFloating] = useState("");
   const [optShadow, setOptShadow] = useState("");
   const [activeGallery, setActiveGallery] = useState(0);
+  const [lightbox, setLightbox] = useState<{ categoryIndex: number; photoIndex: number } | null>(null);
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -919,84 +932,40 @@ export default function Index() {
               </h2>
             </div>
           </SectionReveal>
-          <div className="flex gap-3 mb-6 flex-wrap justify-center">
-            {galleryItems.map((g, i) => (
-              <button
-                key={i}
-                onClick={() => setActiveGallery(i)}
-                className="px-4 py-2 rounded-xl text-sm font-medium transition-all"
-                style={{
-                  background:
-                    activeGallery === i
-                      ? "linear-gradient(135deg, #7C3AED, #06B6D4)"
-                      : "rgba(255,255,255,0.06)",
-                  color: activeGallery === i ? "#fff" : "rgba(255,255,255,0.6)",
-                  border:
-                    "1px solid " +
-                    (activeGallery === i
-                      ? "transparent"
-                      : "rgba(255,255,255,0.08)"),
-                }}
-              >
-                {g.title}
-              </button>
-            ))}
-          </div>
           <SectionReveal>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               {galleryItems.map((g, i) => (
                 <div
                   key={i}
-                  onClick={() => setActiveGallery(i)}
+                  onClick={() => { setActiveGallery(i); setLightbox({ categoryIndex: i, photoIndex: 0 }); }}
                   className="rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover-lift relative group"
                   style={{
                     height: i === 0 || i === 5 ? "280px" : "200px",
-                    border:
-                      activeGallery === i
-                        ? `2px solid ${g.color}`
-                        : "2px solid transparent",
+                    border: "2px solid transparent",
                   }}
                 >
                   <img
-                    src={g.img}
+                    src={g.imgs[0]}
                     alt={g.title}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
-                  <div
-                    className="absolute inset-0 transition-opacity duration-300"
-                    style={{
-                      background:
-                        activeGallery === i
-                          ? "rgba(0,0,0,0.45)"
-                          : "rgba(0,0,0,0.3)",
-                    }}
-                  />
+                  <div className="absolute inset-0 transition-opacity duration-300" style={{ background: "rgba(0,0,0,0.3)" }} />
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ background: "rgba(255,255,255,0.2)", backdropFilter: "blur(4px)" }}>
+                      <Icon name="ZoomIn" size={22} className="text-white" />
+                    </div>
+                  </div>
                   <div className="absolute bottom-0 left-0 right-0 p-4">
-                    <div
-                      className="font-bold text-white text-base leading-tight mb-0.5"
-                      style={{
-                        fontFamily: "Oswald, sans-serif",
-                        textShadow: "0 1px 4px rgba(0,0,0,0.8)",
-                      }}
-                    >
+                    <div className="font-bold text-white text-base leading-tight mb-0.5" style={{ fontFamily: "Oswald, sans-serif", textShadow: "0 1px 4px rgba(0,0,0,0.8)" }}>
                       {g.title}
                     </div>
-                    <div
-                      className="text-xs"
-                      style={{
-                        color: "rgba(255,255,255,0.75)",
-                        textShadow: "0 1px 3px rgba(0,0,0,0.8)",
-                      }}
-                    >
+                    <div className="text-xs" style={{ color: "rgba(255,255,255,0.75)", textShadow: "0 1px 3px rgba(0,0,0,0.8)" }}>
                       {g.style}
                     </div>
                   </div>
-                  {activeGallery === i && (
-                    <div
-                      className="absolute top-3 right-3 w-6 h-6 rounded-full flex items-center justify-center"
-                      style={{ background: g.color }}
-                    >
-                      <Icon name="Check" size={13} className="text-white" />
+                  {g.imgs.length > 1 && (
+                    <div className="absolute top-3 right-3 px-2 py-0.5 rounded-full text-xs font-bold text-white" style={{ background: g.color }}>
+                      {g.imgs.length} фото
                     </div>
                   )}
                 </div>
@@ -1005,6 +974,76 @@ export default function Index() {
           </SectionReveal>
         </div>
       </section>
+
+      {/* LIGHTBOX */}
+      {lightbox !== null && (() => {
+        const cat = galleryItems[lightbox.categoryIndex];
+        const photos = cat.imgs;
+        const idx = lightbox.photoIndex;
+        return (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center"
+            style={{ background: "rgba(0,0,0,0.92)" }}
+            onClick={() => setLightbox(null)}
+          >
+            <div className="relative w-full max-w-4xl mx-4" onClick={(e) => e.stopPropagation()}>
+              <div className="relative rounded-2xl overflow-hidden" style={{ maxHeight: "80vh" }}>
+                <img
+                  src={photos[idx]}
+                  alt={cat.title}
+                  className="w-full object-contain"
+                  style={{ maxHeight: "80vh" }}
+                />
+                {photos.length > 1 && (
+                  <>
+                    <button
+                      onClick={() => setLightbox({ ...lightbox, photoIndex: (idx - 1 + photos.length) % photos.length })}
+                      className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center transition-all"
+                      style={{ background: "rgba(255,255,255,0.15)", backdropFilter: "blur(4px)" }}
+                    >
+                      <Icon name="ChevronLeft" size={22} className="text-white" />
+                    </button>
+                    <button
+                      onClick={() => setLightbox({ ...lightbox, photoIndex: (idx + 1) % photos.length })}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center transition-all"
+                      style={{ background: "rgba(255,255,255,0.15)", backdropFilter: "blur(4px)" }}
+                    >
+                      <Icon name="ChevronRight" size={22} className="text-white" />
+                    </button>
+                  </>
+                )}
+              </div>
+              <div className="flex items-center justify-between mt-4 px-1">
+                <div>
+                  <div className="font-bold text-white text-lg" style={{ fontFamily: "Oswald, sans-serif" }}>{cat.title}</div>
+                  <div className="text-sm" style={{ color: "rgba(255,255,255,0.5)" }}>{cat.style}{photos.length > 1 ? ` · ${idx + 1} / ${photos.length}` : ""}</div>
+                </div>
+                <button
+                  onClick={() => setLightbox(null)}
+                  className="w-10 h-10 rounded-full flex items-center justify-center"
+                  style={{ background: "rgba(255,255,255,0.1)" }}
+                >
+                  <Icon name="X" size={20} className="text-white" />
+                </button>
+              </div>
+              {photos.length > 1 && (
+                <div className="flex gap-2 mt-3 justify-center flex-wrap">
+                  {photos.map((src, pi) => (
+                    <div
+                      key={pi}
+                      onClick={() => setLightbox({ ...lightbox, photoIndex: pi })}
+                      className="w-14 h-14 rounded-lg overflow-hidden cursor-pointer transition-all"
+                      style={{ border: pi === idx ? `2px solid ${cat.color}` : "2px solid transparent", opacity: pi === idx ? 1 : 0.5 }}
+                    >
+                      <img src={src} alt="" className="w-full h-full object-cover" />
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        );
+      })()}
 
       {/* CALCULATOR */}
       <section
