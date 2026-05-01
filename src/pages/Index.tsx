@@ -268,7 +268,7 @@ export default function Index() {
     const perimeter = 2 * (calcWidth + calcHeight);
     let total = Math.ceil(area * calcType.price);
     if (optKarniz) total += Math.ceil(perimeter * 3200);
-    if (optFloating) total += Math.ceil(area * 1800);
+    if (optFloating) total += Math.ceil(perimeter * 1800);
     if (optShadow) total += Math.ceil(perimeter * 800);
     setCalcResult(total);
   };
@@ -1153,6 +1153,45 @@ export default function Index() {
                       >
                         от {t.price} ₽/м²
                       </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <div className="mb-8">
+                <label
+                  className="text-sm font-semibold uppercase tracking-wider mb-3 block"
+                  style={{ color: "rgba(255,255,255,0.5)" }}
+                >
+                  Дополнительно
+                </label>
+                <div className="flex flex-col gap-3">
+                  {[
+                    { state: optKarniz, setter: setOptKarniz, label: "Скрытый карниз", price: "3 200 ₽/пог. м" },
+                    { state: optFloating, setter: setOptFloating, label: "Парящий потолок", price: "1 800 ₽/пог. м" },
+                    { state: optShadow, setter: setOptShadow, label: "Теневой потолок", price: "800 ₽/пог. м" },
+                  ].map((opt) => (
+                    <button
+                      key={opt.label}
+                      onClick={() => opt.setter(!opt.state)}
+                      className="flex items-center justify-between p-3 rounded-xl transition-all text-left"
+                      style={{
+                        background: opt.state ? "rgba(124,58,237,0.2)" : "rgba(255,255,255,0.04)",
+                        border: "1px solid " + (opt.state ? "#7C3AED" : "rgba(255,255,255,0.08)"),
+                      }}
+                    >
+                      <div className="flex items-center gap-3">
+                        <div
+                          className="w-5 h-5 rounded-md flex items-center justify-center flex-shrink-0"
+                          style={{
+                            background: opt.state ? "linear-gradient(135deg, #7C3AED, #06B6D4)" : "rgba(255,255,255,0.1)",
+                            border: opt.state ? "none" : "1px solid rgba(255,255,255,0.2)",
+                          }}
+                        >
+                          {opt.state && <span className="text-white text-xs font-bold">✓</span>}
+                        </div>
+                        <span className="font-semibold text-sm text-white">{opt.label}</span>
+                      </div>
+                      <span className="text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>{opt.price}</span>
                     </button>
                   ))}
                 </div>
