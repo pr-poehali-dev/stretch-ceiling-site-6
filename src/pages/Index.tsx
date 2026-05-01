@@ -817,6 +817,7 @@ export default function Index() {
                 <div
                   className="group rounded-2xl overflow-hidden hover-lift cursor-pointer"
                   style={{ border: "1px solid rgba(255,255,255,0.06)" }}
+                  onClick={() => navigate("/portfolio")}
                   onMouseEnter={(e) =>
                     (e.currentTarget.style.borderColor = p.color + "55")
                   }
