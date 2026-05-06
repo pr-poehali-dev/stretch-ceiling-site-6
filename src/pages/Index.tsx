@@ -208,6 +208,9 @@ const galleryItems = [
     color: "#7C3AED",
     imgs: [
       "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/c2d71982-909a-4be8-9f69-9b4890cad08e.jpg",
+      "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/d33ab77d-dbf2-46a6-bad9-446ca7aa0a69.dvO5U4ZTRlTPQuP41vjdEi2pDakuKQmiqrLpPq-X0m4",
+      "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/c0f0367b-c935-4fbd-bcea-ea02cf243601.k4F0lnyiOwOfFwBveTW86aiGgtAQJapS1yUsWDCD3-0",
+      "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/a41c5a84-fb1e-4fb5-85ad-ba48039204c9.sz8E31oYC7t5FRHu6j5LotIcOf5W3gpbU2rVhL1vHQs",
     ],
   },
   {
