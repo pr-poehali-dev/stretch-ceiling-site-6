@@ -241,7 +241,10 @@ const galleryItems = [
     style: "Хай-тек",
     color: "#EC4899",
     imgs: [
-      "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/f6d08b1d-9296-4d39-8ded-4804dc169e2a.jpg",
+      "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/8d9f66ec-044c-4caf-97cb-6e205e5a5e9b.jpg",
+      "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/6ec844db-8fc2-4d02-ab36-79165f08db42.jpg",
+      "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/9735f4c8-6a52-4ed2-b03e-c4793e9ed9dc.jpg",
+      "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/e1a3cf62-df7c-4895-bae4-b4b47ecceaf0.jpg",
     ],
   },
   {
