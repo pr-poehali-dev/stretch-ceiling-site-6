@@ -883,96 +883,7 @@ export default function Index() {
       </section>
 
       {/* PORTFOLIO */}
-      <section
-        id="portfolio"
-        className="py-24"
-        style={{ background: "#231b42" }}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <SectionReveal>
-            <div className="text-center mb-16">
-              <span
-                className="text-sm font-semibold tracking-widest uppercase mb-3 block"
-                style={{ color: "#06B6D4" }}
-              >
-                Наши работы
-              </span>
-              <h2
-                className="text-4xl sm:text-5xl lg:text-6xl font-black"
-                style={{ fontFamily: "Oswald, sans-serif" }}
-              >
-                <span className="gradient-text">ПОРТФОЛИО</span>
-              </h2>
-            </div>
-          </SectionReveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {portfolio.map((p, i) => (
-              <SectionReveal key={i}>
-                <div
-                  className="group rounded-2xl overflow-hidden hover-lift cursor-pointer"
-                  style={{ border: "1px solid rgba(255,255,255,0.06)" }}
-                  onClick={() => navigate("/portfolio")}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.borderColor = p.color + "55")
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.borderColor =
-                      "rgba(255,255,255,0.06)")
-                  }
-                >
-                  <div className="h-52 relative overflow-hidden">
-                    <img
-                      src={p.img}
-                      alt={p.room}
-                      loading="lazy"
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    <div
-                      className="absolute inset-0"
-                      style={{
-                        background:
-                          "linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 60%)",
-                      }}
-                    />
-                    <div className="absolute top-3 right-3">
-                      <span
-                        className="px-3 py-1 rounded-full text-xs font-bold"
-                        style={{
-                          background: "rgba(0,0,0,0.5)",
-                          color: "#fff",
-                          backdropFilter: "blur(6px)",
-                          border: `1px solid ${p.color}60`,
-                        }}
-                      >
-                        {p.area}
-                      </span>
-                    </div>
 
-                  </div>
-                </div>
-              </SectionReveal>
-            ))}
-          </div>
-
-          {/* CTA */}
-          <SectionReveal>
-            <div className="mt-10 text-center">
-              <button
-                onClick={() => navigate("/portfolio")}
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl font-bold text-base transition-all hover-lift"
-                style={{
-                  background: "rgba(124,58,237,0.15)",
-                  border: "1px solid rgba(124,58,237,0.35)",
-                  color: "#A78BFA",
-                }}
-              >
-                Смотреть все работы
-                <Icon name="ArrowRight" size={18} />
-              </button>
-            </div>
-          </SectionReveal>
-        </div>
-      </section>
 
       {/* GALLERY */}
       <section id="gallery" className="py-24" style={{ background: "#1c1535" }}>
@@ -1059,6 +970,24 @@ export default function Index() {
                   )}
                 </div>
               ))}
+            </div>
+          </SectionReveal>
+
+          {/* Ссылка на портфолио */}
+          <SectionReveal>
+            <div className="mt-10 text-center">
+              <button
+                onClick={() => navigate("/portfolio")}
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl font-bold text-base transition-all hover-lift"
+                style={{
+                  background: "rgba(124,58,237,0.15)",
+                  border: "1px solid rgba(124,58,237,0.35)",
+                  color: "#A78BFA",
+                }}
+              >
+                Смотреть все наши работы
+                <Icon name="ArrowRight" size={18} />
+              </button>
             </div>
           </SectionReveal>
         </div>
