@@ -229,7 +229,11 @@ const galleryItems = [
     style: "Лёгкость пространства",
     color: "#F59E0B",
     imgs: [
-      "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/3856537a-b293-449e-a5e4-a6a59600a9a2.jpg",
+      "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/6ce113c3-250a-43b0-8486-7219893cb1c1.webp",
+      "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/f6dbd737-e7ae-489a-b55a-284baad245ab.W97QXVcYIOI_0Fwn6oaNDD6w0nLR82bjQc5IVk1rUFU",
+      "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/dfb68d6f-2445-46b7-a944-df9ecb355c45.tdr7uNUeWss-fbWF18MDZMDXkXTVpONJH1aQI3_JEOY",
+      "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/1086a639-9312-41be-bebe-2e3090b57e74.M1H6IPIYvGrEWxplsO0Ch3lcKoVxJOYs5JVorX-w20g",
+      "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/2355363a-7bad-46a9-8846-ee2f3d0c0b02.clASja3kbCbze6WORYRkUKprwQopZiu968TTTMurRjI",
     ],
   },
   {
