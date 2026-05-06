@@ -131,6 +131,7 @@ function ProjectCard({ project, onClick }: { project: typeof projects[0]; onClic
           <img
             src={project.img}
             alt={project.title}
+            loading="lazy"
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           />
           <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center bg-slate-800"
@@ -201,7 +202,7 @@ function Modal({ project, onClose }: { project: typeof projects[0]; onClose: () 
 
         {/* Image */}
         <div className="relative" style={{ height: "320px" }}>
-          <img src={project.img} alt={project.title} className="w-full h-full object-cover rounded-t-3xl" />
+          <img src={project.img} alt={project.title} loading="lazy" className="w-full h-full object-cover rounded-t-3xl" />
           <div className="absolute inset-0 rounded-t-3xl"
             style={{ background: "linear-gradient(to top, rgba(28,21,53,1) 0%, transparent 60%)" }} />
           <div className="absolute bottom-5 left-6">

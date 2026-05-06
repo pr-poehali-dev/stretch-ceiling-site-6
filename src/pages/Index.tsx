@@ -489,7 +489,8 @@ export default function Index() {
             <img
               key={src}
               src={src}
-              alt="Натяжные потолки"
+              alt="Натяжные потолки в Обнинске и Калуге"
+              loading="lazy"
               className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
               style={{
                 opacity: i === heroSlide ? 0.6 : 0,
@@ -905,6 +906,7 @@ export default function Index() {
                     <img
                       src={p.img}
                       alt={p.room}
+                      loading="lazy"
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                     <div
@@ -991,6 +993,7 @@ export default function Index() {
                   <img
                     src={g.imgs[0]}
                     alt={g.title}
+                    loading="lazy"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                   <div
@@ -1066,6 +1069,7 @@ export default function Index() {
                   <img
                     src={photos[idx]}
                     alt={cat.title}
+                    loading="lazy"
                     className="w-full object-contain"
                     style={{ maxHeight: "80vh" }}
                   />
@@ -1158,7 +1162,8 @@ export default function Index() {
                       >
                         <img
                           src={src}
-                          alt=""
+                          alt={`${cat.title} — фото ${pi + 1}`}
+                          loading="lazy"
                           className="w-full h-full object-cover"
                         />
                       </div>
