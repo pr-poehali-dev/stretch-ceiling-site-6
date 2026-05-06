@@ -927,26 +927,7 @@ export default function Index() {
                         {p.area}
                       </span>
                     </div>
-                    <div className="absolute bottom-4 left-4">
-                      <div
-                        className="text-white font-black text-xl"
-                        style={{
-                          fontFamily: "Oswald, sans-serif",
-                          textShadow: "0 1px 6px rgba(0,0,0,0.8)",
-                        }}
-                      >
-                        {p.room}
-                      </div>
-                      <div
-                        className="text-sm"
-                        style={{
-                          color: "rgba(255,255,255,0.75)",
-                          textShadow: "0 1px 4px rgba(0,0,0,0.8)",
-                        }}
-                      >
-                        {p.style}
-                      </div>
-                    </div>
+
                   </div>
                 </div>
               </SectionReveal>
