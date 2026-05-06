@@ -172,22 +172,7 @@ function ProjectCard({ project, onClick }: { project: typeof projects[0]; onClic
             ))}
           </div>
 
-          {/* Meta */}
-          <div className="flex items-center justify-between pt-3"
-            style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-            <div className="flex items-center gap-1.5 text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
-              <Icon name="MapPin" size={12} />
-              {project.city}
-            </div>
-            <div className="flex items-center gap-1.5 text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
-              <Icon name="Clock" size={12} />
-              {project.duration}
-            </div>
-            <div className="flex items-center gap-1.5 text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
-              <Icon name="Calendar" size={12} />
-              {project.year}
-            </div>
-          </div>
+
         </div>
       </div>
     </div>
