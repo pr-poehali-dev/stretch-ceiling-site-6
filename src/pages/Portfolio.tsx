@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+ 
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
@@ -223,22 +223,7 @@ function Modal({ project, onClose }: { project: typeof projects[0]; onClose: () 
             {project.description}
           </p>
 
-          {/* Stats */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
-            {[
-              { icon: "Maximize2", label: "Площадь", value: project.area },
-              { icon: "Clock", label: "Срок", value: project.duration },
-              { icon: "MapPin", label: "Город", value: project.city },
-              { icon: "Calendar", label: "Год", value: project.year },
-            ].map((s, i) => (
-              <div key={i} className="p-3 rounded-xl text-center"
-                style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)" }}>
-                <Icon name={s.icon as any} size={18} style={{ color: project.color }} className="mx-auto mb-1" />
-                <div className="font-bold text-white text-sm">{s.value}</div>
-                <div className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{s.label}</div>
-              </div>
-            ))}
-          </div>
+
 
           <button
             className="w-full py-4 rounded-2xl font-bold text-lg text-white transition-all hover-lift"
