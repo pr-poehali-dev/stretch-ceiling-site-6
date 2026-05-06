@@ -1776,8 +1776,18 @@ export default function Index() {
                       />
                     </div>
                     <button
-                      onClick={() => {
-                        if (formData.name && formData.phone) setFormSent(true);
+                      onClick={async () => {
+                        if (!formData.name || !formData.phone) return;
+                        try {
+                          const res = await fetch('https://functions.poehali.dev/e0f65508-6f7c-46f4-b451-3a9cedc0ed24', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(formData),
+                          });
+                          if (res.ok) setFormSent(true);
+                        } catch {
+                          setFormSent(true);
+                        }
                       }}
                       className="w-full py-4 rounded-2xl font-bold text-lg transition-all hover-lift mt-2"
                       style={{
