@@ -7,16 +7,66 @@ const HERO_IMG =
   "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/a02a971b-162d-411f-a319-6cf1ec4dffeb.jpg";
 
 const services = [
-  { icon: "Layers", title: "ПВХ полотна", desc: "Матовые, сатиновые и глянцевые — классика на все случаи жизни", color: "#7C3AED" },
-  { icon: "Wind", title: "Тканевые потолки", desc: "Экологичный материал без запаха, дышащая структура", color: "#06B6D4" },
-  { icon: "Lightbulb", title: "Потолки с подсветкой", desc: "Встроенная LED-подсветка любой конфигурации и яркости", color: "#F59E0B" },
-  { icon: "Blinds", title: "Скрытые карнизы для штор", desc: "Элегантное решение — штора выезжает прямо из потолка", color: "#10B981" },
-  { icon: "Minus", title: "Световые линии", desc: "Тонкие светящиеся полосы — трендовый дизайн 2024–2025", color: "#EC4899" },
-  { icon: "Sun", title: "Световые потолки", desc: "Равномерное мягкое свечение по всей площади потолка", color: "#F97316" },
-  { icon: "SeparatorHorizontal", title: "Теневое примыкание", desc: "Тёмный зазор между стеной и потолком — эффект парения", color: "#A78BFA" },
-  { icon: "Crosshair", title: "Трековое освещение", desc: "Регулируемые споты на рельсе — акцентный и функциональный свет", color: "#34D399" },
-  { icon: "Droplets", title: "Слив воды", desc: "Специальный клапан для безопасного отвода воды при затоплении", color: "#38BDF8" },
-  { icon: "Wrench", title: "Ремонт натяжных потолков", desc: "Устраняем порезы, провисания и следы от затоплений", color: "#FB923C" },
+  {
+    icon: "Layers",
+    title: "ПВХ полотна",
+    desc: "Матовые, сатиновые и глянцевые — классика на все случаи жизни",
+    color: "#7C3AED",
+  },
+  {
+    icon: "Wind",
+    title: "Тканевые потолки",
+    desc: "Экологичный материал без запаха, дышащая структура",
+    color: "#06B6D4",
+  },
+  {
+    icon: "Lightbulb",
+    title: "Потолки с подсветкой",
+    desc: "Встроенная LED-подсветка любой конфигурации и яркости",
+    color: "#F59E0B",
+  },
+  {
+    icon: "Blinds",
+    title: "Скрытые карнизы для штор",
+    desc: "Элегантное решение — штора выезжает прямо из потолка",
+    color: "#10B981",
+  },
+  {
+    icon: "Minus",
+    title: "Световые линии",
+    desc: "Тонкие светящиеся полосы — трендовый дизайн 2024–2025",
+    color: "#EC4899",
+  },
+  {
+    icon: "Sun",
+    title: "Световые потолки",
+    desc: "Равномерное мягкое свечение по всей площади потолка",
+    color: "#F97316",
+  },
+  {
+    icon: "SeparatorHorizontal",
+    title: "Теневое примыкание",
+    desc: "Тёмный зазор между стеной и потолком — эффект парения",
+    color: "#A78BFA",
+  },
+  {
+    icon: "Crosshair",
+    title: "Трековое освещение",
+    desc: "Регулируемые споты на рельсе — акцентный и функциональный свет",
+    color: "#34D399",
+  },
+  {
+    icon: "Droplets",
+    title: "Слив воды",
+    desc: "Специальный клапан для безопасного отвода воды при затоплении",
+    color: "#38BDF8",
+  },
+  {
+    icon: "Wrench",
+    title: "Ремонт натяжных потолков",
+    desc: "Устраняем порезы, провисания и следы от затоплений",
+    color: "#FB923C",
+  },
 ];
 
 const portfolio = [
@@ -225,7 +275,10 @@ export default function Index() {
   const [optFloating, setOptFloating] = useState("");
   const [optShadow, setOptShadow] = useState("");
   const [activeGallery, setActiveGallery] = useState(0);
-  const [lightbox, setLightbox] = useState<{ categoryIndex: number; photoIndex: number } | null>(null);
+  const [lightbox, setLightbox] = useState<{
+    categoryIndex: number;
+    photoIndex: number;
+  } | null>(null);
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -277,9 +330,12 @@ export default function Index() {
   const calculate = () => {
     const area = calcWidth * calcHeight;
     let total = Math.ceil(area * calcType.price);
-    if (parseFloat(optKarniz) > 0) total += Math.ceil(parseFloat(optKarniz) * 3200);
-    if (parseFloat(optFloating) > 0) total += Math.ceil(parseFloat(optFloating) * 1800);
-    if (parseFloat(optShadow) > 0) total += Math.ceil(parseFloat(optShadow) * 800);
+    if (parseFloat(optKarniz) > 0)
+      total += Math.ceil(parseFloat(optKarniz) * 3200);
+    if (parseFloat(optFloating) > 0)
+      total += Math.ceil(parseFloat(optFloating) * 1800);
+    if (parseFloat(optShadow) > 0)
+      total += Math.ceil(parseFloat(optShadow) * 800);
     setCalcResult(total);
   };
 
@@ -435,7 +491,10 @@ export default function Index() {
               src={src}
               alt="Натяжные потолки"
               className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
-              style={{ opacity: i === heroSlide ? 0.6 : 0, zIndex: i === heroSlide ? 1 : 0 }}
+              style={{
+                opacity: i === heroSlide ? 0.6 : 0,
+                zIndex: i === heroSlide ? 1 : 0,
+              }}
             />
           ))}
           <div
@@ -463,20 +522,33 @@ export default function Index() {
           >
             <span
               className="font-black text-white"
-              style={{ fontSize: 72, fontFamily: "Oswald, sans-serif", letterSpacing: "-2px" }}
+              style={{
+                fontSize: 72,
+                fontFamily: "Oswald, sans-serif",
+                letterSpacing: "-2px",
+              }}
             >
               Le
             </span>
             <span
               className="font-black"
-              style={{ fontSize: 72, fontFamily: "Oswald, sans-serif", color: "#F59E0B", letterSpacing: "-2px" }}
+              style={{
+                fontSize: 72,
+                fontFamily: "Oswald, sans-serif",
+                color: "#F59E0B",
+                letterSpacing: "-2px",
+              }}
             >
               Ko
             </span>
           </div>
           <span
             className="text-white font-bold tracking-widest uppercase"
-            style={{ fontFamily: "Oswald, sans-serif", fontSize: 18, letterSpacing: "0.2em" }}
+            style={{
+              fontFamily: "Oswald, sans-serif",
+              fontSize: 18,
+              letterSpacing: "0.2em",
+            }}
           >
             НАТЯЖНЫЕ ПОТОЛКИ
           </span>
@@ -492,7 +564,10 @@ export default function Index() {
               style={{
                 width: i === heroSlide ? 28 : 8,
                 height: 8,
-                background: i === heroSlide ? "linear-gradient(135deg, #7C3AED, #06B6D4)" : "rgba(255,255,255,0.35)",
+                background:
+                  i === heroSlide
+                    ? "linear-gradient(135deg, #7C3AED, #06B6D4)"
+                    : "rgba(255,255,255,0.35)",
               }}
             />
           ))}
@@ -873,7 +948,6 @@ export default function Index() {
                       </div>
                     </div>
                   </div>
-
                 </div>
               </SectionReveal>
             ))}
@@ -923,7 +997,10 @@ export default function Index() {
               {galleryItems.map((g, i) => (
                 <div
                   key={i}
-                  onClick={() => { setActiveGallery(i); setLightbox({ categoryIndex: i, photoIndex: 0 }); }}
+                  onClick={() => {
+                    setActiveGallery(i);
+                    setLightbox({ categoryIndex: i, photoIndex: 0 });
+                  }}
                   className="rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover-lift relative group"
                   style={{
                     height: i === 0 || i === 5 ? "280px" : "200px",
@@ -935,22 +1012,46 @@ export default function Index() {
                     alt={g.title}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 transition-opacity duration-300" style={{ background: "rgba(0,0,0,0.3)" }} />
+                  <div
+                    className="absolute inset-0 transition-opacity duration-300"
+                    style={{ background: "rgba(0,0,0,0.3)" }}
+                  />
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ background: "rgba(255,255,255,0.2)", backdropFilter: "blur(4px)" }}>
+                    <div
+                      className="w-12 h-12 rounded-full flex items-center justify-center"
+                      style={{
+                        background: "rgba(255,255,255,0.2)",
+                        backdropFilter: "blur(4px)",
+                      }}
+                    >
                       <Icon name="ZoomIn" size={22} className="text-white" />
                     </div>
                   </div>
                   <div className="absolute bottom-0 left-0 right-0 p-4">
-                    <div className="font-bold text-white text-base leading-tight mb-0.5" style={{ fontFamily: "Oswald, sans-serif", textShadow: "0 1px 4px rgba(0,0,0,0.8)" }}>
+                    <div
+                      className="font-bold text-white text-base leading-tight mb-0.5"
+                      style={{
+                        fontFamily: "Oswald, sans-serif",
+                        textShadow: "0 1px 4px rgba(0,0,0,0.8)",
+                      }}
+                    >
                       {g.title}
                     </div>
-                    <div className="text-xs" style={{ color: "rgba(255,255,255,0.75)", textShadow: "0 1px 3px rgba(0,0,0,0.8)" }}>
+                    <div
+                      className="text-xs"
+                      style={{
+                        color: "rgba(255,255,255,0.75)",
+                        textShadow: "0 1px 3px rgba(0,0,0,0.8)",
+                      }}
+                    >
                       {g.style}
                     </div>
                   </div>
                   {g.imgs.length > 1 && (
-                    <div className="absolute top-3 right-3 px-2 py-0.5 rounded-full text-xs font-bold text-white" style={{ background: g.color }}>
+                    <div
+                      className="absolute top-3 right-3 px-2 py-0.5 rounded-full text-xs font-bold text-white"
+                      style={{ background: g.color }}
+                    >
                       {g.imgs.length} фото
                     </div>
                   )}
@@ -962,74 +1063,131 @@ export default function Index() {
       </section>
 
       {/* LIGHTBOX */}
-      {lightbox !== null && (() => {
-        const cat = galleryItems[lightbox.categoryIndex];
-        const photos = cat.imgs;
-        const idx = lightbox.photoIndex;
-        return (
-          <div
-            className="fixed inset-0 z-50 flex items-center justify-center"
-            style={{ background: "rgba(0,0,0,0.92)" }}
-            onClick={() => setLightbox(null)}
-          >
-            <div className="relative w-full max-w-4xl mx-4" onClick={(e) => e.stopPropagation()}>
-              <div className="relative rounded-2xl overflow-hidden" style={{ maxHeight: "80vh" }}>
-                <img
-                  src={photos[idx]}
-                  alt={cat.title}
-                  className="w-full object-contain"
+      {lightbox !== null &&
+        (() => {
+          const cat = galleryItems[lightbox.categoryIndex];
+          const photos = cat.imgs;
+          const idx = lightbox.photoIndex;
+          return (
+            <div
+              className="fixed inset-0 z-50 flex items-center justify-center"
+              style={{ background: "rgba(0,0,0,0.92)" }}
+              onClick={() => setLightbox(null)}
+            >
+              <div
+                className="relative w-full max-w-4xl mx-4"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div
+                  className="relative rounded-2xl overflow-hidden"
                   style={{ maxHeight: "80vh" }}
-                />
+                >
+                  <img
+                    src={photos[idx]}
+                    alt={cat.title}
+                    className="w-full object-contain"
+                    style={{ maxHeight: "80vh" }}
+                  />
+                  {photos.length > 1 && (
+                    <>
+                      <button
+                        onClick={() =>
+                          setLightbox({
+                            ...lightbox,
+                            photoIndex:
+                              (idx - 1 + photos.length) % photos.length,
+                          })
+                        }
+                        className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center transition-all"
+                        style={{
+                          background: "rgba(255,255,255,0.15)",
+                          backdropFilter: "blur(4px)",
+                        }}
+                      >
+                        <Icon
+                          name="ChevronLeft"
+                          size={22}
+                          className="text-white"
+                        />
+                      </button>
+                      <button
+                        onClick={() =>
+                          setLightbox({
+                            ...lightbox,
+                            photoIndex: (idx + 1) % photos.length,
+                          })
+                        }
+                        className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center transition-all"
+                        style={{
+                          background: "rgba(255,255,255,0.15)",
+                          backdropFilter: "blur(4px)",
+                        }}
+                      >
+                        <Icon
+                          name="ChevronRight"
+                          size={22}
+                          className="text-white"
+                        />
+                      </button>
+                    </>
+                  )}
+                </div>
+                <div className="flex items-center justify-between mt-4 px-1">
+                  <div>
+                    <div
+                      className="font-bold text-white text-lg"
+                      style={{ fontFamily: "Oswald, sans-serif" }}
+                    >
+                      {cat.title}
+                    </div>
+                    <div
+                      className="text-sm"
+                      style={{ color: "rgba(255,255,255,0.5)" }}
+                    >
+                      {cat.style}
+                      {photos.length > 1
+                        ? ` · ${idx + 1} / ${photos.length}`
+                        : ""}
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => setLightbox(null)}
+                    className="w-10 h-10 rounded-full flex items-center justify-center"
+                    style={{ background: "rgba(255,255,255,0.1)" }}
+                  >
+                    <Icon name="X" size={20} className="text-white" />
+                  </button>
+                </div>
                 {photos.length > 1 && (
-                  <>
-                    <button
-                      onClick={() => setLightbox({ ...lightbox, photoIndex: (idx - 1 + photos.length) % photos.length })}
-                      className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center transition-all"
-                      style={{ background: "rgba(255,255,255,0.15)", backdropFilter: "blur(4px)" }}
-                    >
-                      <Icon name="ChevronLeft" size={22} className="text-white" />
-                    </button>
-                    <button
-                      onClick={() => setLightbox({ ...lightbox, photoIndex: (idx + 1) % photos.length })}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center transition-all"
-                      style={{ background: "rgba(255,255,255,0.15)", backdropFilter: "blur(4px)" }}
-                    >
-                      <Icon name="ChevronRight" size={22} className="text-white" />
-                    </button>
-                  </>
+                  <div className="flex gap-2 mt-3 justify-center flex-wrap">
+                    {photos.map((src, pi) => (
+                      <div
+                        key={pi}
+                        onClick={() =>
+                          setLightbox({ ...lightbox, photoIndex: pi })
+                        }
+                        className="w-14 h-14 rounded-lg overflow-hidden cursor-pointer transition-all"
+                        style={{
+                          border:
+                            pi === idx
+                              ? `2px solid ${cat.color}`
+                              : "2px solid transparent",
+                          opacity: pi === idx ? 1 : 0.5,
+                        }}
+                      >
+                        <img
+                          src={src}
+                          alt=""
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    ))}
+                  </div>
                 )}
               </div>
-              <div className="flex items-center justify-between mt-4 px-1">
-                <div>
-                  <div className="font-bold text-white text-lg" style={{ fontFamily: "Oswald, sans-serif" }}>{cat.title}</div>
-                  <div className="text-sm" style={{ color: "rgba(255,255,255,0.5)" }}>{cat.style}{photos.length > 1 ? ` · ${idx + 1} / ${photos.length}` : ""}</div>
-                </div>
-                <button
-                  onClick={() => setLightbox(null)}
-                  className="w-10 h-10 rounded-full flex items-center justify-center"
-                  style={{ background: "rgba(255,255,255,0.1)" }}
-                >
-                  <Icon name="X" size={20} className="text-white" />
-                </button>
-              </div>
-              {photos.length > 1 && (
-                <div className="flex gap-2 mt-3 justify-center flex-wrap">
-                  {photos.map((src, pi) => (
-                    <div
-                      key={pi}
-                      onClick={() => setLightbox({ ...lightbox, photoIndex: pi })}
-                      className="w-14 h-14 rounded-lg overflow-hidden cursor-pointer transition-all"
-                      style={{ border: pi === idx ? `2px solid ${cat.color}` : "2px solid transparent", opacity: pi === idx ? 1 : 0.5 }}
-                    >
-                      <img src={src} alt="" className="w-full h-full object-cover" />
-                    </div>
-                  ))}
-                </div>
-              )}
             </div>
-          </div>
-        );
-      })()}
+          );
+        })()}
 
       {/* CALCULATOR */}
       <section
@@ -1182,21 +1340,53 @@ export default function Index() {
                 </label>
                 <div className="flex flex-col gap-3">
                   {[
-                    { value: optKarniz, setter: setOptKarniz, label: "Скрытый карниз", price: "3 200 ₽/пог. м", perM: 3200 },
-                    { value: optFloating, setter: setOptFloating, label: "Парящий потолок", price: "1 800 ₽/пог. м", perM: 1800 },
-                    { value: optShadow, setter: setOptShadow, label: "Теневой потолок", price: "800 ₽/пог. м", perM: 800 },
+                    {
+                      value: optKarniz,
+                      setter: setOptKarniz,
+                      label: "Скрытый карниз",
+                      price: "3 200 ₽/пог. м",
+                      perM: 3200,
+                    },
+                    {
+                      value: optFloating,
+                      setter: setOptFloating,
+                      label: "Парящий потолок",
+                      price: "1 800 ₽/пог. м",
+                      perM: 1800,
+                    },
+                    {
+                      value: optShadow,
+                      setter: setOptShadow,
+                      label: "Теневой потолок",
+                      price: "800 ₽/пог. м",
+                      perM: 800,
+                    },
                   ].map((opt) => (
                     <div
                       key={opt.label}
                       className="flex items-center gap-3 p-3 rounded-xl"
                       style={{
-                        background: parseFloat(opt.value) > 0 ? "rgba(124,58,237,0.15)" : "rgba(255,255,255,0.04)",
-                        border: "1px solid " + (parseFloat(opt.value) > 0 ? "rgba(124,58,237,0.5)" : "rgba(255,255,255,0.08)"),
+                        background:
+                          parseFloat(opt.value) > 0
+                            ? "rgba(124,58,237,0.15)"
+                            : "rgba(255,255,255,0.04)",
+                        border:
+                          "1px solid " +
+                          (parseFloat(opt.value) > 0
+                            ? "rgba(124,58,237,0.5)"
+                            : "rgba(255,255,255,0.08)"),
                       }}
                     >
                       <div className="flex-1">
-                        <div className="font-semibold text-sm text-white">{opt.label}</div>
-                        <div className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.4)" }}>{opt.price}</div>
+                        <div className="font-semibold text-sm text-white">
+                          {opt.label}
+                        </div>
+                        <div
+                          className="text-xs mt-0.5"
+                          style={{ color: "rgba(255,255,255,0.4)" }}
+                        >
+                          {opt.price}
+                        </div>
                       </div>
                       <div className="flex items-center gap-2">
                         <input
@@ -1213,11 +1403,27 @@ export default function Index() {
                             color: "#fff",
                           }}
                         />
-                        <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>м</span>
+                        <span
+                          className="text-xs"
+                          style={{ color: "rgba(255,255,255,0.4)" }}
+                        >
+                          м
+                        </span>
                       </div>
                       {parseFloat(opt.value) > 0 && (
-                        <div className="text-sm font-bold" style={{ color: "#06B6D4", minWidth: 80, textAlign: "right" }}>
-                          +{(Math.ceil(parseFloat(opt.value) * opt.perM)).toLocaleString("ru-RU")} ₽
+                        <div
+                          className="text-sm font-bold"
+                          style={{
+                            color: "#06B6D4",
+                            minWidth: 80,
+                            textAlign: "right",
+                          }}
+                        >
+                          +
+                          {Math.ceil(
+                            parseFloat(opt.value) * opt.perM,
+                          ).toLocaleString("ru-RU")}{" "}
+                          ₽
                         </div>
                       )}
                     </div>
@@ -1617,30 +1823,16 @@ export default function Index() {
                   {
                     icon: "Phone",
                     label: "Телефон",
-                    value: "+7 (900) 123-45-67",
+                    value: "+7 (995) 057-37-57",
                     sub: "Ежедневно с 8:00 до 21:00",
                     color: "#7C3AED",
                   },
                   {
                     icon: "MessageCircle",
                     label: "WhatsApp / Telegram",
-                    value: "+7 (900) 123-45-67",
+                    value: "+7 (929) 032-63-45",
                     sub: "Ответим в течение 5 минут",
                     color: "#06B6D4",
-                  },
-                  {
-                    icon: "MapPin",
-                    label: "Адрес офиса",
-                    value: "ул. Строителей, 15, офис 301",
-                    sub: "г. Москва",
-                    color: "#F59E0B",
-                  },
-                  {
-                    icon: "Mail",
-                    label: "Email",
-                    value: "info@potolokpro.ru",
-                    sub: "Для деловых запросов",
-                    color: "#10B981",
                   },
                 ].map((c, i) => (
                   <div
