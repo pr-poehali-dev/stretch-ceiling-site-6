@@ -257,7 +257,11 @@ const galleryItems = [
     style: "Акцентный свет",
     color: "#F97316",
     imgs: [
-      "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/1fe33f53-9f2e-496f-ad3a-5c9552b87b7e.jpg",
+      "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/c1430320-31fa-4779-8fdc-cabc89621209.I8l1vI37SCowvrCABP0rzIC8pZs0XBEtazKY_fetA3Q",
+      "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/ffa84629-ba13-4e27-96d5-46637bd809e9.webp",
+      "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/68fcfdf0-0fb5-4bf4-9817-a8555ec89b5b.webp",
+      "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/5730c7a4-b588-4935-a534-676d1b202a44.webp",
+      "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/b12a1d6f-a8ec-4bf6-98d0-8e306988c560.VW4RTClCwYS5Wn3xeAz4ST3hi5UFiZvwesS8Nf9737E",
     ],
   },
 ];
