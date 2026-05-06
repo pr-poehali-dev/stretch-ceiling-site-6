@@ -241,10 +241,11 @@ const galleryItems = [
     style: "Хай-тек",
     color: "#EC4899",
     imgs: [
-      "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/8d9f66ec-044c-4caf-97cb-6e205e5a5e9b.jpg",
-      "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/6ec844db-8fc2-4d02-ab36-79165f08db42.jpg",
-      "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/9735f4c8-6a52-4ed2-b03e-c4793e9ed9dc.jpg",
-      "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/e1a3cf62-df7c-4895-bae4-b4b47ecceaf0.jpg",
+      "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/64191a0b-38f7-4374-a9bb-ae6cc18a963a.webp",
+      "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/3f19fe68-7348-4576-97c5-edd2d5ddf7af.webp",
+      "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/f4706b60-c4d1-4c29-b8f8-7c666fb838bb.F3CZ6i6V6hyNqmwh6ZinGn-derVJHlZFnHRXBjDMHLY",
+      "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/7dba2cf3-7bee-4b8d-960e-025c55b1060b.2KdcvJQDWPE_surXTq-c09UXYj3jmzpKh-4CM02FM18",
+      "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/e051fed9-b5f1-41d6-afcc-caa179b29803.webp",
     ],
   },
   {
