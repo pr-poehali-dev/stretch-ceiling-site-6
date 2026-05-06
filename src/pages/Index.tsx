@@ -217,7 +217,11 @@ const galleryItems = [
     style: "Скрытая гардина",
     color: "#06B6D4",
     imgs: [
-      "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/a124141f-cbd7-4fe8-9aab-a16c825ef96f.jpg",
+      "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/528bd7b0-02ed-40c7-bf72-67199874b9ad.hfYta91sif-XTD1ISKEWULegJcTQBWMvxMP0-cujKtQ",
+      "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/98d1f2a4-46a9-4a76-9a84-f2dd78bc660e.webp",
+      "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/6096406c-b7fc-4ce8-8fad-fc98c877db91.YBqRUkeLK1mjPZ5r--AOOdWUt_5MeavfW8BPMkloVsk",
+      "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/4303d3d3-6fd2-4cd8-a765-b84efc8dca9a.webp",
+      "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/ff963943-4cde-4d84-96c2-20a1c28c3c71.ef4UMMLZQOnrmvCL204j5iNDtF0TneVvqRB7fHQFxng",
     ],
   },
   {
