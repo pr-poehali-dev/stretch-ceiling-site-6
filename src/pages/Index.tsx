@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
+import VisitorCounter from "@/components/VisitorCounter";
 
 const HERO_IMG =
   "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/a02a971b-162d-411f-a319-6cf1ec4dffeb.jpg";
@@ -1865,8 +1866,11 @@ export default function Index() {
               <span className="text-white">ПРО</span>
             </span>
           </div>
-          <div className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
-            © 2025 ПотолокПРО. Все права защищены.
+          <div className="flex flex-col items-center gap-2">
+            <div className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
+              © 2025 ПотолокПРО. Все права защищены.
+            </div>
+            <VisitorCounter />
           </div>
           <div
             className="flex gap-4 text-xs"
