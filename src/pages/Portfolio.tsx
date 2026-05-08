@@ -142,38 +142,6 @@ function ProjectCard({ project, onClick }: { project: typeof projects[0]; onClic
               Подробнее
             </div>
           </div>
-          {/* Type badge */}
-          <div className="absolute top-3 left-3">
-            <span className="px-3 py-1 rounded-full text-xs font-bold"
-              style={{ background: project.color + "cc", color: "#fff" }}>
-              {project.type}
-            </span>
-          </div>
-          {/* Area badge */}
-          <div className="absolute top-3 right-3">
-            <span className="px-3 py-1 rounded-full text-xs font-bold glass"
-              style={{ color: "#fff" }}>
-              {project.area}
-            </span>
-          </div>
-        </div>
-
-        {/* Content */}
-        <div className="p-5">
-          <h3 className="text-lg font-bold text-white mb-2" style={{ fontFamily: "Oswald, sans-serif" }}>{project.title}</h3>
-          <p className="text-sm leading-relaxed mb-4" style={{ color: "rgba(255,255,255,0.55)" }}>{project.description}</p>
-
-          {/* Tags */}
-          <div className="flex flex-wrap gap-1.5 mb-4">
-            {project.tags.map(tag => (
-              <span key={tag} className="px-2.5 py-1 rounded-lg text-xs font-medium"
-                style={{ background: project.color + "18", color: project.color, border: `1px solid ${project.color}30` }}>
-                {tag}
-              </span>
-            ))}
-          </div>
-
-
         </div>
       </div>
     </div>
