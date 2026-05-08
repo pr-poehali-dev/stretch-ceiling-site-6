@@ -700,6 +700,124 @@ export default function Index() {
         </div>
       </section>
 
+      {/* PROMO */}
+      <section
+        className="py-16 relative overflow-hidden"
+        style={{ background: "linear-gradient(135deg, #1a0e35 0%, #2d1060 50%, #160f2e 100%)" }}
+      >
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: "radial-gradient(ellipse at 70% 50%, rgba(124,58,237,0.18) 0%, transparent 70%)",
+          }}
+        />
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 relative">
+          <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
+            {/* TEXT */}
+            <div className="flex-1 text-center lg:text-left">
+              <div
+                className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold mb-5 uppercase tracking-widest"
+                style={{
+                  background: "rgba(251,191,36,0.15)",
+                  border: "1px solid rgba(251,191,36,0.4)",
+                  color: "#fbbf24",
+                }}
+              >
+                <Icon name="Zap" size={12} />
+                Акция · Ограниченное время
+              </div>
+              <h2
+                className="text-3xl sm:text-4xl lg:text-5xl font-black mb-4 leading-tight"
+                style={{ fontFamily: "Oswald, sans-serif" }}
+              >
+                <span className="text-white">Закажи потолки </span>
+                <span style={{ color: "#fbbf24" }}>сейчас</span>
+                <br />
+                <span className="text-white">— получи скидку</span>
+                <br />
+                <span style={{
+                  background: "linear-gradient(135deg, #7C3AED, #06B6D4)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                }}>
+                  + светильники в подарок
+                </span>
+              </h2>
+              <p
+                className="text-base mb-8 max-w-md mx-auto lg:mx-0"
+                style={{ color: "rgba(255,255,255,0.55)" }}
+              >
+                При заказе натяжного потолка от 15 м² дарим комплект встраиваемых светильников и делаем скидку на монтаж. Успей до конца месяца!
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+                <button
+                  onClick={() => {
+                    const el = document.getElementById("contacts");
+                    if (el) el.scrollIntoView({ behavior: "smooth" });
+                  }}
+                  className="px-8 py-4 rounded-xl font-bold text-base transition-all duration-200 hover:scale-105 hover:shadow-2xl"
+                  style={{
+                    background: "linear-gradient(135deg, #7C3AED, #06B6D4)",
+                    color: "#fff",
+                    boxShadow: "0 8px 32px rgba(124,58,237,0.45)",
+                  }}
+                >
+                  Заказать со скидкой
+                </button>
+                <div
+                  className="flex items-center gap-2 px-5 py-4 rounded-xl text-sm"
+                  style={{
+                    background: "rgba(255,255,255,0.06)",
+                    border: "1px solid rgba(255,255,255,0.1)",
+                    color: "rgba(255,255,255,0.7)",
+                  }}
+                >
+                  <Icon name="Phone" size={15} />
+                  Бесплатный замер в подарок
+                </div>
+              </div>
+            </div>
+            {/* IMAGE */}
+            <div className="relative flex-shrink-0">
+              <div
+                className="absolute -inset-6 rounded-3xl blur-2xl"
+                style={{ background: "radial-gradient(circle, rgba(124,58,237,0.35) 0%, transparent 70%)" }}
+              />
+              <div
+                className="relative w-64 h-64 sm:w-80 sm:h-80 rounded-3xl overflow-hidden"
+                style={{
+                  border: "2px solid rgba(124,58,237,0.35)",
+                  boxShadow: "0 20px 60px rgba(124,58,237,0.3)",
+                }}
+              >
+                <img
+                  src="https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/2347b5cb-0f88-4af0-9e40-2c9ba66cb243.jpg"
+                  alt="Светильники в подарок"
+                  className="w-full h-full object-cover"
+                />
+                <div
+                  className="absolute bottom-0 left-0 right-0 px-4 py-3 text-center"
+                  style={{ background: "linear-gradient(to top, rgba(22,15,46,0.95), transparent)" }}
+                >
+                  <span className="text-white font-bold text-sm">Светильники в подарок</span>
+                </div>
+              </div>
+              <div
+                className="absolute -top-3 -right-3 rounded-xl px-3 py-2 text-xs font-black"
+                style={{
+                  background: "linear-gradient(135deg, #fbbf24, #f59e0b)",
+                  color: "#1a0e35",
+                  boxShadow: "0 4px 16px rgba(251,191,36,0.5)",
+                  transform: "rotate(6deg)",
+                }}
+              >
+                ПОДАРОК
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* WHY US */}
       <section className="py-24" style={{ background: "#231b42" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
