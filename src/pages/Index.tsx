@@ -293,6 +293,10 @@ export default function Index() {
   const [optKarniz, setOptKarniz] = useState("");
   const [optFloating, setOptFloating] = useState("");
   const [optShadow, setOptShadow] = useState("");
+  const [optLamp, setOptLamp] = useState("");
+  const [optChandelier, setOptChandelier] = useState("");
+  const [optLightLine, setOptLightLine] = useState("");
+  const [optMagnetic, setOptMagnetic] = useState("");
   const [activeGallery, setActiveGallery] = useState(0);
   const [lightbox, setLightbox] = useState<{
     categoryIndex: number;
@@ -355,6 +359,14 @@ export default function Index() {
       total += Math.ceil(parseFloat(optFloating) * 1800);
     if (parseFloat(optShadow) > 0)
       total += Math.ceil(parseFloat(optShadow) * 800);
+    if (parseFloat(optLamp) > 0)
+      total += Math.ceil(parseFloat(optLamp) * 500);
+    if (parseFloat(optChandelier) > 0)
+      total += Math.ceil(parseFloat(optChandelier) * 700);
+    if (parseFloat(optLightLine) > 0)
+      total += Math.ceil(parseFloat(optLightLine) * 3200);
+    if (parseFloat(optMagnetic) > 0)
+      total += Math.ceil(parseFloat(optMagnetic) * 6000);
     setCalcResult(total);
   };
 
@@ -1392,59 +1404,30 @@ export default function Index() {
                 </label>
                 <div className="flex flex-col gap-3">
                   {[
-                    {
-                      value: optKarniz,
-                      setter: setOptKarniz,
-                      label: "Скрытый карниз",
-                      price: "3 200 ₽/пог. м",
-                      perM: 3200,
-                    },
-                    {
-                      value: optFloating,
-                      setter: setOptFloating,
-                      label: "Парящий потолок",
-                      price: "1 800 ₽/пог. м",
-                      perM: 1800,
-                    },
-                    {
-                      value: optShadow,
-                      setter: setOptShadow,
-                      label: "Теневой потолок",
-                      price: "800 ₽/пог. м",
-                      perM: 800,
-                    },
+                    { value: optKarniz, setter: setOptKarniz, label: "Скрытый карниз", unit: "м", perUnit: 3200 },
+                    { value: optFloating, setter: setOptFloating, label: "Парящий потолок", unit: "м", perUnit: 1800 },
+                    { value: optShadow, setter: setOptShadow, label: "Теневой потолок", unit: "м", perUnit: 800 },
+                    { value: optLamp, setter: setOptLamp, label: "Установка светильника", unit: "шт", perUnit: 500 },
+                    { value: optChandelier, setter: setOptChandelier, label: "Установка люстры", unit: "шт", perUnit: 700 },
+                    { value: optLightLine, setter: setOptLightLine, label: "Световые линии", unit: "м", perUnit: 3200 },
+                    { value: optMagnetic, setter: setOptMagnetic, label: "Встраиваемый трек Magnetic", unit: "м", perUnit: 6000 },
                   ].map((opt) => (
                     <div
                       key={opt.label}
                       className="flex items-center gap-3 p-3 rounded-xl"
                       style={{
-                        background:
-                          parseFloat(opt.value) > 0
-                            ? "rgba(124,58,237,0.15)"
-                            : "rgba(255,255,255,0.10)",
-                        border:
-                          "1px solid " +
-                          (parseFloat(opt.value) > 0
-                            ? "rgba(124,58,237,0.5)"
-                            : "rgba(255,255,255,0.16)"),
+                        background: parseFloat(opt.value) > 0 ? "rgba(124,58,237,0.15)" : "rgba(255,255,255,0.10)",
+                        border: "1px solid " + (parseFloat(opt.value) > 0 ? "rgba(124,58,237,0.5)" : "rgba(255,255,255,0.16)"),
                       }}
                     >
                       <div className="flex-1">
-                        <div className="font-semibold text-sm text-white">
-                          {opt.label}
-                        </div>
-                        <div
-                          className="text-xs mt-0.5"
-                          style={{ color: "rgba(255,255,255,0.4)" }}
-                        >
-                          {opt.price}
-                        </div>
+                        <div className="font-semibold text-sm text-white">{opt.label}</div>
                       </div>
                       <div className="flex items-center gap-2">
                         <input
                           type="number"
                           min="0"
-                          step="0.5"
+                          step="1"
                           placeholder="0"
                           value={opt.value}
                           onChange={(e) => opt.setter(e.target.value)}
@@ -1455,29 +1438,8 @@ export default function Index() {
                             color: "#fff",
                           }}
                         />
-                        <span
-                          className="text-xs"
-                          style={{ color: "rgba(255,255,255,0.4)" }}
-                        >
-                          м
-                        </span>
+                        <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{opt.unit}</span>
                       </div>
-                      {parseFloat(opt.value) > 0 && (
-                        <div
-                          className="text-sm font-bold"
-                          style={{
-                            color: "#06B6D4",
-                            minWidth: 80,
-                            textAlign: "right",
-                          }}
-                        >
-                          +
-                          {Math.ceil(
-                            parseFloat(opt.value) * opt.perM,
-                          ).toLocaleString("ru-RU")}{" "}
-                          ₽
-                        </div>
-                      )}
                     </div>
                   ))}
                 </div>
