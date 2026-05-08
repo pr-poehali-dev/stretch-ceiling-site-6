@@ -122,9 +122,9 @@ function ProjectCard({ project, onClick }: { project: typeof projects[0]; onClic
       <div
         onClick={onClick}
         className="group rounded-2xl overflow-hidden cursor-pointer hover-lift transition-all duration-300"
-        style={{ border: "1px solid rgba(255,255,255,0.06)", background: "rgba(255,255,255,0.03)" }}
-        onMouseEnter={e => (e.currentTarget.style.borderColor = project.color + "50")}
-        onMouseLeave={e => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.06)")}
+        style={{ border: "1px solid rgba(255,255,255,0.14)", background: "rgba(255,255,255,0.08)" }}
+        onMouseEnter={e => (e.currentTarget.style.borderColor = project.color + "80")}
+        onMouseLeave={e => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.14)")}
       >
         {/* Image */}
         <div className="relative overflow-hidden" style={{ height: "220px" }}>
@@ -134,14 +134,7 @@ function ProjectCard({ project, onClick }: { project: typeof projects[0]; onClic
             loading="lazy"
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           />
-          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center bg-slate-800"
-            style={{ background: "rgba(0,0,0,0.5)" }}>
-            <div className="flex items-center gap-2 px-5 py-2.5 rounded-full font-semibold text-white text-sm"
-              style={{ background: project.color }}>
-              <Icon name="Eye" size={16} />
-              Подробнее
-            </div>
-          </div>
+
         </div>
       </div>
     </div>
@@ -159,7 +152,7 @@ function Modal({ project, onClose }: { project: typeof projects[0]; onClose: () 
       style={{ background: "rgba(0,0,0,0.85)", backdropFilter: "blur(10px)" }}
       onClick={onClose}>
       <div className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-3xl animate-fade-in"
-        style={{ background: "#1c1535", border: "1px solid rgba(124,58,237,0.3)" }}
+        style={{ background: "#2e2260", border: "1px solid rgba(124,58,237,0.4)" }}
         onClick={e => e.stopPropagation()}>
         {/* Close */}
         <button onClick={onClose}
@@ -172,7 +165,7 @@ function Modal({ project, onClose }: { project: typeof projects[0]; onClose: () 
         <div className="relative" style={{ height: "320px" }}>
           <img src={project.img} alt={project.title} loading="lazy" className="w-full h-full object-cover rounded-t-3xl" />
           <div className="absolute inset-0 rounded-t-3xl"
-            style={{ background: "linear-gradient(to top, rgba(28,21,53,1) 0%, transparent 60%)" }} />
+            style={{ background: "linear-gradient(to top, rgba(46,34,96,1) 0%, transparent 60%)" }} />
           <div className="absolute bottom-5 left-6">
             <div className="flex gap-2 mb-2">
               {project.tags.map(tag => (
@@ -188,7 +181,7 @@ function Modal({ project, onClose }: { project: typeof projects[0]; onClose: () 
 
         {/* Body */}
         <div className="p-6 sm:p-8">
-          <p className="text-base leading-relaxed mb-6" style={{ color: "rgba(255,255,255,0.7)" }}>
+          <p className="text-base leading-relaxed mb-6" style={{ color: "rgba(255,255,255,0.85)" }}>
             {project.description}
           </p>
 
@@ -220,7 +213,7 @@ export default function Portfolio() {
   });
 
   return (
-    <div className="min-h-screen" style={{ background: "#1c1535", color: "#fff" }}>
+    <div className="min-h-screen" style={{ background: "#2e2260", color: "#fff" }}>
 
       {/* NAVBAR */}
       <nav className="fixed top-0 left-0 right-0 z-40 glass" style={{ borderBottom: "1px solid rgba(124,58,237,0.2)" }}>
@@ -256,7 +249,7 @@ export default function Portfolio() {
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black mb-4" style={{ fontFamily: "Oswald, sans-serif" }}>
             <span className="gradient-text">ПРИМЕРЫ</span> РАБОТ
           </h1>
-          <p className="text-base sm:text-lg max-w-xl mx-auto" style={{ color: "rgba(255,255,255,0.55)" }}>
+          <p className="text-base sm:text-lg max-w-xl mx-auto" style={{ color: "rgba(255,255,255,0.8)" }}>
             Реальные объекты нашей компании — от уютных квартир до офисных пространств
           </p>
         </SectionReveal>
@@ -275,7 +268,7 @@ export default function Portfolio() {
               value={search}
               onChange={e => setSearch(e.target.value)}
               className="w-full pl-10 pr-4 py-3 rounded-xl text-white placeholder:text-white/30 outline-none transition-all text-sm"
-              style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}
+              style={{ background: "rgba(255,255,255,0.12)", border: "1px solid rgba(255,255,255,0.2)" }}
             />
           </div>
 
@@ -285,9 +278,9 @@ export default function Portfolio() {
               <button key={cat} onClick={() => setActiveCategory(cat)}
                 className="px-4 py-2 rounded-xl text-sm font-medium transition-all"
                 style={{
-                  background: activeCategory === cat ? "linear-gradient(135deg, #7C3AED, #06B6D4)" : "rgba(255,255,255,0.05)",
-                  color: activeCategory === cat ? "#fff" : "rgba(255,255,255,0.6)",
-                  border: "1px solid " + (activeCategory === cat ? "transparent" : "rgba(255,255,255,0.08)"),
+                  background: activeCategory === cat ? "linear-gradient(135deg, #7C3AED, #06B6D4)" : "rgba(255,255,255,0.12)",
+                  color: activeCategory === cat ? "#fff" : "rgba(255,255,255,0.85)",
+                  border: "1px solid " + (activeCategory === cat ? "transparent" : "rgba(255,255,255,0.18)"),
                 }}>
                 {cat}
                 {cat === "Все" && <span className="ml-1.5 text-xs opacity-70">({projects.length})</span>}
@@ -320,7 +313,7 @@ export default function Portfolio() {
             <h3 className="text-3xl sm:text-4xl font-black text-white mb-3" style={{ fontFamily: "Oswald, sans-serif" }}>
               Хотите такой же потолок?
             </h3>
-            <p className="mb-6" style={{ color: "rgba(255,255,255,0.55)" }}>
+            <p className="mb-6" style={{ color: "rgba(255,255,255,0.8)" }}>
               Бесплатный замер и консультация дизайнера — в удобное для вас время
             </p>
             <button onClick={() => navigate("/#contacts")}
