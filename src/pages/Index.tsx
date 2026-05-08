@@ -361,7 +361,7 @@ export default function Index() {
   return (
     <div
       className="min-h-screen"
-      style={{ background: "#2a1f50", color: "#fff" }}
+      style={{ background: "#2e2260", color: "#fff" }}
     >
       {/* NAVBAR */}
       <nav
@@ -703,7 +703,7 @@ export default function Index() {
       {/* PROMO */}
       <section
         className="py-16 relative overflow-hidden"
-        style={{ background: "linear-gradient(135deg, #2a1f50 0%, #3d1f7a 50%, #2a1f50 100%)" }}
+        style={{ background: "linear-gradient(135deg, #2e2260 0%, #4a28a0 50%, #2e2260 100%)" }}
       >
         <div
           className="absolute inset-0 pointer-events-none"
@@ -797,7 +797,7 @@ export default function Index() {
                 />
                 <div
                   className="absolute bottom-0 left-0 right-0 px-4 py-3 text-center"
-                  style={{ background: "linear-gradient(to top, rgba(42,31,80,0.95), transparent)" }}
+                  style={{ background: "linear-gradient(to top, rgba(46,34,96,0.95), transparent)" }}
                 >
                   <span className="text-white font-bold text-sm">Светильники в подарок</span>
                 </div>
@@ -806,7 +806,7 @@ export default function Index() {
                 className="absolute -top-3 -right-3 rounded-xl px-3 py-2 text-xs font-black"
                 style={{
                   background: "linear-gradient(135deg, #fbbf24, #f59e0b)",
-                  color: "#2a1f50",
+                  color: "#2e2260",
                   boxShadow: "0 4px 16px rgba(251,191,36,0.5)",
                   transform: "rotate(6deg)",
                 }}
@@ -819,7 +819,7 @@ export default function Index() {
       </section>
 
       {/* WHY US */}
-      <section className="py-24" style={{ background: "#322660" }}>
+      <section className="py-24" style={{ background: "#3a2870" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <SectionReveal>
             <div className="text-center mb-14">
@@ -936,7 +936,7 @@ export default function Index() {
       <section
         id="services"
         className="py-24"
-        style={{ background: "#2a1f50" }}
+        style={{ background: "#2e2260" }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <SectionReveal>
@@ -1005,7 +1005,7 @@ export default function Index() {
 
 
       {/* GALLERY */}
-      <section id="gallery" className="py-24" style={{ background: "#1c1535" }}>
+      <section id="gallery" className="py-24" style={{ background: "#3a2870" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <SectionReveal>
             <div className="text-center mb-16">
@@ -1245,7 +1245,7 @@ export default function Index() {
       <section
         id="calculator"
         className="py-24"
-        style={{ background: "#231b42" }}
+        style={{ background: "#2e2260" }}
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <SectionReveal>
@@ -1550,78 +1550,10 @@ export default function Index() {
         </div>
       </section>
 
-      {/* REVIEWS */}
-      <section id="reviews" className="py-24" style={{ background: "#1c1535" }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <SectionReveal>
-            <div className="text-center mb-16">
-              <span
-                className="text-sm font-semibold tracking-widest uppercase mb-3 block"
-                style={{ color: "#EC4899" }}
-              >
-                Клиенты о нас
-              </span>
-              <h2
-                className="text-4xl sm:text-5xl lg:text-6xl font-black"
-                style={{ fontFamily: "Oswald, sans-serif" }}
-              >
-                <span className="gradient-text">ОТЗЫВЫ</span>
-              </h2>
-            </div>
-          </SectionReveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {reviews.map((r, i) => (
-              <SectionReveal key={i}>
-                <div
-                  className="p-5 rounded-2xl h-full hover-lift"
-                  style={{
-                    background: "rgba(255,255,255,0.03)",
-                    border: "1px solid rgba(255,255,255,0.06)",
-                  }}
-                >
-                  <div className="flex items-center gap-3 mb-4">
-                    <div
-                      className="w-11 h-11 rounded-full flex items-center justify-center font-bold text-white text-base"
-                      style={{
-                        background: "linear-gradient(135deg, #7C3AED, #06B6D4)",
-                      }}
-                    >
-                      {r.avatar}
-                    </div>
-                    <div>
-                      <div className="font-semibold text-sm text-white">
-                        {r.name}
-                      </div>
-                      <div
-                        className="text-xs"
-                        style={{ color: "rgba(255,255,255,0.4)" }}
-                      >
-                        {r.city}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex gap-0.5 mb-3">
-                    {[...Array(r.rating)].map((_, j) => (
-                      <span key={j} style={{ color: "#F59E0B" }}>
-                        ★
-                      </span>
-                    ))}
-                  </div>
-                  <p
-                    className="text-sm leading-relaxed"
-                    style={{ color: "rgba(255,255,255,0.6)" }}
-                  >
-                    {r.text}
-                  </p>
-                </div>
-              </SectionReveal>
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       {/* ABOUT */}
-      <section id="about" className="py-24" style={{ background: "#231b42" }}>
+      <section id="about" className="py-24" style={{ background: "#3a2870" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <SectionReveal>
@@ -1737,7 +1669,7 @@ export default function Index() {
       <section
         id="contacts"
         className="py-24"
-        style={{ background: "#1c1535" }}
+        style={{ background: "#2e2260" }}
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <SectionReveal>
@@ -1963,7 +1895,7 @@ export default function Index() {
         className="py-8 text-center"
         style={{
           borderTop: "1px solid rgba(255,255,255,0.06)",
-          background: "#160f2e",
+          background: "#2e2260",
         }}
       >
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
