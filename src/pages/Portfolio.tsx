@@ -3,91 +3,35 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 
-const projects = [
-  {
-    id: 1,
-    title: "Гостиная с LED-подсветкой",
-    category: "Гостиная",
-    type: "Глянцевый",
-    area: "32 м²",
-    duration: "1 день",
-    city: "Москва",
-    year: "2024",
-    description: "Двухуровневый глянцевый потолок с встроенной LED-лентой по периметру. Создаёт эффект парения и визуально увеличивает высоту помещения.",
-    tags: ["Глянец", "LED", "Двухуровневый"],
-    color: "#7C3AED",
-    img: "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/2dc6283d-3990-4025-9a9c-407ebf82f1e1.jpg",
-  },
-  {
-    id: 2,
-    title: "Звёздное небо в спальне",
-    category: "Спальня",
-    type: "Звёздное небо",
-    area: "20 м²",
-    duration: "2 дня",
-    city: "Санкт-Петербург",
-    year: "2024",
-    description: "Оптоволоконная подсветка с имитацией звёздного неба. 200 световых точек, эффект мерцания, регулируемая яркость через пульт.",
-    tags: ["Звёздное небо", "Оптоволокно", "Спальня"],
-    color: "#06B6D4",
-    img: "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/34a4b778-ce85-429f-be13-ec33ca8ff4b1.jpg",
-  },
-  {
-    id: 3,
-    title: "Многоуровневый в зале",
-    category: "Зал",
-    type: "Многоуровневый",
-    area: "48 м²",
-    duration: "3 дня",
-    city: "Казань",
-    year: "2024",
-    description: "Сложная трёхуровневая конструкция с геометрическими переходами. Скрытая подсветка в каждом ярусе, индивидуальный дизайн-проект.",
-    tags: ["Многоуровневый", "Геометрия", "Премиум"],
-    color: "#F59E0B",
-    img: "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/7877a050-f689-4e18-9b20-8d7d43b41ab4.jpg",
-  },
-  {
-    id: 4,
-    title: "Матовый на кухне",
-    category: "Кухня",
-    type: "Матовый",
-    area: "14 м²",
-    duration: "1 день",
-    city: "Екатеринбург",
-    year: "2025",
-    description: "Белый матовый потолок с точечными светильниками. Влагостойкое полотно, идеально для кухни. Быстрый монтаж без пыли и запаха.",
-    tags: ["Матовый", "Влагостойкий", "Кухня"],
-    color: "#10B981",
-    img: "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/7bad844f-f001-46df-97a4-558259b3e70a.jpg",
-  },
-  {
-    id: 5,
-    title: "Офис компании",
-    category: "Офис",
-    type: "Сатиновый",
-    area: "120 м²",
-    duration: "4 дня",
-    city: "Москва",
-    year: "2025",
-    description: "Корпоративное пространство с сатиновым потолком и системой встроенных офисных светильников. Строгий деловой стиль, акустический комфорт.",
-    tags: ["Сатин", "Офис", "Коммерческий"],
-    color: "#EC4899",
-    img: "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/4f55437e-426f-4c95-994c-b5d30902c989.jpg",
-  },
-  {
-    id: 6,
-    title: "Детская комната",
-    category: "Детская",
-    type: "Матовый",
-    area: "16 м²",
-    duration: "1 день",
-    city: "Новосибирск",
-    year: "2025",
-    description: "Яркий потолок в детской с мягкими цветовыми переходами и безопасными материалами. Сертифицировано для детских помещений.",
-    tags: ["Детская", "Безопасный", "Цветной"],
-    color: "#F97316",
-    img: "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/85467eba-7ed3-4580-8d5e-ccebe3842e34.jpg",
-  },
+const projects: {
+  id: number;
+  title: string;
+  category: string;
+  type: string;
+  area: string;
+  duration: string;
+  city: string;
+  year: string;
+  description: string;
+  tags: string[];
+  color: string;
+  img: string;
+}[] = [
+  // Сюда добавляй новые фото в формате:
+  // {
+  //   id: 1,
+  //   title: "Название",
+  //   category: "Гостиная",
+  //   type: "Матовый",
+  //   area: "20 м²",
+  //   duration: "1 день",
+  //   city: "Обнинск",
+  //   year: "2025",
+  //   description: "Описание работы",
+  //   tags: ["Тег1", "Тег2"],
+  //   color: "#7C3AED",
+  //   img: "URL фото",
+  // },
 ];
 
 const categories = ["Все", "Гостиная", "Спальня", "Кухня", "Детская", "Офис", "Зал"];
