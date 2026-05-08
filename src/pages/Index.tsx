@@ -361,7 +361,7 @@ export default function Index() {
   return (
     <div
       className="min-h-screen"
-      style={{ background: "#1c1535", color: "#fff" }}
+      style={{ background: "#2a1f50", color: "#fff" }}
     >
       {/* NAVBAR */}
       <nav
@@ -703,7 +703,7 @@ export default function Index() {
       {/* PROMO */}
       <section
         className="py-16 relative overflow-hidden"
-        style={{ background: "linear-gradient(135deg, #1a0e35 0%, #2d1060 50%, #160f2e 100%)" }}
+        style={{ background: "linear-gradient(135deg, #2a1f50 0%, #3d1f7a 50%, #2a1f50 100%)" }}
       >
         <div
           className="absolute inset-0 pointer-events-none"
@@ -797,7 +797,7 @@ export default function Index() {
                 />
                 <div
                   className="absolute bottom-0 left-0 right-0 px-4 py-3 text-center"
-                  style={{ background: "linear-gradient(to top, rgba(22,15,46,0.95), transparent)" }}
+                  style={{ background: "linear-gradient(to top, rgba(42,31,80,0.95), transparent)" }}
                 >
                   <span className="text-white font-bold text-sm">Светильники в подарок</span>
                 </div>
@@ -806,7 +806,7 @@ export default function Index() {
                 className="absolute -top-3 -right-3 rounded-xl px-3 py-2 text-xs font-black"
                 style={{
                   background: "linear-gradient(135deg, #fbbf24, #f59e0b)",
-                  color: "#1a0e35",
+                  color: "#2a1f50",
                   boxShadow: "0 4px 16px rgba(251,191,36,0.5)",
                   transform: "rotate(6deg)",
                 }}
@@ -819,7 +819,7 @@ export default function Index() {
       </section>
 
       {/* WHY US */}
-      <section className="py-24" style={{ background: "#231b42" }}>
+      <section className="py-24" style={{ background: "#322660" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <SectionReveal>
             <div className="text-center mb-14">
@@ -936,7 +936,7 @@ export default function Index() {
       <section
         id="services"
         className="py-24"
-        style={{ background: "#1c1535" }}
+        style={{ background: "#2a1f50" }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <SectionReveal>
