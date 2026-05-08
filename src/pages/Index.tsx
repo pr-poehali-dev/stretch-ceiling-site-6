@@ -476,7 +476,7 @@ export default function Index() {
         {menuOpen && (
           <div
             className="lg:hidden px-4 pb-4 flex flex-col gap-1"
-            style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}
+            style={{ borderTop: "1px solid rgba(255,255,255,0.12)" }}
           >
             {navItems.map((item) => (
               <button
@@ -767,8 +767,8 @@ export default function Index() {
                 <div
                   className="flex items-center gap-2 px-5 py-4 rounded-xl text-sm"
                   style={{
-                    background: "rgba(255,255,255,0.06)",
-                    border: "1px solid rgba(255,255,255,0.1)",
+                    background: "rgba(255,255,255,0.14)",
+                    border: "1px solid rgba(255,255,255,0.2)",
                     color: "rgba(255,255,255,0.7)",
                   }}
                 >
@@ -892,15 +892,15 @@ export default function Index() {
                 <div
                   className="group p-6 rounded-2xl h-full transition-all duration-300 hover-lift"
                   style={{
-                    background: "rgba(255,255,255,0.03)",
-                    border: "1px solid rgba(255,255,255,0.06)",
+                    background: "rgba(255,255,255,0.08)",
+                    border: "1px solid rgba(255,255,255,0.14)",
                   }}
                   onMouseEnter={(e) =>
                     (e.currentTarget.style.borderColor = item.color + "50")
                   }
                   onMouseLeave={(e) =>
                     (e.currentTarget.style.borderColor =
-                      "rgba(255,255,255,0.06)")
+                      "rgba(255,255,255,0.14)")
                   }
                 >
                   <div
@@ -961,15 +961,15 @@ export default function Index() {
                 <div
                   className="group p-6 rounded-2xl hover-lift cursor-pointer h-full transition-all duration-300"
                   style={{
-                    background: "rgba(255,255,255,0.03)",
-                    border: "1px solid rgba(255,255,255,0.06)",
+                    background: "rgba(255,255,255,0.08)",
+                    border: "1px solid rgba(255,255,255,0.14)",
                   }}
                   onMouseEnter={(e) =>
                     (e.currentTarget.style.borderColor = s.color + "50")
                   }
                   onMouseLeave={(e) =>
                     (e.currentTarget.style.borderColor =
-                      "rgba(255,255,255,0.06)")
+                      "rgba(255,255,255,0.14)")
                   }
                 >
                   <div
@@ -1052,7 +1052,7 @@ export default function Index() {
                     <div
                       className="w-12 h-12 rounded-full flex items-center justify-center"
                       style={{
-                        background: "rgba(255,255,255,0.2)",
+                        background: "rgba(255,255,255,0.3)",
                         backdropFilter: "blur(4px)",
                       }}
                     >
@@ -1204,7 +1204,7 @@ export default function Index() {
                   <button
                     onClick={() => setLightbox(null)}
                     className="w-10 h-10 rounded-full flex items-center justify-center"
-                    style={{ background: "rgba(255,255,255,0.1)" }}
+                    style={{ background: "rgba(255,255,255,0.2)" }}
                   >
                     <Icon name="X" size={20} className="text-white" />
                   </button>
@@ -1274,7 +1274,7 @@ export default function Index() {
             <div
               className="rounded-3xl p-6 sm:p-8"
               style={{
-                background: "rgba(255,255,255,0.03)",
+                background: "rgba(255,255,255,0.08)",
                 border: "1px solid rgba(124,58,237,0.2)",
               }}
             >
@@ -1299,13 +1299,13 @@ export default function Index() {
                         background:
                           calcRoom.id === r.id
                             ? "linear-gradient(135deg, #7C3AED, #06B6D4)"
-                            : "rgba(255,255,255,0.06)",
+                            : "rgba(255,255,255,0.14)",
                         color: "#fff",
                         border:
                           "1px solid " +
                           (calcRoom.id === r.id
                             ? "transparent"
-                            : "rgba(255,255,255,0.08)"),
+                            : "rgba(255,255,255,0.16)"),
                       }}
                     >
                       {r.label}
@@ -1368,12 +1368,12 @@ export default function Index() {
                         background:
                           calcType.id === t.id
                             ? "rgba(124,58,237,0.2)"
-                            : "rgba(255,255,255,0.04)",
+                            : "rgba(255,255,255,0.10)",
                         border:
                           "1px solid " +
                           (calcType.id === t.id
                             ? "#7C3AED"
-                            : "rgba(255,255,255,0.08)"),
+                            : "rgba(255,255,255,0.16)"),
                       }}
                     >
                       <div className="font-semibold text-sm text-white">
@@ -1421,12 +1421,12 @@ export default function Index() {
                         background:
                           parseFloat(opt.value) > 0
                             ? "rgba(124,58,237,0.15)"
-                            : "rgba(255,255,255,0.04)",
+                            : "rgba(255,255,255,0.10)",
                         border:
                           "1px solid " +
                           (parseFloat(opt.value) > 0
                             ? "rgba(124,58,237,0.5)"
-                            : "rgba(255,255,255,0.08)"),
+                            : "rgba(255,255,255,0.16)"),
                       }}
                     >
                       <div className="flex-1">
@@ -1610,8 +1610,8 @@ export default function Index() {
                       key={i}
                       className="flex items-center gap-3 p-3 rounded-xl"
                       style={{
-                        background: "rgba(255,255,255,0.03)",
-                        border: "1px solid rgba(255,255,255,0.06)",
+                        background: "rgba(255,255,255,0.08)",
+                        border: "1px solid rgba(255,255,255,0.14)",
                       }}
                     >
                       <Icon
@@ -1693,7 +1693,7 @@ export default function Index() {
               <div
                 className="rounded-3xl p-6 sm:p-8"
                 style={{
-                  background: "rgba(255,255,255,0.03)",
+                  background: "rgba(255,255,255,0.08)",
                   border: "1px solid rgba(124,58,237,0.2)",
                 }}
               >
@@ -1731,8 +1731,8 @@ export default function Index() {
                         }
                         className="w-full px-4 py-3 rounded-xl text-white placeholder:text-white/30 outline-none transition-all"
                         style={{
-                          background: "rgba(255,255,255,0.05)",
-                          border: "1px solid rgba(255,255,255,0.1)",
+                          background: "rgba(255,255,255,0.12)",
+                          border: "1px solid rgba(255,255,255,0.2)",
                         }}
                       />
                     </div>
@@ -1752,8 +1752,8 @@ export default function Index() {
                         }
                         className="w-full px-4 py-3 rounded-xl text-white placeholder:text-white/30 outline-none transition-all"
                         style={{
-                          background: "rgba(255,255,255,0.05)",
-                          border: "1px solid rgba(255,255,255,0.1)",
+                          background: "rgba(255,255,255,0.12)",
+                          border: "1px solid rgba(255,255,255,0.2)",
                         }}
                       />
                     </div>
@@ -1773,8 +1773,8 @@ export default function Index() {
                         }
                         className="w-full px-4 py-3 rounded-xl text-white placeholder:text-white/30 outline-none resize-none transition-all"
                         style={{
-                          background: "rgba(255,255,255,0.05)",
-                          border: "1px solid rgba(255,255,255,0.1)",
+                          background: "rgba(255,255,255,0.12)",
+                          border: "1px solid rgba(255,255,255,0.2)",
                         }}
                       />
                     </div>
@@ -1833,8 +1833,8 @@ export default function Index() {
                     key={i}
                     className="flex items-start gap-4 p-5 rounded-2xl hover-lift transition-all"
                     style={{
-                      background: "rgba(255,255,255,0.03)",
-                      border: "1px solid rgba(255,255,255,0.06)",
+                      background: "rgba(255,255,255,0.08)",
+                      border: "1px solid rgba(255,255,255,0.14)",
                     }}
                   >
                     <div
@@ -1874,8 +1874,8 @@ export default function Index() {
                       key={i}
                       className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl font-medium text-sm transition-all hover-lift"
                       style={{
-                        background: "rgba(255,255,255,0.04)",
-                        border: "1px solid rgba(255,255,255,0.08)",
+                        background: "rgba(255,255,255,0.10)",
+                        border: "1px solid rgba(255,255,255,0.16)",
                         color: s.color,
                       }}
                     >
