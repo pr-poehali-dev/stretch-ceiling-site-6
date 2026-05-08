@@ -791,8 +791,8 @@ export default function Index() {
                 }}
               >
                 <img
-                  src="https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/2347b5cb-0f88-4af0-9e40-2c9ba66cb243.jpg"
-                  alt="Светильники в подарок"
+                  src="https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/bdb5e32e-1441-4632-a267-e00bfd910452.jpg"
+                  alt="Светильник GX53 в подарок"
                   className="w-full h-full object-cover"
                 />
                 <div
