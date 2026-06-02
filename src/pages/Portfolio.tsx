@@ -3,6 +3,49 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 
+const catalogItems = [
+  {
+    slug: "shadow",
+    title: "Теневые потолки",
+    desc: "Декоративная щель создаёт эффект парения",
+    color: "#7C3AED",
+    icon: "Layers",
+    img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80",
+  },
+  {
+    slug: "floating",
+    title: "Парящие потолки",
+    desc: "Полотно зависает в воздухе без видимых опор",
+    color: "#06B6D4",
+    icon: "Wind",
+    img: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=600&q=80",
+  },
+  {
+    slug: "cornices",
+    title: "Скрытые карнизы",
+    desc: "Шторы «вырастают» прямо из потолка",
+    color: "#F59E0B",
+    icon: "EyeOff",
+    img: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=80",
+  },
+  {
+    slug: "films",
+    title: "Виды плёнок",
+    desc: "Глянец, матовый, сатин, фотопечать и другие",
+    color: "#10B981",
+    icon: "Palette",
+    img: "https://images.unsplash.com/photo-1615529328331-f8917597711f?w=600&q=80",
+  },
+  {
+    slug: "spotlights",
+    title: "Светильники (втяжка)",
+    desc: "Встраиваемые LED-светильники в полотно",
+    color: "#EC4899",
+    icon: "Lightbulb",
+    img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
+  },
+];
+
 const projects: {
   id: number;
   title: string;
@@ -196,6 +239,39 @@ export default function Portfolio() {
           <p className="text-base sm:text-lg max-w-xl mx-auto" style={{ color: "rgba(255,255,255,0.8)" }}>
             Реальные объекты нашей компании — от уютных квартир до офисных пространств
           </p>
+        </SectionReveal>
+      </div>
+
+      {/* CATALOG CAROUSEL */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 mb-14">
+        <SectionReveal>
+          <h2 className="text-2xl sm:text-3xl font-black text-white mb-6 text-center" style={{ fontFamily: "Oswald, sans-serif" }}>
+            Наши услуги
+          </h2>
+          <div className="flex gap-4 overflow-x-auto pb-3 scrollbar-hide" style={{ scrollSnapType: "x mandatory" }}>
+            {catalogItems.map(item => (
+              <div
+                key={item.slug}
+                onClick={() => navigate(`/portfolio/${item.slug}`)}
+                className="flex-shrink-0 cursor-pointer rounded-2xl overflow-hidden hover-lift transition-all duration-300 group"
+                style={{ width: 220, scrollSnapAlign: "start", border: `1px solid ${item.color}30` }}
+              >
+                <div className="relative" style={{ height: 150 }}>
+                  <img src={item.img} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${item.color}dd 0%, transparent 60%)` }} />
+                  <div className="absolute bottom-3 left-3 right-3">
+                    <div className="font-black text-white text-base leading-tight" style={{ fontFamily: "Oswald, sans-serif" }}>{item.title}</div>
+                  </div>
+                  <div className="absolute top-3 right-3 w-8 h-8 rounded-full flex items-center justify-center" style={{ background: item.color }}>
+                    <Icon name={item.icon} size={14} className="text-white" />
+                  </div>
+                </div>
+                <div className="px-3 py-2.5" style={{ background: "rgba(255,255,255,0.05)" }}>
+                  <p className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.7)" }}>{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </SectionReveal>
       </div>
 
