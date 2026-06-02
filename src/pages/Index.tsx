@@ -830,6 +830,48 @@ export default function Index() {
         </div>
       </section>
 
+      {/* CATALOG CAROUSEL */}
+      <section className="py-16 px-4" style={{ background: "#2e2260" }}>
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-8">
+            <span className="text-sm font-semibold tracking-widest uppercase mb-3 block" style={{ color: "#7C3AED" }}>Что мы делаем</span>
+            <h2 className="text-4xl sm:text-5xl font-black text-white" style={{ fontFamily: "Oswald, sans-serif" }}>
+              ВИДЫ <span style={{ background: "linear-gradient(135deg, #7C3AED, #06B6D4)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>ПОТОЛКОВ</span>
+            </h2>
+          </div>
+          <div className="flex gap-4 overflow-x-auto pb-3" style={{ scrollSnapType: "x mandatory", scrollbarWidth: "none" }}>
+            {[
+              { slug: "/portfolio/shadow", title: "Теневые потолки", desc: "Декоративная щель — эффект парения", color: "#7C3AED", icon: "Layers", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80" },
+              { slug: "/portfolio/floating", title: "Парящие потолки", desc: "Полотно зависает без видимых опор", color: "#06B6D4", icon: "Wind", img: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=600&q=80" },
+              { slug: "/portfolio/cornices", title: "Скрытые карнизы", desc: "Шторы «вырастают» из потолка", color: "#F59E0B", icon: "EyeOff", img: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=80" },
+              { slug: "/portfolio/films", title: "Виды плёнок", desc: "Глянец, матовый, сатин, фотопечать", color: "#10B981", icon: "Palette", img: "https://images.unsplash.com/photo-1615529328331-f8917597711f?w=600&q=80" },
+              { slug: "/portfolio/spotlights", title: "Светильники (втяжка)", desc: "Встраиваемые LED в полотно", color: "#EC4899", icon: "Lightbulb", img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" },
+            ].map(item => (
+              <a
+                key={item.slug}
+                href={item.slug}
+                className="flex-shrink-0 rounded-2xl overflow-hidden hover-lift transition-all duration-300 group"
+                style={{ width: 220, scrollSnapAlign: "start", border: `1px solid ${item.color}40`, textDecoration: "none" }}
+              >
+                <div className="relative" style={{ height: 150 }}>
+                  <img src={item.img} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${item.color}ee 0%, transparent 55%)` }} />
+                  <div className="absolute bottom-3 left-3 right-3">
+                    <div className="font-black text-white text-base leading-tight" style={{ fontFamily: "Oswald, sans-serif" }}>{item.title}</div>
+                  </div>
+                  <div className="absolute top-3 right-3 w-8 h-8 rounded-full flex items-center justify-center" style={{ background: item.color }}>
+                    <Icon name={item.icon as Parameters<typeof Icon>[0]["name"]} size={14} className="text-white" />
+                  </div>
+                </div>
+                <div className="px-3 py-2.5" style={{ background: "rgba(255,255,255,0.06)" }}>
+                  <p className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.75)" }}>{item.desc}</p>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* WHY US */}
       <section className="py-24" style={{ background: "#3a2870" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
