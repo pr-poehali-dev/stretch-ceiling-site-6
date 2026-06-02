@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 
-const images: string[] = [];
+const images: string[] = [
+  "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/d88715af-6354-42db-9728-b2bfacb46302.jpeg",
+];
 
 const features = [
   { icon: "EyeOff", title: "Карниз невидим", text: "Штора как будто выходит прямо из потолка — никаких видимых кронштейнов" },
