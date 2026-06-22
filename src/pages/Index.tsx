@@ -373,12 +373,16 @@ export default function Index() {
   return (
     <div
       className="min-h-screen"
-      style={{ background: "#2e2260", color: "#fff" }}
+      style={{ background: "#f8f6ff", color: "#1a1a2e" }}
     >
       {/* NAVBAR */}
       <nav
-        className="fixed top-0 left-0 right-0 z-50 glass"
-        style={{ borderBottom: "1px solid rgba(124,58,237,0.2)" }}
+        className="fixed top-0 left-0 right-0 z-50"
+        style={{
+          background: "rgba(255,255,255,0.95)",
+          backdropFilter: "blur(20px)",
+          borderBottom: "1px solid rgba(124,58,237,0.1)",
+        }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
           <div
@@ -427,13 +431,13 @@ export default function Index() {
                   letterSpacing: "0.04em",
                 }}
               >
-                <span className="text-white">Потолки</span>
+                <span style={{ color: "#1a1a2e" }}>Потолки</span>
                 <span className="gradient-text">LeKo</span>
               </span>
               <span
                 style={{
                   fontSize: 9,
-                  color: "rgba(255,255,255,0.45)",
+                  color: "rgba(26,26,46,0.5)",
                   letterSpacing: "0.15em",
                   textTransform: "uppercase",
                 }}
@@ -452,8 +456,8 @@ export default function Index() {
                 style={{
                   color:
                     activeSection === item.id
-                      ? "#fff"
-                      : "rgba(255,255,255,0.6)",
+                      ? "#7c3aed"
+                      : "rgba(26,26,46,0.6)",
                   background:
                     activeSection === item.id
                       ? "linear-gradient(135deg, rgba(124,58,237,0.4), rgba(6,182,212,0.2))"
@@ -488,7 +492,7 @@ export default function Index() {
         {menuOpen && (
           <div
             className="lg:hidden px-4 pb-4 flex flex-col gap-1"
-            style={{ borderTop: "1px solid rgba(255,255,255,0.12)" }}
+            style={{ borderTop: "1px solid rgba(124,58,237,0.1)" }}
           >
             {navItems.map((item) => (
               <button
@@ -496,7 +500,7 @@ export default function Index() {
                 onClick={() => scrollTo(item.id)}
                 className="py-2.5 px-4 rounded-lg text-left text-sm font-medium transition-all"
                 style={{
-                  color: "rgba(255,255,255,0.8)",
+                  color: "rgba(26,26,46,0.6)",
                   background:
                     activeSection === item.id
                       ? "rgba(124,58,237,0.2)"
@@ -715,7 +719,7 @@ export default function Index() {
       {/* PROMO */}
       <section
         className="py-16 relative overflow-hidden"
-        style={{ background: "linear-gradient(135deg, #2e2260 0%, #4a28a0 50%, #2e2260 100%)" }}
+        style={{ background: "linear-gradient(135deg, #ede9fe 0%, #ddd6fe 50%, #ede9fe 100%)" }}
       >
         <div
           className="absolute inset-0 pointer-events-none"
@@ -742,10 +746,10 @@ export default function Index() {
                 className="text-3xl sm:text-4xl lg:text-5xl font-black mb-4 leading-tight"
                 style={{ fontFamily: "Oswald, sans-serif" }}
               >
-                <span className="text-white">Закажи потолки </span>
+                <span style={{ color: "#1a1a2e" }}>Закажи потолки </span>
                 <span style={{ color: "#fbbf24" }}>сейчас</span>
                 <br />
-                <span className="text-white">— получи скидку</span>
+                <span style={{ color: "#1a1a2e" }}>— получи скидку</span>
                 <br />
                 <span style={{
                   background: "linear-gradient(135deg, #7C3AED, #06B6D4)",
@@ -757,7 +761,7 @@ export default function Index() {
               </h2>
               <p
                 className="text-base mb-8 max-w-md mx-auto lg:mx-0"
-                style={{ color: "rgba(255,255,255,0.55)" }}
+                style={{ color: "rgba(26,26,46,0.65)" }}
               >
                 При заказе натяжного потолка от 15 м² дарим комплект встраиваемых светильников и делаем скидку на монтаж. Успей до конца месяца!
               </p>
@@ -779,9 +783,9 @@ export default function Index() {
                 <div
                   className="flex items-center gap-2 px-5 py-4 rounded-xl text-sm"
                   style={{
-                    background: "rgba(255,255,255,0.14)",
-                    border: "1px solid rgba(255,255,255,0.2)",
-                    color: "rgba(255,255,255,0.7)",
+                    background: "rgba(124,58,237,0.1)",
+                    border: "1px solid rgba(124,58,237,0.2)",
+                    color: "rgba(26,26,46,0.7)",
                   }}
                 >
                   <Icon name="Phone" size={15} />
@@ -831,11 +835,11 @@ export default function Index() {
       </section>
 
       {/* CATALOG CAROUSEL */}
-      <section className="py-16 px-4" style={{ background: "#2e2260" }}>
+      <section className="py-16 px-4" style={{ background: "#f5f3ff" }}>
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8">
             <span className="text-sm font-semibold tracking-widest uppercase mb-3 block" style={{ color: "#7C3AED" }}>Что мы делаем</span>
-            <h2 className="text-4xl sm:text-5xl font-black text-white" style={{ fontFamily: "Oswald, sans-serif" }}>
+            <h2 className="text-4xl sm:text-5xl font-black" style={{ fontFamily: "Oswald, sans-serif", color: "#1a1a2e" }}>
               ВИДЫ <span style={{ background: "linear-gradient(135deg, #7C3AED, #06B6D4)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>ПОТОЛКОВ</span>
             </h2>
           </div>
@@ -863,8 +867,8 @@ export default function Index() {
                     <Icon name={item.icon as Parameters<typeof Icon>[0]["name"]} size={14} className="text-white" />
                   </div>
                 </div>
-                <div className="px-3 py-2.5" style={{ background: "rgba(255,255,255,0.06)" }}>
-                  <p className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.75)" }}>{item.desc}</p>
+                <div className="px-3 py-2.5" style={{ background: "rgba(124,58,237,0.08)" }}>
+                  <p className="text-xs leading-relaxed" style={{ color: "rgba(26,26,46,0.7)" }}>{item.desc}</p>
                 </div>
               </a>
             ))}
@@ -873,7 +877,7 @@ export default function Index() {
       </section>
 
       {/* WHY US */}
-      <section className="py-24" style={{ background: "#3a2870" }}>
+      <section className="py-24" style={{ background: "#ffffff" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <SectionReveal>
             <div className="text-center mb-14">
@@ -946,15 +950,15 @@ export default function Index() {
                 <div
                   className="group p-6 rounded-2xl h-full transition-all duration-300 hover-lift"
                   style={{
-                    background: "rgba(255,255,255,0.08)",
-                    border: "1px solid rgba(255,255,255,0.14)",
+                    background: "rgba(124,58,237,0.05)",
+                    border: "1px solid rgba(124,58,237,0.12)",
                   }}
                   onMouseEnter={(e) =>
                     (e.currentTarget.style.borderColor = item.color + "50")
                   }
                   onMouseLeave={(e) =>
                     (e.currentTarget.style.borderColor =
-                      "rgba(255,255,255,0.14)")
+                      "rgba(124,58,237,0.12)")
                   }
                 >
                   <div
@@ -968,14 +972,14 @@ export default function Index() {
                     />
                   </div>
                   <h3
-                    className="font-bold text-white text-base mb-2 leading-snug"
-                    style={{ fontFamily: "Oswald, sans-serif" }}
+                    className="font-bold text-base mb-2 leading-snug"
+                    style={{ fontFamily: "Oswald, sans-serif", color: "#1a1a2e" }}
                   >
                     {item.title}
                   </h3>
                   <p
                     className="text-sm leading-relaxed"
-                    style={{ color: "rgba(255,255,255,0.5)" }}
+                    style={{ color: "rgba(26,26,46,0.55)" }}
                   >
                     {item.desc}
                   </p>
@@ -990,7 +994,7 @@ export default function Index() {
       <section
         id="services"
         className="py-24"
-        style={{ background: "#2e2260" }}
+        style={{ background: "#ffffff" }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <SectionReveal>
@@ -1015,15 +1019,15 @@ export default function Index() {
                 <div
                   className="group p-6 rounded-2xl hover-lift cursor-pointer h-full transition-all duration-300"
                   style={{
-                    background: "rgba(255,255,255,0.08)",
-                    border: "1px solid rgba(255,255,255,0.14)",
+                    background: "rgba(124,58,237,0.05)",
+                    border: "1px solid rgba(124,58,237,0.12)",
                   }}
                   onMouseEnter={(e) =>
                     (e.currentTarget.style.borderColor = s.color + "50")
                   }
                   onMouseLeave={(e) =>
                     (e.currentTarget.style.borderColor =
-                      "rgba(255,255,255,0.14)")
+                      "rgba(124,58,237,0.12)")
                   }
                 >
                   <div
@@ -1037,14 +1041,14 @@ export default function Index() {
                     />
                   </div>
                   <h3
-                    className="text-xl font-bold mb-2 text-white"
-                    style={{ fontFamily: "Oswald, sans-serif" }}
+                    className="text-xl font-bold mb-2"
+                    style={{ fontFamily: "Oswald, sans-serif", color: "#1a1a2e" }}
                   >
                     {s.title}
                   </h3>
                   <p
                     className="text-sm"
-                    style={{ color: "rgba(255,255,255,0.55)", lineHeight: 1.6 }}
+                    style={{ color: "rgba(26,26,46,0.55)", lineHeight: 1.6 }}
                   >
                     {s.desc}
                   </p>
@@ -1059,7 +1063,7 @@ export default function Index() {
 
 
       {/* GALLERY */}
-      <section id="gallery" className="py-24" style={{ background: "#3a2870" }}>
+      <section id="gallery" className="py-24" style={{ background: "#f5f3ff" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <SectionReveal>
             <div className="text-center mb-16">
@@ -1299,7 +1303,7 @@ export default function Index() {
       <section
         id="calculator"
         className="py-24"
-        style={{ background: "#2e2260" }}
+        style={{ background: "#ffffff" }}
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <SectionReveal>
@@ -1318,7 +1322,7 @@ export default function Index() {
               </h2>
               <p
                 className="mt-4 text-base"
-                style={{ color: "rgba(255,255,255,0.5)" }}
+                style={{ color: "rgba(26,26,46,0.5)" }}
               >
                 Узнайте примерную стоимость за 30 секунд
               </p>
@@ -1328,14 +1332,14 @@ export default function Index() {
             <div
               className="rounded-3xl p-6 sm:p-8"
               style={{
-                background: "rgba(255,255,255,0.08)",
+                background: "rgba(124,58,237,0.05)",
                 border: "1px solid rgba(124,58,237,0.2)",
               }}
             >
               <div className="mb-8">
                 <label
                   className="text-sm font-semibold uppercase tracking-wider mb-3 block"
-                  style={{ color: "rgba(255,255,255,0.5)" }}
+                  style={{ color: "rgba(26,26,46,0.5)" }}
                 >
                   Тип помещения
                 </label>
@@ -1353,13 +1357,13 @@ export default function Index() {
                         background:
                           calcRoom.id === r.id
                             ? "linear-gradient(135deg, #7C3AED, #06B6D4)"
-                            : "rgba(255,255,255,0.14)",
-                        color: "#fff",
+                            : "rgba(124,58,237,0.08)",
+                        color: calcRoom.id === r.id ? "#fff" : "#1a1a2e",
                         border:
                           "1px solid " +
                           (calcRoom.id === r.id
                             ? "transparent"
-                            : "rgba(255,255,255,0.16)"),
+                            : "rgba(124,58,237,0.18)"),
                       }}
                     >
                       {r.label}
@@ -1371,9 +1375,9 @@ export default function Index() {
                 <div>
                   <label
                     className="text-sm font-semibold uppercase tracking-wider mb-2 block"
-                    style={{ color: "rgba(255,255,255,0.5)" }}
+                    style={{ color: "rgba(26,26,46,0.5)" }}
                   >
-                    Длина: <span className="text-white">{calcWidth} м</span>
+                    Длина: <span style={{ color: "#7c3aed" }}>{calcWidth} м</span>
                   </label>
                   <input
                     type="range"
@@ -1389,9 +1393,9 @@ export default function Index() {
                 <div>
                   <label
                     className="text-sm font-semibold uppercase tracking-wider mb-2 block"
-                    style={{ color: "rgba(255,255,255,0.5)" }}
+                    style={{ color: "rgba(26,26,46,0.5)" }}
                   >
-                    Ширина: <span className="text-white">{calcHeight} м</span>
+                    Ширина: <span style={{ color: "#7c3aed" }}>{calcHeight} м</span>
                   </label>
                   <input
                     type="range"
@@ -1408,7 +1412,7 @@ export default function Index() {
               <div className="mb-8">
                 <label
                   className="text-sm font-semibold uppercase tracking-wider mb-3 block"
-                  style={{ color: "rgba(255,255,255,0.5)" }}
+                  style={{ color: "rgba(26,26,46,0.5)" }}
                 >
                   Вид потолка
                 </label>
@@ -1422,15 +1426,15 @@ export default function Index() {
                         background:
                           calcType.id === t.id
                             ? "rgba(124,58,237,0.2)"
-                            : "rgba(255,255,255,0.10)",
+                            : "rgba(124,58,237,0.05)",
                         border:
                           "1px solid " +
                           (calcType.id === t.id
                             ? "#7C3AED"
-                            : "rgba(255,255,255,0.16)"),
+                            : "rgba(124,58,237,0.15)"),
                       }}
                     >
-                      <div className="font-semibold text-sm text-white">
+                      <div className="font-semibold text-sm" style={{ color: calcType.id === t.id ? "#7c3aed" : "#1a1a2e" }}>
                         {t.label}
                       </div>
                     </button>
@@ -1440,7 +1444,7 @@ export default function Index() {
               <div className="mb-8">
                 <label
                   className="text-sm font-semibold uppercase tracking-wider mb-3 block"
-                  style={{ color: "rgba(255,255,255,0.5)" }}
+                  style={{ color: "rgba(26,26,46,0.5)" }}
                 >
                   Дополнительно
                 </label>
@@ -1458,12 +1462,12 @@ export default function Index() {
                       key={opt.label}
                       className="flex items-center gap-3 p-3 rounded-xl"
                       style={{
-                        background: parseFloat(opt.value) > 0 ? "rgba(124,58,237,0.15)" : "rgba(255,255,255,0.10)",
-                        border: "1px solid " + (parseFloat(opt.value) > 0 ? "rgba(124,58,237,0.5)" : "rgba(255,255,255,0.16)"),
+                        background: parseFloat(opt.value) > 0 ? "rgba(124,58,237,0.15)" : "rgba(124,58,237,0.05)",
+                        border: "1px solid " + (parseFloat(opt.value) > 0 ? "rgba(124,58,237,0.5)" : "rgba(124,58,237,0.15)"),
                       }}
                     >
                       <div className="flex-1">
-                        <div className="font-semibold text-sm text-white">{opt.label}</div>
+                        <div className="font-semibold text-sm" style={{ color: "#1a1a2e" }}>{opt.label}</div>
                       </div>
                       <div className="flex items-center gap-2">
                         <input
@@ -1475,12 +1479,12 @@ export default function Index() {
                           onChange={(e) => opt.setter(e.target.value)}
                           className="w-20 text-center rounded-lg py-1.5 px-2 text-sm font-semibold outline-none"
                           style={{
-                            background: "rgba(255,255,255,0.08)",
+                            background: "rgba(124,58,237,0.08)",
                             border: "1px solid rgba(124,58,237,0.4)",
-                            color: "#fff",
+                            color: "#1a1a2e",
                           }}
                         />
-                        <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{opt.unit}</span>
+                        <span className="text-xs" style={{ color: "rgba(26,26,46,0.4)" }}>{opt.unit}</span>
                       </div>
                     </div>
                   ))}
@@ -1502,7 +1506,7 @@ export default function Index() {
                   </div>
                   <div
                     className="text-xs mt-1"
-                    style={{ color: "rgba(255,255,255,0.45)" }}
+                    style={{ color: "rgba(26,26,46,0.5)" }}
                   >
                     Площадь потолка
                   </div>
@@ -1536,7 +1540,7 @@ export default function Index() {
                     </div>
                     <div
                       className="text-xs mt-1"
-                      style={{ color: "rgba(255,255,255,0.45)" }}
+                      style={{ color: "rgba(26,26,46,0.5)" }}
                     >
                       Примерная стоимость
                     </div>
@@ -1545,7 +1549,7 @@ export default function Index() {
               </div>
               <p
                 className="text-center text-xs mt-4"
-                style={{ color: "rgba(255,255,255,0.3)" }}
+                style={{ color: "rgba(26,26,46,0.35)" }}
               >
                 * Финальная стоимость уточняется при бесплатном замере
               </p>
@@ -1557,7 +1561,7 @@ export default function Index() {
 
 
       {/* ABOUT */}
-      <section id="about" className="py-24" style={{ background: "#3a2870" }}>
+      <section id="about" className="py-24" style={{ background: "#f5f3ff" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <SectionReveal>
@@ -1576,7 +1580,7 @@ export default function Index() {
                 </h2>
                 <p
                   className="text-base leading-relaxed mb-5"
-                  style={{ color: "rgba(255,255,255,0.65)" }}
+                  style={{ color: "rgba(26,26,46,0.65)" }}
                 >
                   Мы — команда профессионалов с 8-летним опытом установки
                   натяжных потолков. За это время мы выполнили более 2400
@@ -1585,7 +1589,7 @@ export default function Index() {
                 </p>
                 <p
                   className="text-base leading-relaxed mb-8"
-                  style={{ color: "rgba(255,255,255,0.65)" }}
+                  style={{ color: "rgba(26,26,46,0.65)" }}
                 >
                   Работаем только с сертифицированными материалами европейских
                   производителей. Даём гарантию 15 лет на всю продукцию и
@@ -1614,8 +1618,8 @@ export default function Index() {
                       key={i}
                       className="flex items-center gap-3 p-3 rounded-xl"
                       style={{
-                        background: "rgba(255,255,255,0.08)",
-                        border: "1px solid rgba(255,255,255,0.14)",
+                        background: "rgba(124,58,237,0.05)",
+                        border: "1px solid rgba(124,58,237,0.12)",
                       }}
                     >
                       <Icon
@@ -1623,7 +1627,7 @@ export default function Index() {
                         size={20}
                         style={{ color: item.color }}
                       />
-                      <span className="text-sm font-medium text-white">
+                      <span className="text-sm font-medium" style={{ color: "#1a1a2e" }}>
                         {item.label}
                       </span>
                     </div>
@@ -1657,7 +1661,7 @@ export default function Index() {
                     </div>
                     <div
                       className="text-xs sm:text-sm"
-                      style={{ color: "rgba(255,255,255,0.5)" }}
+                      style={{ color: "rgba(26,26,46,0.5)" }}
                     >
                       {s.label}
                     </div>
@@ -1673,7 +1677,7 @@ export default function Index() {
       <section
         id="contacts"
         className="py-24"
-        style={{ background: "#2e2260" }}
+        style={{ background: "#ffffff" }}
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <SectionReveal>
@@ -1697,23 +1701,23 @@ export default function Index() {
               <div
                 className="rounded-3xl p-6 sm:p-8"
                 style={{
-                  background: "rgba(255,255,255,0.08)",
+                  background: "rgba(124,58,237,0.05)",
                   border: "1px solid rgba(124,58,237,0.2)",
                 }}
               >
                 <h3
-                  className="text-2xl font-bold mb-6 text-white"
-                  style={{ fontFamily: "Oswald, sans-serif" }}
+                  className="text-2xl font-bold mb-6"
+                  style={{ fontFamily: "Oswald, sans-serif", color: "#1a1a2e" }}
                 >
                   Заявка на замер
                 </h3>
                 {formSent ? (
                   <div className="text-center py-12 animate-fade-in">
                     <div className="text-5xl mb-4">🎉</div>
-                    <div className="text-xl font-bold text-white mb-2">
+                    <div className="text-xl font-bold mb-2" style={{ color: "#1a1a2e" }}>
                       Заявка отправлена!
                     </div>
-                    <div style={{ color: "rgba(255,255,255,0.5)" }}>
+                    <div style={{ color: "rgba(26,26,46,0.5)" }}>
                       Мы перезвоним вам в течение 30 минут
                     </div>
                   </div>
@@ -1722,7 +1726,7 @@ export default function Index() {
                     <div>
                       <label
                         className="text-sm font-medium mb-1.5 block"
-                        style={{ color: "rgba(255,255,255,0.5)" }}
+                        style={{ color: "rgba(26,26,46,0.5)" }}
                       >
                         Ваше имя
                       </label>
@@ -1733,17 +1737,18 @@ export default function Index() {
                         onChange={(e) =>
                           setFormData({ ...formData, name: e.target.value })
                         }
-                        className="w-full px-4 py-3 rounded-xl text-white placeholder:text-white/30 outline-none transition-all"
+                        className="w-full px-4 py-3 rounded-xl placeholder:text-gray-400 outline-none transition-all"
                         style={{
-                          background: "rgba(255,255,255,0.12)",
-                          border: "1px solid rgba(255,255,255,0.2)",
+                          background: "rgba(124,58,237,0.06)",
+                          border: "1px solid rgba(124,58,237,0.2)",
+                          color: "#1a1a2e",
                         }}
                       />
                     </div>
                     <div>
                       <label
                         className="text-sm font-medium mb-1.5 block"
-                        style={{ color: "rgba(255,255,255,0.5)" }}
+                        style={{ color: "rgba(26,26,46,0.5)" }}
                       >
                         Телефон
                       </label>
@@ -1754,17 +1759,18 @@ export default function Index() {
                         onChange={(e) =>
                           setFormData({ ...formData, phone: e.target.value })
                         }
-                        className="w-full px-4 py-3 rounded-xl text-white placeholder:text-white/30 outline-none transition-all"
+                        className="w-full px-4 py-3 rounded-xl placeholder:text-gray-400 outline-none transition-all"
                         style={{
-                          background: "rgba(255,255,255,0.12)",
-                          border: "1px solid rgba(255,255,255,0.2)",
+                          background: "rgba(124,58,237,0.06)",
+                          border: "1px solid rgba(124,58,237,0.2)",
+                          color: "#1a1a2e",
                         }}
                       />
                     </div>
                     <div>
                       <label
                         className="text-sm font-medium mb-1.5 block"
-                        style={{ color: "rgba(255,255,255,0.5)" }}
+                        style={{ color: "rgba(26,26,46,0.5)" }}
                       >
                         Комментарий
                       </label>
@@ -1775,10 +1781,11 @@ export default function Index() {
                         onChange={(e) =>
                           setFormData({ ...formData, comment: e.target.value })
                         }
-                        className="w-full px-4 py-3 rounded-xl text-white placeholder:text-white/30 outline-none resize-none transition-all"
+                        className="w-full px-4 py-3 rounded-xl placeholder:text-gray-400 outline-none resize-none transition-all"
                         style={{
-                          background: "rgba(255,255,255,0.12)",
-                          border: "1px solid rgba(255,255,255,0.2)",
+                          background: "rgba(124,58,237,0.06)",
+                          border: "1px solid rgba(124,58,237,0.2)",
+                          color: "#1a1a2e",
                         }}
                       />
                     </div>
@@ -1806,7 +1813,7 @@ export default function Index() {
                     </button>
                     <p
                       className="text-xs text-center"
-                      style={{ color: "rgba(255,255,255,0.3)" }}
+                      style={{ color: "rgba(26,26,46,0.35)" }}
                     >
                       Нажимая кнопку, вы соглашаетесь с политикой
                       конфиденциальности
@@ -1837,8 +1844,8 @@ export default function Index() {
                     key={i}
                     className="flex items-start gap-4 p-5 rounded-2xl hover-lift transition-all"
                     style={{
-                      background: "rgba(255,255,255,0.08)",
-                      border: "1px solid rgba(255,255,255,0.14)",
+                      background: "rgba(124,58,237,0.05)",
+                      border: "1px solid rgba(124,58,237,0.12)",
                     }}
                   >
                     <div
@@ -1854,14 +1861,14 @@ export default function Index() {
                     <div>
                       <div
                         className="text-xs mb-0.5"
-                        style={{ color: "rgba(255,255,255,0.4)" }}
+                        style={{ color: "rgba(26,26,46,0.4)" }}
                       >
                         {c.label}
                       </div>
-                      <div className="font-semibold text-white">{c.value}</div>
+                      <div className="font-semibold" style={{ color: "#1a1a2e" }}>{c.value}</div>
                       <div
                         className="text-xs mt-0.5"
-                        style={{ color: "rgba(255,255,255,0.4)" }}
+                        style={{ color: "rgba(26,26,46,0.4)" }}
                       >
                         {c.sub}
                       </div>
@@ -1878,8 +1885,8 @@ export default function Index() {
                       key={i}
                       className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl font-medium text-sm transition-all hover-lift"
                       style={{
-                        background: "rgba(255,255,255,0.10)",
-                        border: "1px solid rgba(255,255,255,0.16)",
+                        background: "rgba(124,58,237,0.06)",
+                        border: "1px solid rgba(124,58,237,0.15)",
                         color: s.color,
                       }}
                     >
@@ -1898,8 +1905,8 @@ export default function Index() {
       <footer
         className="py-8 text-center"
         style={{
-          borderTop: "1px solid rgba(255,255,255,0.06)",
-          background: "#2e2260",
+          borderTop: "1px solid rgba(124,58,237,0.15)",
+          background: "#f5f3ff",
         }}
       >
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -1917,23 +1924,23 @@ export default function Index() {
               style={{ fontFamily: "Oswald, sans-serif" }}
             >
               <span className="gradient-text">ПОТОЛОК</span>
-              <span className="text-white">ПРО</span>
+              <span style={{ color: "#1a1a2e" }}>ПРО</span>
             </span>
           </div>
           <div className="flex flex-col items-center gap-2">
-            <div className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
+            <div className="text-xs" style={{ color: "rgba(26,26,46,0.4)" }}>
               © 2025 ПотолокПРО. Все права защищены.
             </div>
             <VisitorCounter />
           </div>
           <div
             className="flex gap-4 text-xs"
-            style={{ color: "rgba(255,255,255,0.3)" }}
+            style={{ color: "rgba(26,26,46,0.4)" }}
           >
-            <button className="hover:text-white transition-colors">
+            <button className="hover:text-violet-600 transition-colors">
               Политика конфиденциальности
             </button>
-            <button className="hover:text-white transition-colors">
+            <button className="hover:text-violet-600 transition-colors">
               Оферта
             </button>
           </div>

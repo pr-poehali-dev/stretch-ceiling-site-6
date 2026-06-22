@@ -29,8 +29,10 @@
     --brand-primary: #7c3aed;
     --brand-secondary: #06b6d4;
     --brand-accent: #f59e0b;
-    --brand-dark: #2e2260;
-    --brand-dark2: #3a2870;
+    --brand-dark: #f5f3ff;
+    --brand-dark2: #ede9fe;
+    --brand-text: #1a1a2e;
+    --brand-text-muted: #6b7280;
   }
 }
 
@@ -186,9 +188,9 @@
 
 /* Glass card */
 .glass {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(124, 58, 237, 0.06);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(124, 58, 237, 0.15);
 }
 
 .glass-light {
@@ -213,7 +215,7 @@
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #2e2260;
+  background: #f5f3ff;
 }
 ::-webkit-scrollbar-thumb {
   background: #7c3aed;
