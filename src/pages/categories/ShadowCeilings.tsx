@@ -80,7 +80,10 @@ export default function ShadowCeilings() {
         </div>
 
         <div className="mt-6">
-          <h2 className="text-2xl font-black text-white mb-5" style={{ fontFamily: "Oswald, sans-serif" }}>Преимущества теневого профиля</h2>
+          <h2 className="text-2xl font-black text-white mb-3" style={{ fontFamily: "Oswald, sans-serif" }}>Преимущества теневого профиля</h2>
+          <p className="text-base leading-relaxed mb-5" style={{ color: "rgba(255,255,255,0.8)" }}>
+            Теневой профиль не просто так стал стандартом в современных дизайн-проектах. У него есть ряд неоспоримых преимуществ перед классическими системами:
+          </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {advantages.map(item => (
               <div key={item.title} className="p-5 rounded-2xl" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)" }}>
