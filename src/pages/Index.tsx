@@ -867,9 +867,6 @@ export default function Index() {
                     <Icon name={item.icon as Parameters<typeof Icon>[0]["name"]} size={14} className="text-white" />
                   </div>
                 </div>
-                <div className="px-3 py-2.5" style={{ background: "rgba(124,58,237,0.08)" }}>
-                  <p className="text-xs leading-relaxed" style={{ color: "rgba(26,26,46,0.7)" }}>{item.desc}</p>
-                </div>
               </a>
             ))}
           </div>
