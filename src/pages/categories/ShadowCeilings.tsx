@@ -11,6 +11,14 @@ const features = [
   { icon: "Lightbulb", title: "Скрытая подсветка", text: "В щель можно вмонтировать LED-ленту для мягкого свечения по периметру" },
 ];
 
+const advantages = [
+  { icon: "Gem", title: "Безупречная эстетика и минимализм", text: "Идеальная геометрия без дешёвых пластиковых заглушек, которые со временем желтеют или выпадают. Потолок выглядит дорого и лаконично." },
+  { icon: "ShieldCheck", title: "Защита от трещин усадки", text: "Если вы делаете ремонт в новостройке, дом будет давать усадку. Теневой зазор компенсирует микроподвижки стен — на потолке не появятся складки, а декоративный стык не лопнет (как это бывает с гипсокартоном)." },
+  { icon: "Paintbrush", title: "Лёгкая смена отделки стен", text: "Важнейший практический плюс! Вы можете переклеивать обои, перекрашивать стены или наносить декоративную штукатурку без демонтажа натяжного потолка. Обои просто заводятся шпателем в теневой зазор." },
+  { icon: "LayoutGrid", title: "Универсальность для любого покрытия", text: "Теневой стык идеально смотрится с рельефной плиткой, 3D-панелями, кирпичной кладкой или керамогранитом в ванной. Классическую резиновую заглушку на такие стены ровно прикрепить невозможно." },
+  { icon: "Timer", title: "Долговечность", text: "Фирменные теневые профили изготавливаются из прочного экструдированного алюминия (реже из жёсткого пластика), они не деформируются и надёжно держат полотно десятилетиями." },
+];
+
 export default function ShadowCeilings() {
   const navigate = useNavigate();
   return (
@@ -68,6 +76,21 @@ export default function ShadowCeilings() {
             <p>Многие путают эти два понятия.</p>
             <p><span className="font-bold text-white">Теневой потолок</span> — это просто тёмный, эстетичный зазор без встроенного света.</p>
             <p><span className="font-bold text-white">Парящий потолок</span> — это конструкция с более широким зазором, куда монтируется светодиодная лента. От стены исходит свечение, которое и создаёт эффект «парения».</p>
+          </div>
+        </div>
+
+        <div className="mt-6">
+          <h2 className="text-2xl font-black text-white mb-5" style={{ fontFamily: "Oswald, sans-serif" }}>Преимущества теневого профиля</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {advantages.map(item => (
+              <div key={item.title} className="p-5 rounded-2xl" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)" }}>
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-3" style={{ background: "linear-gradient(135deg, #7C3AED, #06B6D4)" }}>
+                  <Icon name={item.icon} size={18} className="text-white" />
+                </div>
+                <div className="font-bold text-white mb-1">{item.title}</div>
+                <div className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.7)" }}>{item.text}</div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
