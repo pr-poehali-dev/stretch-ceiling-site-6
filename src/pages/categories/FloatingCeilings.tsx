@@ -9,6 +9,14 @@ const features = [
   { icon: "Palette", title: "Любой цвет и фактура", text: "Глянец, матовый сатин или фотопечать — на любой вкус" },
 ];
 
+const advantages = [
+  { icon: "Maximize2", title: "Визуальное расширение пространства", text: "Несмотря на то, что потолок физически опускается, светящийся контур зрительно приподнимает его и расширяет границы комнаты." },
+  { icon: "Lightbulb", title: "Полноценный сценарий освещения", text: "Светодиодная лента по периметру может служить отличным вечерним (приглушённым) светом, заменяя бра или торшеры." },
+  { icon: "Wand2", title: "Маскировка дефектов стен", text: "Мягкий рассеянный свет вдоль стен способен слегка сгладить мелкие неровности отделки (однако сильная кривизна стен недопустима)." },
+  { icon: "Timer", title: "Скорость чистового монтажа", text: "Установка одноуровневого парящего потолка профессионалами занимает всего 1-2 дня без строительной пыли и грязи." },
+  { icon: "Sparkles", title: "Эффектный дизайн", text: "Это 100% способ сделать интерьер современным и запоминающимся." },
+];
+
 export default function FloatingCeilings() {
   const navigate = useNavigate();
   return (
@@ -35,7 +43,7 @@ export default function FloatingCeilings() {
           <span style={{ background: "linear-gradient(135deg, #06B6D4, #7C3AED)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>ПАРЯЩИЕ</span>{" "}ПОТОЛКИ
         </h1>
         <p className="text-lg max-w-2xl mx-auto leading-relaxed" style={{ color: "rgba(255,255,255,0.8)" }}>
-          Парящий потолок создаёт иллюзию, что полотно висит в воздухе без опоры. Достигается за счёт скрытого монтажа профилей и игры с освещением.
+          Эффект «левитации» достигается не магией, а грамотной инженерией. В основе парящего натяжного потолка лежит использование специального алюминиевого профиля (багета).
         </p>
       </div>
 
@@ -53,11 +61,25 @@ export default function FloatingCeilings() {
 
       <div className="max-w-4xl mx-auto px-4 pb-12">
         <div className="p-8 rounded-3xl" style={{ background: "rgba(6,182,212,0.08)", border: "1px solid rgba(6,182,212,0.2)" }}>
-          <h2 className="text-2xl font-black text-white mb-4" style={{ fontFamily: "Oswald, sans-serif" }}>В чём особенность?</h2>
+          <h2 className="text-2xl font-black text-white mb-4" style={{ fontFamily: "Oswald, sans-serif" }}>Что такое парящий потолок и в чём его секрет?</h2>
           <div className="space-y-3 text-base leading-relaxed" style={{ color: "rgba(255,255,255,0.8)" }}>
-            <p>Парящий эффект достигается скрытием профиля в нише или за декоративным коробом. Полотно как будто висит в пространстве — без видимых точек крепления.</p>
-            <p>Подсветка по периметру усиливает эффект: контурный свет снизу делает потолок ещё более лёгким и воздушным.</p>
-            <p>Особенно эффектно выглядит в гостиных с высокими потолками и в спальнях — создаёт атмосферу дорогого дизайн-проекта.</p>
+            <p>В отличие от стандартного профиля, который плотно прижимает полотно к стене и маскируется плинтусом (вставкой), парящий профиль устроен иначе. Он оставляет между стеной и потолком технологический зазор шириной от 1,5 до 3 сантиметров. В этот паз под определённым углом закладывается светодиодная лента, которая затем закрывается полупрозрачной светорассеивающей заглушкой (экраном).</p>
+            <p>Результат: свет падает на стену, создавая мягкий ореол, скрывающий физический стык. Граница стирается, и потолок визуально отрывается от стен.</p>
+          </div>
+        </div>
+
+        <div className="mt-6">
+          <h2 className="text-2xl font-black text-white mb-5" style={{ fontFamily: "Oswald, sans-serif" }}>Преимущества парящего потолка</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {advantages.map(item => (
+              <div key={item.title} className="p-5 rounded-2xl" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)" }}>
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-3" style={{ background: "linear-gradient(135deg, #06B6D4, #7C3AED)" }}>
+                  <Icon name={item.icon} size={18} className="text-white" />
+                </div>
+                <div className="font-bold text-white mb-1">{item.title}</div>
+                <div className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.7)" }}>{item.text}</div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
