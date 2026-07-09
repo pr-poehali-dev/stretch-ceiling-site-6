@@ -847,7 +847,7 @@ export default function Index() {
             {[
               { slug: "/portfolio/shadow", title: "Теневые потолки", desc: "Декоративная щель — эффект парения", color: "#7C3AED", icon: "Layers", img: "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/ca205375-9c09-4fd2-adc6-d05d3d323d83.jpg" },
               { slug: "/portfolio/floating", title: "Парящие потолки", desc: "Полотно зависает без видимых опор", color: "#06B6D4", icon: "Wind", img: "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/8762df44-2a28-42ac-aa0d-83cd00ac4ed6.jpg" },
-              { slug: "/portfolio/cornices", title: "Скрытые карнизы", desc: "Шторы «вырастают» из потолка", color: "#F59E0B", icon: "EyeOff", img: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=80" },
+              { slug: "/portfolio/cornices", title: "Скрытые карнизы", desc: "Шторы «вырастают» из потолка", color: "#F59E0B", icon: "EyeOff", img: "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/00121b66-fac0-41ce-80ba-e4ea71406e7f.jpg" },
               { slug: "/portfolio/films", title: "Виды плёнок", desc: "Глянец, матовый, сатин, фотопечать", color: "#10B981", icon: "Palette", img: "https://images.unsplash.com/photo-1615529328331-f8917597711f?w=600&q=80" },
               { slug: "/portfolio/spotlights", title: "Светильники (втяжка)", desc: "Встраиваемые LED в полотно", color: "#EC4899", icon: "Lightbulb", img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" },
             ].map(item => (
