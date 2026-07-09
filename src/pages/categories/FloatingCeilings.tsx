@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 
-const images: string[] = [];
+const images: string[] = [
+  "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/9960612c-20f0-4516-bf2b-a757da7a11c7.jpg",
+];
 
 const features = [
   { icon: "Wind", title: "Эффект невесомости", text: "Полотно словно зависает в воздухе — без видимых крепежей и профилей" },
