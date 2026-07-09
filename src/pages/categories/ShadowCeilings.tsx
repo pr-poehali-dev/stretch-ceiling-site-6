@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 
-const images: string[] = [];
+const images: string[] = [
+  "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/415f424b-0a34-4bd5-bbfd-8cbbf9eaa7b7.jpg",
+];
 
 const features = [
   { icon: "Sparkles", title: "Эффект парения", text: "Потолок визуально отрывается от стен, создавая ощущение невесомости" },
@@ -35,7 +37,7 @@ export default function ShadowCeilings() {
           <span style={{ background: "linear-gradient(135deg, #7C3AED, #06B6D4)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>ТЕНЕВЫЕ</span>{" "}ПОТОЛКИ
         </h1>
         <p className="text-lg max-w-2xl mx-auto leading-relaxed" style={{ color: "rgba(255,255,255,0.8)" }}>
-          Теневой потолок — декоративная щель между полотном и стеной. Создаёт эффект парения, добавляет стиль и может скрывать LED-подсветку.
+          Теневой потолок — это технология монтажа, при которой между натяжным полотном и стеной оставляется ровный технологический зазор (обычно 6-7 мм). В этот зазор не вставляется маскировочная лента, багет или потолочный плинтус.
         </p>
       </div>
 
@@ -55,9 +57,17 @@ export default function ShadowCeilings() {
         <div className="p-8 rounded-3xl" style={{ background: "rgba(124,58,237,0.1)", border: "1px solid rgba(124,58,237,0.25)" }}>
           <h2 className="text-2xl font-black text-white mb-4" style={{ fontFamily: "Oswald, sans-serif" }}>Как это работает?</h2>
           <div className="space-y-3 text-base leading-relaxed" style={{ color: "rgba(255,255,255,0.8)" }}>
-            <p>По периметру комнаты монтируется специальный теневой профиль — он создаёт ровную декоративную щель шириной от 20 до 50 мм между натяжным полотном и стеной.</p>
-            <p>Именно в этот зазор при желании укладывается LED-лента, которая даёт мягкий контурный свет без видимого источника.</p>
-            <p>Теневой потолок подходит для любых помещений. Монтируется за 1 день без грязи и запаха.</p>
+            <p>Основа конструкции — специальный крепежный профиль (самый известный пример — система EuroKraab). Его конструкция спроектирована таким образом, что место крепления полотна уходит вглубь, к стене. Сам профиль изнутри окрашен в глубокий черный цвет.</p>
+            <p>Благодаря этому, когда вы смотрите на потолок снизу, вы видите лишь ровную, контрастную черную линию тени по всему периметру комнаты.</p>
+          </div>
+        </div>
+
+        <div className="p-8 rounded-3xl mt-6" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)" }}>
+          <h2 className="text-2xl font-black text-white mb-4" style={{ fontFamily: "Oswald, sans-serif" }}>Теневой и парящий потолок: в чём разница?</h2>
+          <div className="space-y-3 text-base leading-relaxed" style={{ color: "rgba(255,255,255,0.8)" }}>
+            <p>Многие путают эти два понятия.</p>
+            <p><span className="font-bold text-white">Теневой потолок</span> — это просто тёмный, эстетичный зазор без встроенного света.</p>
+            <p><span className="font-bold text-white">Парящий потолок</span> — это конструкция с более широким зазором, куда монтируется светодиодная лента. От стены исходит свечение, которое и создаёт эффект «парения».</p>
           </div>
         </div>
       </div>
