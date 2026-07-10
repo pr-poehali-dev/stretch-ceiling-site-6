@@ -18,6 +18,28 @@ const baufFeatures = [
   { icon: "Fingerprint", title: "Защита от подделок", desc: "На каждом метре полотна — фирменная маркировка с логотипом Bauf, серией и данными о сертификатах." },
 ];
 
+const msdPros = [
+  { icon: "Leaf", title: "Экологичность", desc: "В составе безопасный пластификатор ДОТФ с меньшей летучестью. Продукция сертифицирована (EN71-3, REACH, ROHS, ISO), есть европейская категория А+ — допускается для детских и медицинских учреждений." },
+  { icon: "ShieldCheck", title: "Практичность", desc: "Антибактериальные и противогрибковые свойства, устойчивость к влаге, перепадам температур и химическим веществам." },
+  { icon: "Droplets", title: "Защита от затопления", desc: "Выдерживает нагрузку до 100 литров воды на квадратный метр." },
+  { icon: "Palette", title: "Разнообразие", desc: "Матовая, глянцевая, сатиновая фактуры, а также эксклюзивные варианты: металлик, полупрозрачная, замшевая. Богатая палитра цветов." },
+  { icon: "Ruler", title: "Ширина", desc: "Полотна шириной до 5 метров (с растяжением — до 5,6 м) позволяют делать бесшовные потолки в просторных помещениях." },
+  { icon: "Volume2", title: "Дополнительные свойства", desc: "Неплохая тепло- и звукоизоляция." },
+];
+
+const msdCons = [
+  "Толщина обычно 0,17–0,18 мм — материал чуть более уязвим к механическим повреждениям, чем некоторые аналоги",
+  "После установки иногда ощущается слабый специфический запах, который обычно быстро выветривается",
+  "При монтаже матовых и сатиновых вариантов важно правильно подбирать температуру тепловой пушки и не перегревать одно место, иначе могут появиться полосы",
+];
+
+const msdLines = [
+  { name: "Classic", desc: "Эконом-сегмент. Белый цвет, матовые, сатиновые и глянцевые варианты. Толщина 0,18–0,20 мм. Хороший баланс цены и базовых характеристик: износостойкость, влагостойкость, защита от затопления.", color: "#0EA5A4" },
+  { name: "Premium", desc: "Премиальный сегмент. Более широкая цветовая палитра (фактурный мат, «Галактика», перламутр, транслюцент), улучшенные показатели матовости и зеркальности.", color: "#0EA5A4" },
+  { name: "Evolution", desc: "Флагманская линейка. Вобрала лучшие качества Premium с улучшенными характеристиками. Часто выпускается в белом цвете (303). Матовость и зеркальность выше, чем у Classic.", color: "#0EA5A4" },
+  { name: "Standard", desc: "Относительно новая линейка под конкретные требования поставщиков. Фишка — супербелый оттенок, особенно заметный в сравнении с другими линейками MSD.", color: "#0EA5A4" },
+];
+
 const types = [
   { name: "Глянцевая", desc: "Отражает свет как зеркало — визуально удваивает пространство. Популярна в гостиных и ванных комнатах.", color: "#7C3AED" },
   { name: "Матовая", desc: "Бархатистая поверхность без бликов. Универсальный выбор для любого помещения — спальни, кухни, офиса.", color: "#06B6D4" },
@@ -159,6 +181,53 @@ export default function FilmTypes() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="max-w-5xl mx-auto px-4 pb-16">
+        <div className="p-8 rounded-3xl mb-6" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(14,165,164,0.25)" }}>
+          <div className="rounded-2xl overflow-hidden mb-6 flex justify-center p-6" style={{ background: "#fff" }}>
+            <img src="https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/b7a87953-7706-444e-a624-369c99103dae.jpeg"
+              alt="Плёнка MSD для натяжных потолков" className="h-20 sm:h-24 w-auto object-contain" />
+          </div>
+
+          <h2 className="text-2xl font-black text-white mb-4" style={{ fontFamily: "Oswald, sans-serif" }}>Плёнка MSD</h2>
+          <p className="text-base leading-relaxed mb-6" style={{ color: "rgba(255,255,255,0.8)" }}>
+            Плёнка MSD для натяжных потолков — это ПВХ-полотно от китайского производителя (завод Zhejiang MSD Group Share Co., Ltd., основан в 2002 году).
+          </p>
+
+          <div className="font-bold text-white mb-3">Что в ней хорошего</div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+            {msdPros.map(f => (
+              <div key={f.title} className="flex gap-3 p-4 rounded-2xl" style={{ background: "rgba(255,255,255,0.04)" }}>
+                <Icon name={f.icon as any} size={20} style={{ color: "#2DD4BF" }} className="shrink-0 mt-0.5" />
+                <div>
+                  <div className="font-bold text-white text-sm mb-1">{f.title}</div>
+                  <div className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.7)" }}>{f.desc}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="font-bold text-white mb-2 flex items-center gap-2"><Icon name="CircleAlert" size={16} style={{ color: "#EC4899" }} /> А есть нюансы?</div>
+          <ul className="space-y-2 text-sm leading-relaxed mb-6" style={{ color: "rgba(255,255,255,0.75)" }}>
+            {msdCons.map((t, i) => <li key={i} className="flex gap-2"><span style={{ color: "#EC4899" }}>•</span>{t}</li>)}
+          </ul>
+
+          <div className="font-bold text-white mb-3">Какие линейки бывают</div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+            {msdLines.map(l => (
+              <div key={l.name} className="p-4 rounded-2xl" style={{ background: "rgba(14,165,164,0.1)", border: "1px solid rgba(14,165,164,0.3)" }}>
+                <div className="font-bold text-white mb-2" style={{ fontFamily: "Oswald, sans-serif" }}>{l.name}</div>
+                <div className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.75)" }}>{l.desc}</div>
+              </div>
+            ))}
+          </div>
+
+          <div className="font-bold text-white mb-2">Как выбрать?</div>
+          <div className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.75)" }}>
+            Бюджетный, но надёжный вариант для обычного помещения — <b>Classic</b>. Уникальный дизайн и сложные фактуры — <b>Premium</b>. Максимальная безопасность, долговечность и улучшенные свойства — <b>Evolution</b>.
           </div>
         </div>
       </div>
