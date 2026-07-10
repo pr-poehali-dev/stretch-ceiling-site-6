@@ -78,42 +78,6 @@ export default function FilmTypes() {
         </p>
       </div>
 
-      <div className="max-w-5xl mx-auto px-4 pb-16">
-        <div className="rounded-3xl overflow-hidden mb-8" style={{ border: "1px solid rgba(255,255,255,0.1)" }}>
-          <img src="https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/eac5f978-9986-4c29-8c9a-fbb82e55bb2a.jpg"
-            alt="Плёнка BAUF для натяжных потолков" className="w-full h-auto object-cover" />
-        </div>
-
-        <div className="p-8 rounded-3xl mb-6" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(245,158,11,0.25)" }}>
-          <h2 className="text-2xl font-black text-white mb-4" style={{ fontFamily: "Oswald, sans-serif" }}>Плёнка BAUF</h2>
-          <p className="text-base leading-relaxed mb-6" style={{ color: "rgba(255,255,255,0.8)" }}>
-            Плёнка Bauf для натяжных потолков — это ПВХ-полотно немецкого бренда, которое отличается повышенной прочностью, эластичностью и безопасностью. Выпускается в нескольких сериях с разными характеристиками.
-          </p>
-
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-            {baufSeries.map(s => (
-              <div key={s.name} className="p-4 rounded-2xl text-center" style={{ background: "rgba(245,158,11,0.1)", border: "1px solid rgba(245,158,11,0.3)" }}>
-                <div className="font-bold text-white mb-2" style={{ fontFamily: "Oswald, sans-serif" }}>{s.name}</div>
-                <div className="text-sm" style={{ color: "rgba(255,255,255,0.7)" }}>Плотность: {s.density}</div>
-                <div className="text-sm" style={{ color: "rgba(255,255,255,0.7)" }}>Толщина: {s.thickness}</div>
-              </div>
-            ))}
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {baufFeatures.map(f => (
-              <div key={f.title} className="flex gap-3 p-4 rounded-2xl" style={{ background: "rgba(255,255,255,0.04)" }}>
-                <Icon name={f.icon as any} size={20} style={{ color: "#F59E0B" }} className="shrink-0 mt-0.5" />
-                <div>
-                  <div className="font-bold text-white text-sm mb-1">{f.title}</div>
-                  <div className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.7)" }}>{f.desc}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
       <div className="max-w-4xl mx-auto px-4 pb-16 grid grid-cols-1 sm:grid-cols-2 gap-4">
         {types.map(item => (
           <div key={item.name} className="p-6 rounded-2xl" style={{ background: "rgba(255,255,255,0.06)", border: `1px solid ${item.color}30` }}>
@@ -159,6 +123,42 @@ export default function FilmTypes() {
             <ul className="space-y-2 text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.75)" }}>
               {fabricPlus.map((t, i) => <li key={i} className="flex gap-2"><span style={{ color: "#10B981" }}>•</span>{t}</li>)}
             </ul>
+          </div>
+        </div>
+      </div>
+
+      <div className="max-w-5xl mx-auto px-4 pb-16">
+        <div className="rounded-3xl overflow-hidden mb-8" style={{ border: "1px solid rgba(255,255,255,0.1)" }}>
+          <img src="https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/eac5f978-9986-4c29-8c9a-fbb82e55bb2a.jpg"
+            alt="Плёнка BAUF для натяжных потолков" className="w-full h-auto object-cover" />
+        </div>
+
+        <div className="p-8 rounded-3xl mb-6" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(245,158,11,0.25)" }}>
+          <h2 className="text-2xl font-black text-white mb-4" style={{ fontFamily: "Oswald, sans-serif" }}>Плёнка BAUF</h2>
+          <p className="text-base leading-relaxed mb-6" style={{ color: "rgba(255,255,255,0.8)" }}>
+            Плёнка Bauf для натяжных потолков — это ПВХ-полотно немецкого бренда, которое отличается повышенной прочностью, эластичностью и безопасностью. Выпускается в нескольких сериях с разными характеристиками.
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+            {baufSeries.map(s => (
+              <div key={s.name} className="p-4 rounded-2xl text-center" style={{ background: "rgba(245,158,11,0.1)", border: "1px solid rgba(245,158,11,0.3)" }}>
+                <div className="font-bold text-white mb-2" style={{ fontFamily: "Oswald, sans-serif" }}>{s.name}</div>
+                <div className="text-sm" style={{ color: "rgba(255,255,255,0.7)" }}>Плотность: {s.density}</div>
+                <div className="text-sm" style={{ color: "rgba(255,255,255,0.7)" }}>Толщина: {s.thickness}</div>
+              </div>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {baufFeatures.map(f => (
+              <div key={f.title} className="flex gap-3 p-4 rounded-2xl" style={{ background: "rgba(255,255,255,0.04)" }}>
+                <Icon name={f.icon as any} size={20} style={{ color: "#F59E0B" }} className="shrink-0 mt-0.5" />
+                <div>
+                  <div className="font-bold text-white text-sm mb-1">{f.title}</div>
+                  <div className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.7)" }}>{f.desc}</div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
