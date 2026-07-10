@@ -12,6 +12,27 @@ const types = [
   { name: "Тканевая (ПВХ-free)", desc: "Экологичная альтернатива ПВХ. Пропускает воздух, не выделяет запаха, подходит для детских комнат.", color: "#F97316" },
 ];
 
+const pvcPlus = [
+  "Полная водонепроницаемость и простой уход — подходит для ванных комнат. Если соседи сверху зальют квартиру, потолок просто провиснет и сохранит полы сухими",
+  "Легко чистить пылесосом или влажной губкой с мыльной водой",
+];
+
+const pvcMinus = [
+  "Хрупкое полотно — легко повредить острым предметом, поэтому важно убрать всё острое перед монтажом",
+  "Почти не пропускает воздух, из-за чего в комнате может становиться душно",
+  "При высокой влажности возможен парниковый эффект — на потолке появляется конденсат",
+  "Максимальная ширина полотна 3 м — в больших комнатах не избежать шва",
+  "Не подходит для неотапливаемых помещений: на морозе ниже −5°C пластик крошится, а от близких ламп может пожелтеть",
+];
+
+const fabricPlus = [
+  "Ткань «дышит» и выдерживает перепады температур от −40°C до +80°C — подходит для лоджий и неотапливаемых помещений",
+  "Не горит и не дымит благодаря специальной пропитке",
+  "Не боится бактерий и плесени",
+  "Ширина рулона 510 см — подходит для больших помещений без швов",
+  "Монтируется проще, чем ПВХ: без тепловой пушки и без нагрева помещения",
+];
+
 export default function FilmTypes() {
   const navigate = useNavigate();
   return (
@@ -38,7 +59,7 @@ export default function FilmTypes() {
           <span style={{ background: "linear-gradient(135deg, #10B981, #7C3AED)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>ВИДЫ</span>{" "}ПЛЁНОК
         </h1>
         <p className="text-lg max-w-2xl mx-auto leading-relaxed" style={{ color: "rgba(255,255,255,0.8)" }}>
-          Натяжные потолки бывают разных фактур и составов. Правильный выбор плёнки влияет на внешний вид, освещение и атмосферу всего помещения.
+          Натяжные потолки — самая популярная альтернатива классической отделке: красивые, идеально ровные и безопасные для здоровья. Правильный выбор полотна влияет на внешний вид, освещение и атмосферу всего помещения.
         </p>
       </div>
 
@@ -52,6 +73,43 @@ export default function FilmTypes() {
             <div className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.75)" }}>{item.desc}</div>
           </div>
         ))}
+      </div>
+
+      <div className="max-w-4xl mx-auto px-4 pb-12 space-y-6">
+        <div className="p-8 rounded-3xl" style={{ background: "rgba(124,58,237,0.08)", border: "1px solid rgba(124,58,237,0.2)" }}>
+          <h2 className="text-2xl font-black text-white mb-4" style={{ fontFamily: "Oswald, sans-serif" }}>Натяжные потолки из ПВХ</h2>
+          <div className="space-y-3 text-base leading-relaxed mb-5" style={{ color: "rgba(255,255,255,0.8)" }}>
+            <p>Такие потолки чаще дешевле тканевых и шире представлены в продаже. Главное, на что нужно обратить внимание, — качество сырья: проверяйте сертификаты качества и безопасности. Если сырьё качественное и полотна изготовлены известными производителями, ПВХ-потолки абсолютно безопасны.</p>
+            <p>Можно выбрать полотно любого цвета: матовое, глянцевое, сатинированное или зеркальное, а также с фотопечатью.</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div>
+              <div className="font-bold text-white mb-2 flex items-center gap-2"><Icon name="CircleCheck" size={16} style={{ color: "#10B981" }} /> Плюсы</div>
+              <ul className="space-y-2 text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.75)" }}>
+                {pvcPlus.map((t, i) => <li key={i} className="flex gap-2"><span style={{ color: "#10B981" }}>•</span>{t}</li>)}
+              </ul>
+            </div>
+            <div>
+              <div className="font-bold text-white mb-2 flex items-center gap-2"><Icon name="CircleX" size={16} style={{ color: "#EC4899" }} /> Минусы</div>
+              <ul className="space-y-2 text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.75)" }}>
+                {pvcMinus.map((t, i) => <li key={i} className="flex gap-2"><span style={{ color: "#EC4899" }}>•</span>{t}</li>)}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div className="p-8 rounded-3xl" style={{ background: "rgba(16,185,129,0.08)", border: "1px solid rgba(16,185,129,0.2)" }}>
+          <h2 className="text-2xl font-black text-white mb-4" style={{ fontFamily: "Oswald, sans-serif" }}>Натяжные потолки из синтетической ткани</h2>
+          <div className="space-y-3 text-base leading-relaxed mb-5" style={{ color: "rgba(255,255,255,0.8)" }}>
+            <p>Для такого полотна используют ткань из полиэфира, пропитанную полиуретаном, — можно подобрать имитацию различных текстур: ситца, замши и других. Поверхность бывает только матовая, доступно более 20 оттенков, есть варианты с блёстками и светопроницаемые полотна для затемнения. Тканевые потолки также можно покрасить, расписать или украсить виниловыми наклейками.</p>
+          </div>
+          <div>
+            <div className="font-bold text-white mb-2 flex items-center gap-2"><Icon name="CircleCheck" size={16} style={{ color: "#10B981" }} /> Плюсы</div>
+            <ul className="space-y-2 text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.75)" }}>
+              {fabricPlus.map((t, i) => <li key={i} className="flex gap-2"><span style={{ color: "#10B981" }}>•</span>{t}</li>)}
+            </ul>
+          </div>
+        </div>
       </div>
 
       {images.length > 0 ? (
