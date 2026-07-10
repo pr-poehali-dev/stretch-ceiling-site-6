@@ -3,6 +3,21 @@ import Icon from "@/components/ui/icon";
 
 const images: string[] = [];
 
+const baufSeries = [
+  { name: "BAUF 205", density: "225 г/м²", thickness: "205 мкм" },
+  { name: "BAUF 230", density: "250 г/м²", thickness: "230 мкм" },
+  { name: "BAUF 270", density: "300 г/м²", thickness: "270 мкм" },
+];
+
+const baufFeatures = [
+  { icon: "ShieldCheck", title: "Прочность и устойчивость к деформациям", desc: "Повышенная плотность и толщина позволяют создавать сложные формы, снижают риск провисания на больших площадях и повышают устойчивость к нагрузкам, например при затоплении." },
+  { icon: "Waves", title: "Эластичность", desc: "В составе плёнки нет мела (известняка), что предотвращает заломы и помогает материалу крепко держаться в крепёжных профилях." },
+  { icon: "Flame", title: "Термостойкость", desc: "Плёнка сохраняет характеристики при сильном нагреве и не оплавляется." },
+  { icon: "EyeOff", title: "Непрозрачность", desc: "При любом натяжении и освещении полотно остаётся непрозрачным и сохраняет безупречную белизну." },
+  { icon: "BadgeCheck", title: "Безопасность", desc: "Сертифицировано по европейским стандартам REACH, RoHS, EN 71-3, имеет высший класс А+ по выбросу летучих соединений и разрешено для детских игрушек." },
+  { icon: "Fingerprint", title: "Защита от подделок", desc: "На каждом метре полотна — фирменная маркировка с логотипом Bauf, серией и данными о сертификатах." },
+];
+
 const types = [
   { name: "Глянцевая", desc: "Отражает свет как зеркало — визуально удваивает пространство. Популярна в гостиных и ванных комнатах.", color: "#7C3AED" },
   { name: "Матовая", desc: "Бархатистая поверхность без бликов. Универсальный выбор для любого помещения — спальни, кухни, офиса.", color: "#06B6D4" },
@@ -61,6 +76,42 @@ export default function FilmTypes() {
         <p className="text-lg max-w-2xl mx-auto leading-relaxed" style={{ color: "rgba(255,255,255,0.8)" }}>
           Натяжные потолки — самая популярная альтернатива классической отделке: красивые, идеально ровные и безопасные для здоровья. Правильный выбор полотна влияет на внешний вид, освещение и атмосферу всего помещения.
         </p>
+      </div>
+
+      <div className="max-w-5xl mx-auto px-4 pb-16">
+        <div className="rounded-3xl overflow-hidden mb-8" style={{ border: "1px solid rgba(255,255,255,0.1)" }}>
+          <img src="https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/eac5f978-9986-4c29-8c9a-fbb82e55bb2a.jpg"
+            alt="Плёнка BAUF для натяжных потолков" className="w-full h-auto object-cover" />
+        </div>
+
+        <div className="p-8 rounded-3xl mb-6" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(245,158,11,0.25)" }}>
+          <h2 className="text-2xl font-black text-white mb-4" style={{ fontFamily: "Oswald, sans-serif" }}>Плёнка BAUF</h2>
+          <p className="text-base leading-relaxed mb-6" style={{ color: "rgba(255,255,255,0.8)" }}>
+            Плёнка Bauf для натяжных потолков — это ПВХ-полотно немецкого бренда, которое отличается повышенной прочностью, эластичностью и безопасностью. Выпускается в нескольких сериях с разными характеристиками.
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+            {baufSeries.map(s => (
+              <div key={s.name} className="p-4 rounded-2xl text-center" style={{ background: "rgba(245,158,11,0.1)", border: "1px solid rgba(245,158,11,0.3)" }}>
+                <div className="font-bold text-white mb-2" style={{ fontFamily: "Oswald, sans-serif" }}>{s.name}</div>
+                <div className="text-sm" style={{ color: "rgba(255,255,255,0.7)" }}>Плотность: {s.density}</div>
+                <div className="text-sm" style={{ color: "rgba(255,255,255,0.7)" }}>Толщина: {s.thickness}</div>
+              </div>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {baufFeatures.map(f => (
+              <div key={f.title} className="flex gap-3 p-4 rounded-2xl" style={{ background: "rgba(255,255,255,0.04)" }}>
+                <Icon name={f.icon as any} size={20} style={{ color: "#F59E0B" }} className="shrink-0 mt-0.5" />
+                <div>
+                  <div className="font-bold text-white text-sm mb-1">{f.title}</div>
+                  <div className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.7)" }}>{f.desc}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
 
       <div className="max-w-4xl mx-auto px-4 pb-16 grid grid-cols-1 sm:grid-cols-2 gap-4">
