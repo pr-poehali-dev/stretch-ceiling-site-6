@@ -11,6 +11,12 @@ import FloatingCeilings from "./pages/categories/FloatingCeilings";
 import HiddenCornices from "./pages/categories/HiddenCornices";
 import FilmTypes from "./pages/categories/FilmTypes";
 import Spotlights from "./pages/categories/Spotlights";
+import LightLines from "./pages/categories/LightLines";
+import TrackLighting from "./pages/categories/TrackLighting";
+import LightCeilings from "./pages/categories/LightCeilings";
+import ShadowVents from "./pages/categories/ShadowVents";
+import CurtainNiches from "./pages/categories/CurtainNiches";
+import BuiltinCornices from "./pages/categories/BuiltinCornices";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,6 +35,12 @@ const App = () => (
           <Route path="/portfolio/cornices" element={<HiddenCornices />} />
           <Route path="/portfolio/films" element={<FilmTypes />} />
           <Route path="/portfolio/spotlights" element={<Spotlights />} />
+          <Route path="/portfolio/light-lines" element={<LightLines />} />
+          <Route path="/portfolio/track-lighting" element={<TrackLighting />} />
+          <Route path="/portfolio/light-ceilings" element={<LightCeilings />} />
+          <Route path="/portfolio/shadow-vents" element={<ShadowVents />} />
+          <Route path="/portfolio/curtain-niches" element={<CurtainNiches />} />
+          <Route path="/portfolio/builtin-cornices" element={<BuiltinCornices />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
