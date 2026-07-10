@@ -1,7 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 
-const images: string[] = [];
+const images: string[] = [
+  "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/4d011137-1898-4999-96a4-3609827a4e41.jpeg",
+  "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/8890047f-6b01-430a-bffc-5780dc9fe61f.jpeg",
+  "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/289e3307-d439-43a4-94df-42642d0dba67.jpeg",
+  "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/72ed29c8-2711-4124-b69a-ec0ce99c1d51.jpeg",
+];
 
 const types = [
   { name: "Точечные LED", desc: "Самый популярный вариант. Небольшие светильники врезаются в полотно, создают равномерное освещение.", color: "#F59E0B" },
