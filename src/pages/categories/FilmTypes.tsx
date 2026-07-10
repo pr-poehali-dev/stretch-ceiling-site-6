@@ -40,6 +40,44 @@ const msdLines = [
   { name: "Standard", desc: "Относительно новая линейка под конкретные требования поставщиков. Фишка — супербелый оттенок, особенно заметный в сравнении с другими линейками MSD.", color: "#0EA5A4" },
 ];
 
+const haleadCommon = [
+  { icon: "Flame", title: "Огнестойкость", desc: "Класс пожароопасности B1 (китайский стандарт), а также европейские нормы NFP92-503M1, CE-BS2D2. При тлении не выделяет токсичных газов." },
+  { icon: "Leaf", title: "Экологичность", desc: "В составе нет свинца, кадмия, этанола и формальдегида. Плёнка подлежит вторичной переработке." },
+  { icon: "Thermometer", title: "Температурный режим", desc: "Рабочий диапазон от -25 °C до +45 °C." },
+  { icon: "BadgeCheck", title: "Сертификаты", desc: "Документы, подтверждающие соответствие европейским стандартам Reach и RoHS." },
+  { icon: "ShieldCheck", title: "Бактериостатичность", desc: "Биодобавки в производстве замедляют появление бактерий и плесени." },
+];
+
+const haleadLines = [
+  { name: "Standard", color: "#2563EB", rows: [
+    ["Толщина", "180 мкм"],
+    ["Ширина рулона", "До 5 метров"],
+    ["Фактуры", "Матовая, сатиновая, глянцевая (лак)"],
+    ["Цвет", "Белый и более 100 цветных оттенков"],
+    ["Применение", "Базовые задачи в жилых помещениях: коридоры, спальни, детские, санузлы"],
+  ]},
+  { name: "Premium", color: "#F97316", rows: [
+    ["Толщина", "200 мкм"],
+    ["Ширина рулона", "До 5,7 метров, в растяжке — более 6 метров"],
+    ["Фактуры", "Матовая, сатиновая, глянцевая"],
+    ["Цвет", "Белый"],
+    ["Применение", "Большие помещения и сложный монтаж, в том числе демпферные системы"],
+  ]},
+];
+
+const haleadPros = [
+  "Удобство монтажа — плёнка эластична, легко тянется и разглаживается",
+  "Матовая версия даёт эффект покрашенного потолка, сатин — деликатное перламутровое свечение, глянец — зеркальный эффект",
+  "Совместима с большинством гарпунных профилей и дизайнерскими решениями: парящими периметрами, контурными световыми линиями, встроенными карнизами",
+  "Не желтеет со временем, устойчива к перепадам температур",
+];
+
+const haleadCons = [
+  "До 2023 года плёнка не маркировалась, что создавало рынок контрафакта — у непроверенных продавцов всё ещё есть риск столкнуться с подделкой",
+  "После монтажа может присутствовать технический запах, который выветривается за 1–3 дня",
+  "В эконом-линейке (не Premium) иногда встречаются полосы, заломы или разнотон, заметные при боковом свете",
+];
+
 const types = [
   { name: "Глянцевая", desc: "Отражает свет как зеркало — визуально удваивает пространство. Популярна в гостиных и ванных комнатах.", color: "#7C3AED" },
   { name: "Матовая", desc: "Бархатистая поверхность без бликов. Универсальный выбор для любого помещения — спальни, кухни, офиса.", color: "#06B6D4" },
@@ -228,6 +266,69 @@ export default function FilmTypes() {
           <div className="font-bold text-white mb-2">Как выбрать?</div>
           <div className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.75)" }}>
             Бюджетный, но надёжный вариант для обычного помещения — <b>Classic</b>. Уникальный дизайн и сложные фактуры — <b>Premium</b>. Максимальная безопасность, долговечность и улучшенные свойства — <b>Evolution</b>.
+          </div>
+        </div>
+      </div>
+
+      <div className="max-w-5xl mx-auto px-4 pb-16">
+        <div className="p-8 rounded-3xl mb-6" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(37,99,235,0.25)" }}>
+          <div className="rounded-2xl overflow-hidden mb-6 flex justify-center p-6" style={{ background: "#fff" }}>
+            <img src="https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/fa747675-73bf-470b-8d37-5fec954a7a0c.png"
+              alt="Плёнка Halead для натяжных потолков" className="h-16 sm:h-20 w-auto object-contain" />
+          </div>
+
+          <h2 className="text-2xl font-black text-white mb-4" style={{ fontFamily: "Oswald, sans-serif" }}>Плёнка Halead</h2>
+          <p className="text-base leading-relaxed mb-6" style={{ color: "rgba(255,255,255,0.8)" }}>
+            Плёнка Halead (Хайлид) для натяжных потолков — это ПВХ-полотно китайского производства. Бренд предлагает две основные линейки: Standard и Premium, которые различаются по характеристикам и сфере применения.
+          </p>
+
+          <div className="font-bold text-white mb-3">Общие свойства для всей линейки</div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+            {haleadCommon.map(f => (
+              <div key={f.title} className="flex gap-3 p-4 rounded-2xl" style={{ background: "rgba(255,255,255,0.04)" }}>
+                <Icon name={f.icon as any} size={20} style={{ color: "#60A5FA" }} className="shrink-0 mt-0.5" />
+                <div>
+                  <div className="font-bold text-white text-sm mb-1">{f.title}</div>
+                  <div className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.7)" }}>{f.desc}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="font-bold text-white mb-3">Линейки</div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+            {haleadLines.map(l => (
+              <div key={l.name} className="p-4 rounded-2xl" style={{ background: `${l.color}15`, border: `1px solid ${l.color}40` }}>
+                <div className="font-bold text-white mb-3" style={{ fontFamily: "Oswald, sans-serif" }}>{l.name}</div>
+                <div className="space-y-1.5">
+                  {l.rows.map(([label, val]) => (
+                    <div key={label} className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.75)" }}>
+                      <span className="font-semibold text-white">{label}: </span>{val}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-2">
+            <div>
+              <div className="font-bold text-white mb-2 flex items-center gap-2"><Icon name="CircleCheck" size={16} style={{ color: "#10B981" }} /> Преимущества и особенности</div>
+              <ul className="space-y-2 text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.75)" }}>
+                {haleadPros.map((t, i) => <li key={i} className="flex gap-2"><span style={{ color: "#10B981" }}>•</span>{t}</li>)}
+              </ul>
+            </div>
+            <div>
+              <div className="font-bold text-white mb-2 flex items-center gap-2"><Icon name="CircleAlert" size={16} style={{ color: "#EC4899" }} /> Важные нюансы</div>
+              <ul className="space-y-2 text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.75)" }}>
+                {haleadCons.map((t, i) => <li key={i} className="flex gap-2"><span style={{ color: "#EC4899" }}>•</span>{t}</li>)}
+              </ul>
+            </div>
+          </div>
+
+          <div className="font-bold text-white mb-2 mt-4">Рекомендации</div>
+          <div className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.75)" }}>
+            <b>Standard</b> — для типовых помещений с ограниченным бюджетом. <b>Premium</b> — для просторных комнат, сложных проектов и когда важна максимальная ширина полотна без шва.
           </div>
         </div>
       </div>
