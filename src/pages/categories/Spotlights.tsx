@@ -16,6 +16,13 @@ const features = [
   { icon: "Settings", title: "Диммирование", text: "Яркость регулируется выключателем — от приглушённого до полного освещения" },
 ];
 
+const howSteps = [
+  { icon: "Box", title: "Монтаж корпуса", desc: "Корпус светильника монтируется под полотно." },
+  { icon: "ShieldCheck", title: "Термокольцо", desc: "Для защиты натяжного полотна (особенно ПВХ-плёнки) от перегрева и разрыва по краю отверстия используют термокольцо — его приклеивают снаружи, перед тем как сделать отверстие." },
+  { icon: "Lightbulb", title: "Лампа GX53", desc: "В цоколь вставляется лампа. Чаще всего используют светодиодные лампы с цоколем GX53 — они почти не нагреваются, что критически важно для безопасности натяжного потолка." },
+  { icon: "Home", title: "Применение", desc: "Такие светильники отлично подходят для создания равномерного освещения в разных помещениях — в гостиной, спальне, прихожей." },
+];
+
 export default function Spotlights() {
   const navigate = useNavigate();
   return (
@@ -68,6 +75,23 @@ export default function Spotlights() {
                 <div className="font-bold text-white" style={{ fontFamily: "Oswald, sans-serif" }}>{item.name}</div>
               </div>
               <div className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.75)" }}>{item.desc}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="max-w-4xl mx-auto px-4 pb-12">
+        <h2 className="text-2xl font-black text-white mb-5" style={{ fontFamily: "Oswald, sans-serif" }}>Как это устроено</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {howSteps.map((item, i) => (
+            <div key={item.title} className="p-6 rounded-2xl flex gap-4" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)" }}>
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ background: "linear-gradient(135deg, #F59E0B, #EC4899)" }}>
+                <Icon name={item.icon} size={18} className="text-white" />
+              </div>
+              <div>
+                <div className="font-bold text-white mb-1" style={{ fontFamily: "Oswald, sans-serif" }}>{i + 1}. {item.title}</div>
+                <div className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.75)" }}>{item.desc}</div>
+              </div>
             </div>
           ))}
         </div>
