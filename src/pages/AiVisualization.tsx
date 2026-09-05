@@ -1,6 +1,9 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+
+const PHONES = ["+79290326345", "+79950573757"];
 
 const AI_VIS_URL = "https://functions.poehali.dev/992cc656-f16a-4292-bdb2-fd468f7969a0";
 const MAX_GENERATIONS = 5;
@@ -37,6 +40,7 @@ export default function AiVisualization() {
   const [result, setResult] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [remaining, setRemaining] = useState<number | null>(null);
+  const [phoneDialogOpen, setPhoneDialogOpen] = useState(false);
 
   useEffect(() => {
     const clientId = getClientId();
@@ -258,12 +262,38 @@ export default function AiVisualization() {
         <p className="text-sm mb-4" style={{ color: "rgba(255,255,255,0.6)" }}>
           Понравился результат? Закажите бесплатный замер — и мы воплотим его в реальности.
         </p>
-        <button onClick={() => navigate("/#contacts")}
+        <button onClick={() => setPhoneDialogOpen(true)}
           className="w-full py-4 rounded-2xl font-bold text-lg text-white transition-all hover-lift"
           style={{ background: "linear-gradient(135deg, #7C3AED, #06B6D4)" }}>
           Заказать бесплатный замер
         </button>
       </div>
+
+      <Dialog open={phoneDialogOpen} onOpenChange={setPhoneDialogOpen}>
+        <DialogContent style={{ background: "#2e2260", border: "1px solid rgba(124,58,237,0.3)", color: "#fff" }}>
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-black text-white" style={{ fontFamily: "Oswald, sans-serif" }}>
+              Позвоните нам
+            </DialogTitle>
+            <DialogDescription style={{ color: "rgba(255,255,255,0.65)" }}>
+              Свяжитесь с нами по любому из номеров — договоримся о бесплатном замере
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex flex-col gap-3 mt-2">
+            {PHONES.map((phone) => (
+              <a
+                key={phone}
+                href={`tel:${phone}`}
+                className="flex items-center gap-3 px-5 py-4 rounded-2xl font-bold text-lg transition-all hover-lift"
+                style={{ background: "rgba(124,58,237,0.15)", border: "1px solid rgba(124,58,237,0.35)", color: "#fff", textDecoration: "none" }}
+              >
+                <Icon name="Phone" size={20} style={{ color: "#a78bfa" }} />
+                {phone}
+              </a>
+            ))}
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
