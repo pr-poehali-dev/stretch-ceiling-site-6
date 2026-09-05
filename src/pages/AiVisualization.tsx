@@ -7,6 +7,7 @@ const PHONES = ["+79290326345", "+79950573757"];
 
 const AI_VIS_URL = "https://functions.poehali.dev/992cc656-f16a-4292-bdb2-fd468f7969a0";
 const MAX_GENERATIONS = 5;
+const MAX_SELECTED_STYLES = 3;
 
 function getClientId(): string {
   const key = "ai_vis_client_id";
@@ -44,12 +45,21 @@ export default function AiVisualization() {
   const navigate = useNavigate();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [photo, setPhoto] = useState<string | null>(null);
-  const [selectedStyle, setSelectedStyle] = useState<string | null>(null);
+  const [selectedStyles, setSelectedStyles] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<string | null>(null);
+  const [progress, setProgress] = useState<{ done: number; total: number } | null>(null);
+  const [results, setResults] = useState<{ styleId: string; url: string }[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [remaining, setRemaining] = useState<number | null>(null);
   const [phoneDialogOpen, setPhoneDialogOpen] = useState(false);
+
+  const toggleStyle = (id: string) => {
+    setSelectedStyles((prev) => {
+      if (prev.includes(id)) return prev.filter((s) => s !== id);
+      if (prev.length >= MAX_SELECTED_STYLES) return prev;
+      return [...prev, id];
+    });
+  };
 
   useEffect(() => {
     const clientId = getClientId();
@@ -66,42 +76,55 @@ export default function AiVisualization() {
     const reader = new FileReader();
     reader.onload = () => {
       setPhoto(reader.result as string);
-      setResult(null);
+      setResults([]);
       setError(null);
     };
     reader.readAsDataURL(file);
   };
 
   const handleGenerate = async () => {
-    if (!photo || !selectedStyle) return;
-    if (remaining !== null && remaining <= 0) {
-      setError("Лимит бесплатных генераций исчерпан. Закажите бесплатный замер — дизайнер подберёт потолок лично.");
+    if (!photo || selectedStyles.length === 0) return;
+    if (remaining !== null && remaining < selectedStyles.length) {
+      setError(`Недостаточно генераций: выбрано ${selectedStyles.length}, а осталось ${remaining}. Уберите один из стилей.`);
       return;
     }
     setLoading(true);
     setError(null);
-    setResult(null);
-    try {
-      const res = await fetch(AI_VIS_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ image: photo, style: selectedStyle, client_id: getClientId() }),
-      });
-      const data = await res.json();
-      if (res.ok && data.url) {
-        setResult(data.url);
-        if (typeof data.remaining === "number") setRemaining(data.remaining);
-      } else if (res.status === 403) {
-        setRemaining(0);
-        setError("Лимит бесплатных генераций исчерпан. Закажите бесплатный замер — дизайнер подберёт потолок лично.");
-      } else {
-        setError("Не получилось сгенерировать визуализацию. Попробуйте другое фото или стиль.");
+    setResults([]);
+    setProgress({ done: 0, total: selectedStyles.length });
+
+    const clientId = getClientId();
+    const newResults: { styleId: string; url: string }[] = [];
+
+    for (let i = 0; i < selectedStyles.length; i++) {
+      const styleId = selectedStyles[i];
+      try {
+        const res = await fetch(AI_VIS_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ image: photo, style: styleId, client_id: clientId }),
+        });
+        const data = await res.json();
+        if (res.ok && data.url) {
+          newResults.push({ styleId, url: data.url });
+          setResults([...newResults]);
+          if (typeof data.remaining === "number") setRemaining(data.remaining);
+        } else if (res.status === 403) {
+          setRemaining(0);
+          setError("Лимит бесплатных генераций исчерпан. Закажите бесплатный замер — дизайнер подберёт потолок лично.");
+          break;
+        } else {
+          setError("Не получилось сгенерировать один из вариантов. Остальные показаны ниже.");
+        }
+      } catch {
+        setError("Ошибка соединения. Попробуйте ещё раз.");
+        break;
       }
-    } catch {
-      setError("Ошибка соединения. Попробуйте ещё раз.");
-    } finally {
-      setLoading(false);
+      setProgress({ done: i + 1, total: selectedStyles.length });
     }
+
+    setLoading(false);
+    setProgress(null);
   };
 
   return (
@@ -194,29 +217,45 @@ export default function AiVisualization() {
           </div>
 
           <div>
-            <div className="text-sm font-semibold uppercase tracking-wider mb-3" style={{ color: "rgba(255,255,255,0.5)" }}>
-              Шаг 2 · Выберите стиль потолка
+            <div className="flex items-center justify-between mb-3">
+              <div className="text-sm font-semibold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.5)" }}>
+                Шаг 2 · Выберите до {MAX_SELECTED_STYLES} стилей
+              </div>
+              <span className="text-xs font-semibold px-2.5 py-1 rounded-full"
+                style={{ background: "rgba(124,58,237,0.2)", color: "#c4b5fd" }}>
+                {selectedStyles.length}/{MAX_SELECTED_STYLES}
+              </span>
             </div>
             <div className="grid grid-cols-2 gap-3 max-h-[380px] overflow-y-auto pr-1">
-              {styles.map((s) => (
-                <button
-                  key={s.id}
-                  onClick={() => setSelectedStyle(s.id)}
-                  className="text-left p-3 rounded-2xl transition-all"
-                  style={{
-                    background: selectedStyle === s.id ? `${s.color}25` : "rgba(255,255,255,0.05)",
-                    backdropFilter: "blur(12px) saturate(150%)",
-                    WebkitBackdropFilter: "blur(12px) saturate(150%)",
-                    border: `1px solid ${selectedStyle === s.id ? s.color : "rgba(255,255,255,0.12)"}`,
-                  }}
-                >
-                  <div className="w-8 h-8 rounded-lg flex items-center justify-center mb-2" style={{ background: s.color }}>
-                    <Icon name={s.icon} size={15} className="text-white" />
-                  </div>
-                  <div className="font-bold text-white text-sm mb-0.5">{s.name}</div>
-                  <div className="text-xs leading-snug" style={{ color: "rgba(255,255,255,0.6)" }}>{s.desc}</div>
-                </button>
-              ))}
+              {styles.map((s) => {
+                const isSelected = selectedStyles.includes(s.id);
+                const isDisabled = !isSelected && selectedStyles.length >= MAX_SELECTED_STYLES;
+                return (
+                  <button
+                    key={s.id}
+                    onClick={() => toggleStyle(s.id)}
+                    disabled={isDisabled}
+                    className="text-left p-3 rounded-2xl transition-all relative disabled:opacity-35 disabled:cursor-not-allowed"
+                    style={{
+                      background: isSelected ? `${s.color}25` : "rgba(255,255,255,0.05)",
+                      backdropFilter: "blur(12px) saturate(150%)",
+                      WebkitBackdropFilter: "blur(12px) saturate(150%)",
+                      border: `1px solid ${isSelected ? s.color : "rgba(255,255,255,0.12)"}`,
+                    }}
+                  >
+                    {isSelected && (
+                      <div className="absolute top-2 right-2 w-5 h-5 rounded-full flex items-center justify-center" style={{ background: s.color }}>
+                        <Icon name="Check" size={12} className="text-white" />
+                      </div>
+                    )}
+                    <div className="w-8 h-8 rounded-lg flex items-center justify-center mb-2" style={{ background: s.color }}>
+                      <Icon name={s.icon} size={15} className="text-white" />
+                    </div>
+                    <div className="font-bold text-white text-sm mb-0.5">{s.name}</div>
+                    <div className="text-xs leading-snug" style={{ color: "rgba(255,255,255,0.6)" }}>{s.desc}</div>
+                  </button>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -224,25 +263,25 @@ export default function AiVisualization() {
         <div className="mt-8 text-center">
           <button
             onClick={handleGenerate}
-            disabled={!photo || !selectedStyle || loading || remaining === 0}
+            disabled={!photo || selectedStyles.length === 0 || loading || remaining === 0}
             className="px-10 py-4 rounded-2xl font-bold text-lg text-white transition-all hover-lift disabled:opacity-40 disabled:cursor-not-allowed inline-flex items-center gap-3"
             style={{ background: "linear-gradient(135deg, #7C3AED, #06B6D4)" }}
           >
             {loading ? (
               <>
                 <Icon name="Loader2" size={20} className="animate-spin" />
-                Генерируем визуализацию...
+                Генерируем {progress ? `${progress.done}/${progress.total}` : "..."}
               </>
             ) : (
               <>
                 <Icon name="Wand2" size={20} />
-                Показать, как будет выглядеть
+                {selectedStyles.length > 1 ? `Сгенерировать ${selectedStyles.length} варианта` : "Показать, как будет выглядеть"}
               </>
             )}
           </button>
           {loading && (
             <p className="text-sm mt-3" style={{ color: "rgba(255,255,255,0.5)" }}>
-              Обычно это занимает 20–40 секунд
+              Каждый вариант занимает 20–40 секунд
             </p>
           )}
           {error && (
@@ -250,22 +289,32 @@ export default function AiVisualization() {
           )}
         </div>
 
-        {result && (
+        {results.length > 0 && (
           <div className="mt-12">
             <h2 className="text-2xl font-black text-white mb-5 text-center" style={{ fontFamily: "Oswald, sans-serif" }}>Результат</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
               <div>
                 <div className="text-xs font-semibold uppercase tracking-wider mb-2 text-center" style={{ color: "rgba(255,255,255,0.5)" }}>Было</div>
                 <div className="rounded-2xl overflow-hidden">
                   <img src={photo!} alt="До" className="w-full h-full object-cover" />
                 </div>
               </div>
-              <div>
-                <div className="text-xs font-semibold uppercase tracking-wider mb-2 text-center" style={{ color: "#a78bfa" }}>Стало</div>
-                <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(124,58,237,0.4)" }}>
-                  <img src={result} alt="После" className="w-full h-full object-cover" />
-                </div>
-              </div>
+              <div className="hidden sm:block" />
+            </div>
+            <div className={`grid grid-cols-1 ${results.length > 1 ? "sm:grid-cols-2 lg:grid-cols-3" : "sm:grid-cols-2"} gap-4`}>
+              {results.map((r) => {
+                const styleInfo = styles.find((s) => s.id === r.styleId);
+                return (
+                  <div key={r.styleId}>
+                    <div className="text-xs font-semibold uppercase tracking-wider mb-2 text-center" style={{ color: styleInfo?.color || "#a78bfa" }}>
+                      {styleInfo?.name || "Стало"}
+                    </div>
+                    <div className="rounded-2xl overflow-hidden" style={{ border: `1px solid ${styleInfo?.color || "#7C3AED"}66` }}>
+                      <img src={r.url} alt={styleInfo?.name || "После"} className="w-full h-full object-cover" />
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         )}
