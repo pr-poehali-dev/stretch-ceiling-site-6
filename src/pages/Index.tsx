@@ -1862,7 +1862,7 @@ export default function Index() {
                   {
                     icon: "Phone",
                     label: "Телефон",
-                    value: "+7 (903) 635-06-52",
+                    value: "+7 (995) 057-37-57",
                     sub: "Ежедневно с 8:00 до 21:00",
                     color: "#7C3AED",
                   },
