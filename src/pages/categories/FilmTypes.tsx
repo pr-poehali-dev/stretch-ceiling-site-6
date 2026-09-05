@@ -140,7 +140,7 @@ export default function FilmTypes() {
 
       <div className="max-w-4xl mx-auto px-4 pb-16 grid grid-cols-1 sm:grid-cols-2 gap-4">
         {types.map(item => (
-          <div key={item.name} className="p-6 rounded-2xl" style={{ background: "rgba(255,255,255,0.06)", border: `1px solid ${item.color}30` }}>
+          <div key={item.name} className="p-6 rounded-2xl" style={{ background: "rgba(255,255,255,0.05)", backdropFilter: "blur(16px) saturate(160%)", WebkitBackdropFilter: "blur(16px) saturate(160%)", border: `1px solid ${item.color}30` }}>
             <div className="flex items-center gap-3 mb-3">
               <div className="w-3 h-3 rounded-full" style={{ background: item.color }} />
               <div className="font-bold text-white text-lg" style={{ fontFamily: "Oswald, sans-serif" }}>{item.name}</div>
@@ -193,7 +193,7 @@ export default function FilmTypes() {
             alt="Плёнка BAUF для натяжных потолков" className="w-full h-auto object-cover" />
         </div>
 
-        <div className="p-8 rounded-3xl mb-6" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(245,158,11,0.25)" }}>
+        <div className="p-8 rounded-3xl mb-6" style={{ background: "rgba(255,255,255,0.05)", backdropFilter: "blur(16px) saturate(160%)", WebkitBackdropFilter: "blur(16px) saturate(160%)", border: "1px solid rgba(245,158,11,0.25)" }}>
           <h2 className="text-2xl font-black text-white mb-4" style={{ fontFamily: "Oswald, sans-serif" }}>Плёнка BAUF</h2>
           <p className="text-base leading-relaxed mb-6" style={{ color: "rgba(255,255,255,0.8)" }}>
             Плёнка Bauf для натяжных потолков — это ПВХ-полотно немецкого бренда, которое отличается повышенной прочностью, эластичностью и безопасностью. Выпускается в нескольких сериях с разными характеристиками.
@@ -224,7 +224,7 @@ export default function FilmTypes() {
       </div>
 
       <div className="max-w-5xl mx-auto px-4 pb-16">
-        <div className="p-8 rounded-3xl mb-6" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(14,165,164,0.25)" }}>
+        <div className="p-8 rounded-3xl mb-6" style={{ background: "rgba(255,255,255,0.05)", backdropFilter: "blur(16px) saturate(160%)", WebkitBackdropFilter: "blur(16px) saturate(160%)", border: "1px solid rgba(14,165,164,0.25)" }}>
           <div className="rounded-2xl overflow-hidden mb-6 flex justify-center p-6" style={{ background: "#fff" }}>
             <img src="https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/b7a87953-7706-444e-a624-369c99103dae.jpeg"
               alt="Плёнка MSD для натяжных потолков" className="h-20 sm:h-24 w-auto object-contain" />
@@ -271,7 +271,7 @@ export default function FilmTypes() {
       </div>
 
       <div className="max-w-5xl mx-auto px-4 pb-16">
-        <div className="p-8 rounded-3xl mb-6" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(37,99,235,0.25)" }}>
+        <div className="p-8 rounded-3xl mb-6" style={{ background: "rgba(255,255,255,0.05)", backdropFilter: "blur(16px) saturate(160%)", WebkitBackdropFilter: "blur(16px) saturate(160%)", border: "1px solid rgba(37,99,235,0.25)" }}>
           <div className="rounded-2xl overflow-hidden mb-6 flex justify-center p-6" style={{ background: "#fff" }}>
             <img src="https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/fa747675-73bf-470b-8d37-5fec954a7a0c.png"
               alt="Плёнка Halead для натяжных потолков" className="h-16 sm:h-20 w-auto object-contain" />

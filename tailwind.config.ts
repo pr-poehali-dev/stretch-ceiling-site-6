@@ -90,6 +90,11 @@ export default {
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out'
+			},
+			boxShadow: {
+				'glow-primary': '0 8px 32px rgba(124,58,237,0.35)',
+				'glow-secondary': '0 8px 32px rgba(6,182,212,0.3)',
+				'glass': '0 8px 32px rgba(124,58,237,0.12), inset 0 1px 0 rgba(255,255,255,0.08)'
 			}
 		}
 	},

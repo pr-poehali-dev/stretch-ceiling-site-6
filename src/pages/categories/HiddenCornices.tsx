@@ -51,7 +51,7 @@ export default function HiddenCornices() {
 
       <div className="max-w-4xl mx-auto px-4 pb-12 grid grid-cols-1 sm:grid-cols-3 gap-4">
         {features.map(item => (
-          <div key={item.title} className="p-5 rounded-2xl" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)" }}>
+          <div key={item.title} className="p-5 rounded-2xl" style={{ background: "rgba(255,255,255,0.05)", backdropFilter: "blur(16px) saturate(160%)", WebkitBackdropFilter: "blur(16px) saturate(160%)", border: "1px solid rgba(255,255,255,0.12)" }}>
             <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-3" style={{ background: "linear-gradient(135deg, #F59E0B, #EC4899)" }}>
               <Icon name={item.icon} size={18} className="text-white" />
             </div>
@@ -75,7 +75,7 @@ export default function HiddenCornices() {
           <h2 className="text-2xl font-black text-white mb-3" style={{ fontFamily: "Oswald, sans-serif" }}>Преимущества скрытой ниши под шторы</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {advantages.map(item => (
-              <div key={item.title} className="p-5 rounded-2xl" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)" }}>
+              <div key={item.title} className="p-5 rounded-2xl" style={{ background: "rgba(255,255,255,0.05)", backdropFilter: "blur(16px) saturate(160%)", WebkitBackdropFilter: "blur(16px) saturate(160%)", border: "1px solid rgba(255,255,255,0.12)" }}>
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-3" style={{ background: "linear-gradient(135deg, #F59E0B, #EC4899)" }}>
                   <Icon name={item.icon} size={18} className="text-white" />
                 </div>

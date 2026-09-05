@@ -159,6 +159,8 @@ export default function AiVisualization() {
               style={{
                 minHeight: 320,
                 background: "rgba(255,255,255,0.05)",
+                backdropFilter: "blur(16px) saturate(160%)",
+                WebkitBackdropFilter: "blur(16px) saturate(160%)",
                 border: photo ? "1px solid rgba(124,58,237,0.4)" : "2px dashed rgba(255,255,255,0.25)",
               }}
             >
@@ -203,6 +205,8 @@ export default function AiVisualization() {
                   className="text-left p-3 rounded-2xl transition-all"
                   style={{
                     background: selectedStyle === s.id ? `${s.color}25` : "rgba(255,255,255,0.05)",
+                    backdropFilter: "blur(12px) saturate(150%)",
+                    WebkitBackdropFilter: "blur(12px) saturate(150%)",
                     border: `1px solid ${selectedStyle === s.id ? s.color : "rgba(255,255,255,0.12)"}`,
                   }}
                 >
@@ -287,7 +291,7 @@ export default function AiVisualization() {
                   <div className="font-black text-white text-base" style={{ fontFamily: "Oswald, sans-serif" }}>{ex.style}</div>
                 </div>
               </div>
-              <div className="p-4" style={{ background: "rgba(255,255,255,0.05)" }}>
+              <div className="p-4" style={{ background: "rgba(255,255,255,0.05)", backdropFilter: "blur(16px) saturate(150%)", WebkitBackdropFilter: "blur(16px) saturate(150%)" }}>
                 <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.7)" }}>{ex.desc}</p>
               </div>
             </div>
@@ -307,7 +311,7 @@ export default function AiVisualization() {
       </div>
 
       <Dialog open={phoneDialogOpen} onOpenChange={setPhoneDialogOpen}>
-        <DialogContent style={{ background: "#2e2260", border: "1px solid rgba(124,58,237,0.3)", color: "#fff" }}>
+        <DialogContent style={{ background: "rgba(46,34,96,0.85)", backdropFilter: "blur(24px) saturate(160%)", WebkitBackdropFilter: "blur(24px) saturate(160%)", border: "1px solid rgba(255,255,255,0.15)", color: "#fff" }}>
           <DialogHeader>
             <DialogTitle className="text-2xl font-black text-white" style={{ fontFamily: "Oswald, sans-serif" }}>
               Позвоните нам

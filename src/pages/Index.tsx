@@ -367,9 +367,11 @@ export default function Index() {
       <nav
         className="fixed top-0 left-0 right-0 z-50"
         style={{
-          background: "rgba(255,255,255,0.95)",
-          backdropFilter: "blur(20px)",
-          borderBottom: "1px solid rgba(124,58,237,0.1)",
+          background: "rgba(255,255,255,0.65)",
+          backdropFilter: "blur(24px) saturate(160%)",
+          WebkitBackdropFilter: "blur(24px) saturate(160%)",
+          borderBottom: "1px solid rgba(255,255,255,0.5)",
+          boxShadow: "0 8px 32px rgba(124,58,237,0.08)",
         }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
@@ -1052,15 +1054,18 @@ export default function Index() {
                 <div
                   className="group p-6 rounded-2xl hover-lift cursor-pointer h-full transition-all duration-300"
                   style={{
-                    background: "rgba(124,58,237,0.05)",
-                    border: "1px solid rgba(124,58,237,0.12)",
+                    background: "rgba(255,255,255,0.5)",
+                    backdropFilter: "blur(16px) saturate(150%)",
+                    WebkitBackdropFilter: "blur(16px) saturate(150%)",
+                    border: "1px solid rgba(255,255,255,0.6)",
+                    boxShadow: "0 4px 20px rgba(124,58,237,0.06)",
                   }}
                   onMouseEnter={(e) =>
-                    (e.currentTarget.style.borderColor = s.color + "50")
+                    (e.currentTarget.style.borderColor = s.color + "60")
                   }
                   onMouseLeave={(e) =>
                     (e.currentTarget.style.borderColor =
-                      "rgba(124,58,237,0.12)")
+                      "rgba(255,255,255,0.6)")
                   }
                 >
                   <div
