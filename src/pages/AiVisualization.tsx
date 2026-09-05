@@ -1,8 +1,19 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 
 const AI_VIS_URL = "https://functions.poehali.dev/992cc656-f16a-4292-bdb2-fd468f7969a0";
+const MAX_GENERATIONS = 5;
+
+function getClientId(): string {
+  const key = "ai_vis_client_id";
+  let id = localStorage.getItem(key);
+  if (!id) {
+    id = crypto.randomUUID();
+    localStorage.setItem(key, id);
+  }
+  return id;
+}
 
 const styles = [
   { id: "glossy", name: "Глянцевый белый", desc: "Зеркальный блеск, визуально расширяет пространство", color: "#7C3AED", icon: "Sparkles" },
@@ -25,6 +36,17 @@ export default function AiVisualization() {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [remaining, setRemaining] = useState<number | null>(null);
+
+  useEffect(() => {
+    const clientId = getClientId();
+    fetch(`${AI_VIS_URL}?client_id=${clientId}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (typeof data.remaining === "number") setRemaining(data.remaining);
+      })
+      .catch(() => {});
+  }, []);
 
   const handleFile = (file: File) => {
     if (!file.type.startsWith("image/")) return;
@@ -39,6 +61,10 @@ export default function AiVisualization() {
 
   const handleGenerate = async () => {
     if (!photo || !selectedStyle) return;
+    if (remaining !== null && remaining <= 0) {
+      setError("Лимит бесплатных генераций исчерпан. Закажите бесплатный замер — дизайнер подберёт потолок лично.");
+      return;
+    }
     setLoading(true);
     setError(null);
     setResult(null);
@@ -46,11 +72,15 @@ export default function AiVisualization() {
       const res = await fetch(AI_VIS_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ image: photo, style: selectedStyle }),
+        body: JSON.stringify({ image: photo, style: selectedStyle, client_id: getClientId() }),
       });
       const data = await res.json();
       if (res.ok && data.url) {
         setResult(data.url);
+        if (typeof data.remaining === "number") setRemaining(data.remaining);
+      } else if (res.status === 403) {
+        setRemaining(0);
+        setError("Лимит бесплатных генераций исчерпан. Закажите бесплатный замер — дизайнер подберёт потолок лично.");
       } else {
         setError("Не получилось сгенерировать визуализацию. Попробуйте другое фото или стиль.");
       }
@@ -72,6 +102,16 @@ export default function AiVisualization() {
             Назад
           </button>
           <span className="font-bold text-white" style={{ fontFamily: "Oswald, sans-serif", fontSize: 18 }}>AI-визуализация потолка</span>
+          {remaining !== null && (
+            <span className="ml-auto text-xs font-semibold px-3 py-1.5 rounded-full"
+              style={{
+                background: remaining > 0 ? "rgba(124,58,237,0.2)" : "rgba(239,68,68,0.2)",
+                color: remaining > 0 ? "#c4b5fd" : "#fca5a5",
+                border: `1px solid ${remaining > 0 ? "rgba(124,58,237,0.4)" : "rgba(239,68,68,0.4)"}`,
+              }}>
+              Осталось генераций: {remaining} из {MAX_GENERATIONS}
+            </span>
+          )}
         </div>
       </nav>
 
@@ -167,7 +207,7 @@ export default function AiVisualization() {
         <div className="mt-8 text-center">
           <button
             onClick={handleGenerate}
-            disabled={!photo || !selectedStyle || loading}
+            disabled={!photo || !selectedStyle || loading || remaining === 0}
             className="px-10 py-4 rounded-2xl font-bold text-lg text-white transition-all hover-lift disabled:opacity-40 disabled:cursor-not-allowed inline-flex items-center gap-3"
             style={{ background: "linear-gradient(135deg, #7C3AED, #06B6D4)" }}
           >

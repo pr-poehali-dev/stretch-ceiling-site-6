@@ -2,8 +2,25 @@ import json
 import os
 import base64
 import uuid
+import urllib.parse
 import boto3
 import requests
+import pg8000.native
+
+MAX_GENERATIONS = 5
+
+
+def get_conn():
+    dsn = os.environ["DATABASE_URL"]
+    p = urllib.parse.urlparse(dsn)
+    return pg8000.native.Connection(
+        user=urllib.parse.unquote(p.username),
+        password=urllib.parse.unquote(p.password),
+        host=p.hostname,
+        port=p.port or 5432,
+        database=p.path.lstrip("/"),
+        ssl_context=False,
+    )
 
 
 STYLE_PROMPTS = {
@@ -36,15 +53,53 @@ def handler(event: dict, context) -> dict:
 
     cors_headers = {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'}
 
-    if event.get('httpMethod') != 'POST':
+    method = event.get('httpMethod')
+
+    if method == 'GET':
+        params = event.get('queryStringParameters') or {}
+        client_id = (params.get('client_id') or '').strip()
+        if not client_id:
+            return {'statusCode': 400, 'headers': cors_headers, 'body': json.dumps({'error': 'client_id обязателен'}, ensure_ascii=False)}
+        conn = get_conn()
+        rows = conn.run(
+            "SELECT generations_count FROM ai_visualization_usage WHERE client_id = :cid",
+            cid=client_id
+        )
+        conn.close()
+        used = rows[0][0] if rows else 0
+        return {
+            'statusCode': 200,
+            'headers': cors_headers,
+            'body': json.dumps({'used': used, 'limit': MAX_GENERATIONS, 'remaining': max(0, MAX_GENERATIONS - used)})
+        }
+
+    if method != 'POST':
         return {'statusCode': 405, 'headers': cors_headers, 'body': json.dumps({'error': 'Method not allowed'})}
 
     body = json.loads(event.get('body') or '{}')
     image_data = body.get('image', '')
     style = body.get('style', '')
+    client_id = (body.get('client_id') or '').strip()
 
-    if not image_data or not style:
-        return {'statusCode': 400, 'headers': cors_headers, 'body': json.dumps({'error': 'Нужно фото комнаты и стиль потолка'}, ensure_ascii=False)}
+    if not image_data or not style or not client_id:
+        return {'statusCode': 400, 'headers': cors_headers, 'body': json.dumps({'error': 'Нужно фото комнаты, стиль потолка и идентификатор клиента'}, ensure_ascii=False)}
+
+    source_ip = (event.get('requestContext', {}) or {}).get('identity', {}).get('sourceIp', '')
+
+    conn = get_conn()
+    rows = conn.run(
+        "SELECT generations_count FROM ai_visualization_usage WHERE client_id = :cid",
+        cid=client_id
+    )
+    used = rows[0][0] if rows else 0
+
+    if used >= MAX_GENERATIONS:
+        conn.close()
+        return {
+            'statusCode': 403,
+            'headers': cors_headers,
+            'body': json.dumps({'error': 'Лимит генераций исчерпан', 'used': used, 'limit': MAX_GENERATIONS}, ensure_ascii=False)
+        }
 
     mime = 'image/png'
     if image_data.startswith('data:') and ',' in image_data:
@@ -73,6 +128,7 @@ def handler(event: dict, context) -> dict:
     )
 
     if resp.status_code != 200:
+        conn.close()
         return {
             'statusCode': 502,
             'headers': cors_headers,
@@ -93,4 +149,22 @@ def handler(event: dict, context) -> dict:
     s3.put_object(Bucket='files', Key=key, Body=result_bytes, ContentType='image/png')
     cdn_url = f"https://cdn.poehali.dev/projects/{os.environ['AWS_ACCESS_KEY_ID']}/bucket/{key}"
 
-    return {'statusCode': 200, 'headers': cors_headers, 'body': json.dumps({'url': cdn_url}, ensure_ascii=False)}
+    new_used = used + 1
+    conn.run(
+        """
+        INSERT INTO ai_visualization_usage (client_id, generations_count, ip_address, updated_at)
+        VALUES (:cid, 1, :ip, NOW())
+        ON CONFLICT (client_id) DO UPDATE
+        SET generations_count = ai_visualization_usage.generations_count + 1,
+            ip_address = :ip,
+            updated_at = NOW()
+        """,
+        cid=client_id, ip=source_ip
+    )
+    conn.close()
+
+    return {
+        'statusCode': 200,
+        'headers': cors_headers,
+        'body': json.dumps({'url': cdn_url, 'used': new_used, 'limit': MAX_GENERATIONS, 'remaining': max(0, MAX_GENERATIONS - new_used)}, ensure_ascii=False)
+    }

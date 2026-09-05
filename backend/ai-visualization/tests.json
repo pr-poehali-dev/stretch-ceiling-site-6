@@ -10,7 +10,13 @@
       "name": "Missing required fields",
       "method": "POST",
       "path": "/",
-      "body": {"image": "", "style": ""},
+      "body": {"image": "", "style": "", "client_id": ""},
+      "expectedStatus": 400
+    },
+    {
+      "name": "Missing client_id on GET",
+      "method": "GET",
+      "path": "/",
       "expectedStatus": 400
     }
   ]
