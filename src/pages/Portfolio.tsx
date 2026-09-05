@@ -187,7 +187,7 @@ function Modal({ project, onClose }: { project: typeof projects[0]; onClose: () 
       style={{ background: "rgba(0,0,0,0.85)", backdropFilter: "blur(10px)" }}
       onClick={onClose}>
       <div className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-3xl animate-fade-in"
-        style={{ background: "#2e2260", border: "1px solid rgba(124,58,237,0.4)" }}
+        style={{ background: "#1a1438", border: "1px solid rgba(124,58,237,0.4)" }}
         onClick={e => e.stopPropagation()}>
         {/* Close */}
         <button onClick={onClose}
@@ -248,7 +248,7 @@ export default function Portfolio() {
   });
 
   return (
-    <div className="min-h-screen" style={{ background: "#2e2260", color: "#fff" }}>
+    <div className="min-h-screen" style={{ background: "#1a1438", color: "#fff" }}>
 
       {/* NAVBAR */}
       <nav className="fixed top-0 left-0 right-0 z-40 glass" style={{ borderBottom: "1px solid rgba(124,58,237,0.2)" }}>

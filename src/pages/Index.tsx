@@ -361,7 +361,7 @@ export default function Index() {
   return (
     <div
       className="min-h-screen"
-      style={{ background: "#f8f6ff", color: "#1a1a2e" }}
+      style={{ background: "#eae3f8", color: "#1a1a2e" }}
     >
       {/* NAVBAR */}
       <nav
@@ -709,7 +709,7 @@ export default function Index() {
       {/* PROMO */}
       <section
         className="py-16 relative overflow-hidden"
-        style={{ background: "linear-gradient(135deg, #ede9fe 0%, #ddd6fe 50%, #ede9fe 100%)" }}
+        style={{ background: "linear-gradient(135deg, #ddd2f0 0%, #c9b8e8 50%, #ddd2f0 100%)" }}
       >
         <div
           className="absolute inset-0 pointer-events-none"
@@ -812,7 +812,7 @@ export default function Index() {
                 className="absolute -top-3 -right-3 rounded-xl px-3 py-2 text-xs font-black"
                 style={{
                   background: "linear-gradient(135deg, #fbbf24, #f59e0b)",
-                  color: "#2e2260",
+                  color: "#1a1438",
                   boxShadow: "0 4px 16px rgba(251,191,36,0.5)",
                   transform: "rotate(6deg)",
                 }}
@@ -825,7 +825,7 @@ export default function Index() {
       </section>
 
       {/* AI VISUALIZATION BANNER */}
-      <section className="py-14 px-4" style={{ background: "#2e2260" }}>
+      <section className="py-14 px-4" style={{ background: "#1a1438" }}>
         <div className="max-w-6xl mx-auto">
           <a
             href="/ai-visualization"
@@ -838,7 +838,7 @@ export default function Index() {
                 alt="AI-визуализация натяжного потолка"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
-              <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, transparent 40%, #2e2260 100%)" }} />
+              <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, transparent 40%, #1a1438 100%)" }} />
             </div>
             <div className="flex-1 px-6 py-8 sm:py-10 w-full" style={{ background: "linear-gradient(135deg, rgba(124,58,237,0.15), rgba(6,182,212,0.1))" }}>
               <div
@@ -867,7 +867,7 @@ export default function Index() {
       </section>
 
       {/* CATALOG CAROUSEL */}
-      <section className="py-16 px-4" style={{ background: "#f5f3ff" }}>
+      <section className="py-16 px-4" style={{ background: "#e7e0f5" }}>
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8">
             <span className="text-sm font-semibold tracking-widest uppercase mb-3 block" style={{ color: "#7C3AED" }}>Что мы делаем</span>
@@ -912,7 +912,7 @@ export default function Index() {
       </section>
 
       {/* WHY US */}
-      <section className="py-24" style={{ background: "#ffffff" }}>
+      <section className="py-24" style={{ background: "#f6f3fa" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <SectionReveal>
             <div className="text-center mb-14">
@@ -1029,7 +1029,7 @@ export default function Index() {
       <section
         id="services"
         className="py-24"
-        style={{ background: "#ffffff" }}
+        style={{ background: "#f6f3fa" }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <SectionReveal>
@@ -1101,7 +1101,7 @@ export default function Index() {
 
 
       {/* GALLERY */}
-      <section id="gallery" className="py-24" style={{ background: "#f5f3ff" }}>
+      <section id="gallery" className="py-24" style={{ background: "#e7e0f5" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <SectionReveal>
             <div className="text-center mb-16">
@@ -1341,7 +1341,7 @@ export default function Index() {
       <section
         id="calculator"
         className="py-24"
-        style={{ background: "#ffffff" }}
+        style={{ background: "#f6f3fa" }}
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <SectionReveal>
@@ -1595,7 +1595,7 @@ export default function Index() {
 
 
       {/* ABOUT */}
-      <section id="about" className="py-24" style={{ background: "#f5f3ff" }}>
+      <section id="about" className="py-24" style={{ background: "#e7e0f5" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <SectionReveal>
@@ -1711,7 +1711,7 @@ export default function Index() {
       <section
         id="contacts"
         className="py-24"
-        style={{ background: "#ffffff" }}
+        style={{ background: "#f6f3fa" }}
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <SectionReveal>
@@ -1940,7 +1940,7 @@ export default function Index() {
         className="py-8 text-center"
         style={{
           borderTop: "1px solid rgba(124,58,237,0.15)",
-          background: "#f5f3ff",
+          background: "#e7e0f5",
         }}
       >
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
