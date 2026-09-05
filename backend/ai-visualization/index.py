@@ -61,11 +61,11 @@ def handler(event: dict, context) -> dict:
         'Make it photorealistic and match the room perspective and lighting.'
     )
 
-    api_key = os.environ['OPENAI_API_KEY']
+    api_key = os.environ['AITUNNEL_API_KEY']
     ext = mime.split('/')[-1] or 'png'
 
     resp = requests.post(
-        'https://api.openai.com/v1/images/edits',
+        'https://api.aitunnel.ru/v1/images/edits',
         headers={'Authorization': f'Bearer {api_key}'},
         files={'image': (f'room.{ext}', image_bytes, mime)},
         data={'model': 'gpt-image-1', 'prompt': prompt, 'size': '1024x1024'},
