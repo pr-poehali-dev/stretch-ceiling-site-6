@@ -29,6 +29,15 @@ const styles = [
   { id: "multilevel", name: "Многоуровневый", desc: "Геометрические фигуры и встроенный свет", color: "#10B981", icon: "Layers3" },
   { id: "print", name: "Фотопечать (небо)", desc: "Художественное изображение на полотне", color: "#0EA5E9", icon: "Image" },
   { id: "colored", name: "Цветной глянец", desc: "Яркий акцентный цвет в тон интерьеру", color: "#F97316", icon: "Palette" },
+  { id: "track", name: "Трековое освещение", desc: "Светильники на гибкой шине с регулировкой", color: "#F59E0B", icon: "Move" },
+  { id: "lines", name: "Световые линии", desc: "Тонкие светящиеся полосы в потолке", color: "#7C3AED", icon: "Zap" },
+  { id: "cornices", name: "Скрытые карнизы", desc: "Штора «вырастает» прямо из потолка", color: "#06B6D4", icon: "Blinds" },
+];
+
+const readyExamples = [
+  { style: "Трековое освещение", desc: "Светильники на магнитной шине с гибкой расстановкой", color: "#F59E0B", icon: "Move", img: "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/524441c5-7988-4e74-8009-f490fb319f39.jpg" },
+  { style: "Световые линии", desc: "Тонкие светящиеся полосы, встроенные в потолок", color: "#7C3AED", icon: "Zap", img: "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/9610b5aa-7d30-408d-a329-724e4789855d.jpg" },
+  { style: "Скрытые карнизы", desc: "Штора выходит прямо из потолка без видимых креплений", color: "#06B6D4", icon: "Blinds", img: "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/d88715af-6354-42db-9728-b2bfacb46302.jpeg" },
 ];
 
 export default function AiVisualization() {
@@ -256,6 +265,34 @@ export default function AiVisualization() {
             </div>
           </div>
         )}
+      </div>
+
+      <div className="max-w-6xl mx-auto px-4 pb-16">
+        <h2 className="text-2xl sm:text-3xl font-black text-white mb-2 text-center" style={{ fontFamily: "Oswald, sans-serif" }}>
+          Готовые примеры стилей
+        </h2>
+        <p className="text-sm text-center mb-8" style={{ color: "rgba(255,255,255,0.6)" }}>
+          Так эти решения выглядят в реальных интерьерах наших клиентов
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+          {readyExamples.map((ex) => (
+            <div key={ex.style} className="rounded-2xl overflow-hidden" style={{ border: `1px solid ${ex.color}40` }}>
+              <div className="relative" style={{ height: 200 }}>
+                <img src={ex.img} alt={ex.style} className="w-full h-full object-cover" />
+                <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${ex.color}dd 0%, transparent 55%)` }} />
+                <div className="absolute top-3 right-3 w-8 h-8 rounded-full flex items-center justify-center" style={{ background: ex.color }}>
+                  <Icon name={ex.icon} size={15} className="text-white" />
+                </div>
+                <div className="absolute bottom-3 left-3 right-3">
+                  <div className="font-black text-white text-base" style={{ fontFamily: "Oswald, sans-serif" }}>{ex.style}</div>
+                </div>
+              </div>
+              <div className="p-4" style={{ background: "rgba(255,255,255,0.05)" }}>
+                <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.7)" }}>{ex.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className="max-w-xl mx-auto px-4 pb-20 text-center">

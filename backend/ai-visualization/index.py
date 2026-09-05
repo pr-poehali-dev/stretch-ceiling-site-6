@@ -34,6 +34,9 @@ STYLE_PROMPTS = {
     'multilevel': 'a modern multi-level stretch ceiling with layered geometric shapes and built-in recessed lighting',
     'print': 'a stretch ceiling with an artistic photo print of a blue sky with clouds',
     'colored': 'a vibrant glossy colored stretch ceiling in a stylish accent color that matches the room',
+    'track': 'a modern ceiling with a sleek black track lighting system with adjustable spotlight fixtures mounted on a magnetic rail',
+    'lines': 'a modern ceiling with thin glowing light line channels integrated into the ceiling surface along the perimeter',
+    'cornices': 'a modern ceiling with a built-in hidden curtain cornice, curtains flowing down as if growing directly from the ceiling with no visible rail',
 }
 
 
