@@ -291,12 +291,8 @@ export default function Index() {
   const [calcType, setCalcType] = useState(TYPES[0]);
   const [calcResult, setCalcResult] = useState<number | null>(null);
   const [optKarniz, setOptKarniz] = useState("");
-  const [optFloating, setOptFloating] = useState("");
-  const [optShadow, setOptShadow] = useState("");
   const [optLamp, setOptLamp] = useState("");
   const [optChandelier, setOptChandelier] = useState("");
-  const [optLightLine, setOptLightLine] = useState("");
-  const [optMagnetic, setOptMagnetic] = useState("");
   const [activeGallery, setActiveGallery] = useState(0);
   const [lightbox, setLightbox] = useState<{
     categoryIndex: number;
@@ -355,18 +351,10 @@ export default function Index() {
     let total = Math.ceil(area * calcType.price);
     if (parseFloat(optKarniz) > 0)
       total += Math.ceil(parseFloat(optKarniz) * 3200);
-    if (parseFloat(optFloating) > 0)
-      total += Math.ceil(parseFloat(optFloating) * 1800);
-    if (parseFloat(optShadow) > 0)
-      total += Math.ceil(parseFloat(optShadow) * 800);
     if (parseFloat(optLamp) > 0)
       total += Math.ceil(parseFloat(optLamp) * 500);
     if (parseFloat(optChandelier) > 0)
       total += Math.ceil(parseFloat(optChandelier) * 700);
-    if (parseFloat(optLightLine) > 0)
-      total += Math.ceil(parseFloat(optLightLine) * 3200);
-    if (parseFloat(optMagnetic) > 0)
-      total += Math.ceil(parseFloat(optMagnetic) * 6000);
     setCalcResult(total);
   };
 
@@ -1454,12 +1442,8 @@ export default function Index() {
                 <div className="flex flex-col gap-3">
                   {[
                     { value: optKarniz, setter: setOptKarniz, label: "Скрытый карниз", unit: "м", perUnit: 3200 },
-                    { value: optFloating, setter: setOptFloating, label: "Парящий потолок", unit: "м", perUnit: 1800 },
-                    { value: optShadow, setter: setOptShadow, label: "Теневой потолок", unit: "м", perUnit: 800 },
                     { value: optLamp, setter: setOptLamp, label: "Установка светильника", unit: "шт", perUnit: 500 },
                     { value: optChandelier, setter: setOptChandelier, label: "Установка люстры", unit: "шт", perUnit: 700 },
-                    { value: optLightLine, setter: setOptLightLine, label: "Световые линии", unit: "м", perUnit: 3200 },
-                    { value: optMagnetic, setter: setOptMagnetic, label: "Встраиваемый трек Magnetic", unit: "м", perUnit: 6000 },
                   ].map((opt) => (
                     <div
                       key={opt.label}
