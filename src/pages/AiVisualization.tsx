@@ -46,18 +46,29 @@ export default function AiVisualization() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [photo, setPhoto] = useState<string | null>(null);
   const [selectedStyles, setSelectedStyles] = useState<string[]>([]);
+  const [customDescription, setCustomDescription] = useState("");
+  const [useCustom, setUseCustom] = useState(false);
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState<{ done: number; total: number } | null>(null);
-  const [results, setResults] = useState<{ styleId: string; url: string }[]>([]);
+  const [results, setResults] = useState<{ key: string; label: string; color: string; url: string }[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [remaining, setRemaining] = useState<number | null>(null);
   const [phoneDialogOpen, setPhoneDialogOpen] = useState(false);
 
+  const totalSelected = selectedStyles.length + (useCustom && customDescription.trim() ? 1 : 0);
+
   const toggleStyle = (id: string) => {
     setSelectedStyles((prev) => {
       if (prev.includes(id)) return prev.filter((s) => s !== id);
-      if (prev.length >= MAX_SELECTED_STYLES) return prev;
+      if (prev.length + (useCustom && customDescription.trim() ? 1 : 0) >= MAX_SELECTED_STYLES) return prev;
       return [...prev, id];
+    });
+  };
+
+  const toggleCustom = () => {
+    setUseCustom((prev) => {
+      if (!prev && selectedStyles.length >= MAX_SELECTED_STYLES) return prev;
+      return !prev;
     });
   };
 
@@ -83,30 +94,44 @@ export default function AiVisualization() {
   };
 
   const handleGenerate = async () => {
-    if (!photo || selectedStyles.length === 0) return;
-    if (remaining !== null && remaining < selectedStyles.length) {
-      setError(`Недостаточно генераций: выбрано ${selectedStyles.length}, а осталось ${remaining}. Уберите один из стилей.`);
+    const customText = customDescription.trim();
+    const jobs: { key: string; label: string; color: string; style?: string; customDescription?: string }[] = selectedStyles.map((id) => {
+      const s = styles.find((st) => st.id === id)!;
+      return { key: id, label: s.name, color: s.color, style: id };
+    });
+    if (useCustom && customText) {
+      jobs.push({ key: "custom", label: "По вашему описанию", color: "#EC4899", customDescription: customText });
+    }
+
+    if (!photo || jobs.length === 0) return;
+    if (remaining !== null && remaining < jobs.length) {
+      setError(`Недостаточно генераций: выбрано ${jobs.length}, а осталось ${remaining}. Уберите один из вариантов.`);
       return;
     }
     setLoading(true);
     setError(null);
     setResults([]);
-    setProgress({ done: 0, total: selectedStyles.length });
+    setProgress({ done: 0, total: jobs.length });
 
     const clientId = getClientId();
-    const newResults: { styleId: string; url: string }[] = [];
+    const newResults: { key: string; label: string; color: string; url: string }[] = [];
 
-    for (let i = 0; i < selectedStyles.length; i++) {
-      const styleId = selectedStyles[i];
+    for (let i = 0; i < jobs.length; i++) {
+      const job = jobs[i];
       try {
         const res = await fetch(AI_VIS_URL, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ image: photo, style: styleId, client_id: clientId }),
+          body: JSON.stringify({
+            image: photo,
+            style: job.style || "",
+            custom_description: job.customDescription || "",
+            client_id: clientId,
+          }),
         });
         const data = await res.json();
         if (res.ok && data.url) {
-          newResults.push({ styleId, url: data.url });
+          newResults.push({ key: job.key, label: job.label, color: job.color, url: data.url });
           setResults([...newResults]);
           if (typeof data.remaining === "number") setRemaining(data.remaining);
         } else if (res.status === 403) {
@@ -120,7 +145,7 @@ export default function AiVisualization() {
         setError("Ошибка соединения. Попробуйте ещё раз.");
         break;
       }
-      setProgress({ done: i + 1, total: selectedStyles.length });
+      setProgress({ done: i + 1, total: jobs.length });
     }
 
     setLoading(false);
@@ -219,17 +244,58 @@ export default function AiVisualization() {
           <div>
             <div className="flex items-center justify-between mb-3">
               <div className="text-sm font-semibold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.5)" }}>
-                Шаг 2 · Выберите до {MAX_SELECTED_STYLES} стилей
+                Шаг 2 · Выберите до {MAX_SELECTED_STYLES} вариантов
               </div>
               <span className="text-xs font-semibold px-2.5 py-1 rounded-full"
                 style={{ background: "rgba(124,58,237,0.2)", color: "#c4b5fd" }}>
-                {selectedStyles.length}/{MAX_SELECTED_STYLES}
+                {totalSelected}/{MAX_SELECTED_STYLES}
               </span>
             </div>
-            <div className="grid grid-cols-2 gap-3 max-h-[380px] overflow-y-auto pr-1">
+
+            <button
+              onClick={toggleCustom}
+              disabled={!useCustom && selectedStyles.length >= MAX_SELECTED_STYLES}
+              className="w-full text-left p-3 rounded-2xl transition-all relative mb-3 disabled:opacity-35 disabled:cursor-not-allowed"
+              style={{
+                background: useCustom ? "rgba(236,72,153,0.15)" : "rgba(255,255,255,0.05)",
+                backdropFilter: "blur(12px) saturate(150%)",
+                WebkitBackdropFilter: "blur(12px) saturate(150%)",
+                border: `1px solid ${useCustom ? "#EC4899" : "rgba(255,255,255,0.12)"}`,
+              }}
+            >
+              {useCustom && (
+                <div className="absolute top-2 right-2 w-5 h-5 rounded-full flex items-center justify-center" style={{ background: "#EC4899" }}>
+                  <Icon name="Check" size={12} className="text-white" />
+                </div>
+              )}
+              <div className="flex items-center gap-2 mb-1">
+                <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: "#EC4899" }}>
+                  <Icon name="PenLine" size={15} className="text-white" />
+                </div>
+                <div className="font-bold text-white text-sm">Свой вариант — опишите словами</div>
+              </div>
+              {useCustom && (
+                <textarea
+                  value={customDescription}
+                  onChange={(e) => setCustomDescription(e.target.value)}
+                  onClick={(e) => e.stopPropagation()}
+                  maxLength={500}
+                  placeholder="Например: тёмно-синий глянцевый потолок с золотыми вставками и точечными светильниками по кругу"
+                  className="w-full mt-2 p-3 rounded-xl text-sm resize-none"
+                  style={{
+                    background: "rgba(0,0,0,0.2)",
+                    border: "1px solid rgba(255,255,255,0.15)",
+                    color: "#fff",
+                    minHeight: 80,
+                  }}
+                />
+              )}
+            </button>
+
+            <div className="grid grid-cols-2 gap-3 max-h-[300px] overflow-y-auto pr-1">
               {styles.map((s) => {
                 const isSelected = selectedStyles.includes(s.id);
-                const isDisabled = !isSelected && selectedStyles.length >= MAX_SELECTED_STYLES;
+                const isDisabled = !isSelected && totalSelected >= MAX_SELECTED_STYLES;
                 return (
                   <button
                     key={s.id}
@@ -263,7 +329,7 @@ export default function AiVisualization() {
         <div className="mt-8 text-center">
           <button
             onClick={handleGenerate}
-            disabled={!photo || selectedStyles.length === 0 || loading || remaining === 0}
+            disabled={!photo || totalSelected === 0 || loading || remaining === 0}
             className="px-10 py-4 rounded-2xl font-bold text-lg text-white transition-all hover-lift disabled:opacity-40 disabled:cursor-not-allowed inline-flex items-center gap-3"
             style={{ background: "linear-gradient(135deg, #7C3AED, #06B6D4)" }}
           >
@@ -275,7 +341,7 @@ export default function AiVisualization() {
             ) : (
               <>
                 <Icon name="Wand2" size={20} />
-                {selectedStyles.length > 1 ? `Сгенерировать ${selectedStyles.length} варианта` : "Показать, как будет выглядеть"}
+                {totalSelected > 1 ? `Сгенерировать ${totalSelected} варианта` : "Показать, как будет выглядеть"}
               </>
             )}
           </button>
@@ -302,19 +368,16 @@ export default function AiVisualization() {
               <div className="hidden sm:block" />
             </div>
             <div className={`grid grid-cols-1 ${results.length > 1 ? "sm:grid-cols-2 lg:grid-cols-3" : "sm:grid-cols-2"} gap-4`}>
-              {results.map((r) => {
-                const styleInfo = styles.find((s) => s.id === r.styleId);
-                return (
-                  <div key={r.styleId}>
-                    <div className="text-xs font-semibold uppercase tracking-wider mb-2 text-center" style={{ color: styleInfo?.color || "#a78bfa" }}>
-                      {styleInfo?.name || "Стало"}
-                    </div>
-                    <div className="rounded-2xl overflow-hidden" style={{ border: `1px solid ${styleInfo?.color || "#7C3AED"}66` }}>
-                      <img src={r.url} alt={styleInfo?.name || "После"} className="w-full h-full object-cover" />
-                    </div>
+              {results.map((r) => (
+                <div key={r.key}>
+                  <div className="text-xs font-semibold uppercase tracking-wider mb-2 text-center" style={{ color: r.color }}>
+                    {r.label}
                   </div>
-                );
-              })}
+                  <div className="rounded-2xl overflow-hidden" style={{ border: `1px solid ${r.color}66` }}>
+                    <img src={r.url} alt={r.label} className="w-full h-full object-cover" />
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         )}

@@ -73,10 +73,14 @@ def handler(event: dict, context) -> dict:
     body = json.loads(event.get('body') or '{}')
     image_data = body.get('image', '')
     style = body.get('style', '')
+    custom_description = (body.get('custom_description') or '').strip()
     client_id = (body.get('client_id') or '').strip()
 
-    if not image_data or not style or not client_id:
-        return {'statusCode': 400, 'headers': cors_headers, 'body': json.dumps({'error': 'Нужно фото комнаты, стиль потолка и идентификатор клиента'}, ensure_ascii=False)}
+    if not image_data or (not style and not custom_description) or not client_id:
+        return {'statusCode': 400, 'headers': cors_headers, 'body': json.dumps({'error': 'Нужно фото комнаты, стиль или описание потолка и идентификатор клиента'}, ensure_ascii=False)}
+
+    if len(custom_description) > 500:
+        return {'statusCode': 400, 'headers': cors_headers, 'body': json.dumps({'error': 'Описание слишком длинное, сократите до 500 символов'}, ensure_ascii=False)}
 
     source_ip = (event.get('requestContext', {}) or {}).get('identity', {}).get('sourceIp', '')
 
@@ -103,7 +107,10 @@ def handler(event: dict, context) -> dict:
 
     image_bytes = base64.b64decode(image_data)
 
-    style_desc = STYLE_PROMPTS.get(style, 'a modern stylish stretch ceiling')
+    if custom_description:
+        style_desc = f'a modern stretch ceiling described as: {custom_description}'
+    else:
+        style_desc = STYLE_PROMPTS.get(style, 'a modern stylish stretch ceiling')
     prompt = (
         f'Edit this room photo: replace only the ceiling with {style_desc}. '
         'Keep the walls, floor, furniture, windows, lighting fixtures positions and the rest of the room exactly the same. '
