@@ -19,6 +19,7 @@ import CurtainNiches from "./pages/categories/CurtainNiches";
 import BuiltinCornices from "./pages/categories/BuiltinCornices";
 import AiVisualization from "./pages/AiVisualization";
 import NotFound from "./pages/NotFound";
+import ContactsPopup from "./components/ContactsPopup";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
+      <ContactsPopup />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
