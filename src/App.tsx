@@ -17,6 +17,7 @@ import LightCeilings from "./pages/categories/LightCeilings";
 import ShadowVents from "./pages/categories/ShadowVents";
 import CurtainNiches from "./pages/categories/CurtainNiches";
 import BuiltinCornices from "./pages/categories/BuiltinCornices";
+import AiVisualization from "./pages/AiVisualization";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -41,6 +42,7 @@ const App = () => (
           <Route path="/portfolio/shadow-vents" element={<ShadowVents />} />
           <Route path="/portfolio/curtain-niches" element={<CurtainNiches />} />
           <Route path="/portfolio/builtin-cornices" element={<BuiltinCornices />} />
+          <Route path="/ai-visualization" element={<AiVisualization />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

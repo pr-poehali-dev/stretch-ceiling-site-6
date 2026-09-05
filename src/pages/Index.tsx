@@ -822,6 +822,48 @@ export default function Index() {
         </div>
       </section>
 
+      {/* AI VISUALIZATION BANNER */}
+      <section className="py-14 px-4" style={{ background: "#2e2260" }}>
+        <div className="max-w-6xl mx-auto">
+          <a
+            href="/ai-visualization"
+            className="group relative flex flex-col sm:flex-row items-center gap-0 rounded-3xl overflow-hidden hover-lift transition-all duration-300"
+            style={{ border: "1px solid rgba(124,58,237,0.35)", textDecoration: "none" }}
+          >
+            <div className="relative w-full sm:w-2/5" style={{ height: 260 }}>
+              <img
+                src="https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/11e40889-bf1f-4823-ac5e-1099dfd3761a.jpg"
+                alt="AI-визуализация натяжного потолка"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, transparent 40%, #2e2260 100%)" }} />
+            </div>
+            <div className="flex-1 px-6 py-8 sm:py-10 w-full" style={{ background: "linear-gradient(135deg, rgba(124,58,237,0.15), rgba(6,182,212,0.1))" }}>
+              <div
+                className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold mb-4 uppercase tracking-widest"
+                style={{ background: "rgba(124,58,237,0.2)", border: "1px solid rgba(124,58,237,0.4)", color: "#c4b5fd" }}
+              >
+                <Icon name="Sparkles" size={12} />
+                Новинка · AI
+              </div>
+              <h3 className="text-2xl sm:text-3xl font-black mb-2 text-white" style={{ fontFamily: "Oswald, sans-serif" }}>
+                Примерьте потолок на свою комнату
+              </h3>
+              <p className="text-sm sm:text-base mb-5" style={{ color: "rgba(255,255,255,0.75)" }}>
+                Загрузите фото своей комнаты — искусственный интеллект покажет, как будет выглядеть натяжной потолок в разных стилях, прежде чем вы сделаете заказ.
+              </p>
+              <span
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-sm text-white transition-all"
+                style={{ background: "linear-gradient(135deg, #7C3AED, #06B6D4)" }}
+              >
+                <Icon name="Wand2" size={16} />
+                Попробовать бесплатно
+              </span>
+            </div>
+          </a>
+        </div>
+      </section>
+
       {/* CATALOG CAROUSEL */}
       <section className="py-16 px-4" style={{ background: "#f5f3ff" }}>
         <div className="max-w-7xl mx-auto">
