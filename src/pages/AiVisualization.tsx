@@ -104,8 +104,8 @@ export default function AiVisualization() {
     }
 
     if (!photo || jobs.length === 0) return;
-    if (remaining !== null && remaining < jobs.length) {
-      setError(`Недостаточно генераций: выбрано ${jobs.length}, а осталось ${remaining}. Уберите один из вариантов.`);
+    if (remaining !== null && remaining <= 0) {
+      setError("Лимит бесплатных генераций исчерпан. Закажите бесплатный замер — дизайнер подберёт потолок лично.");
       return;
     }
     setLoading(true);
@@ -127,6 +127,7 @@ export default function AiVisualization() {
             style: job.style || "",
             custom_description: job.customDescription || "",
             client_id: clientId,
+            count_usage: i === 0,
           }),
         });
         const data = await res.json();
@@ -252,10 +253,8 @@ export default function AiVisualization() {
               </span>
             </div>
 
-            <button
-              onClick={toggleCustom}
-              disabled={!useCustom && selectedStyles.length >= MAX_SELECTED_STYLES}
-              className="w-full text-left p-3 rounded-2xl transition-all relative mb-3 disabled:opacity-35 disabled:cursor-not-allowed"
+            <div
+              className="w-full text-left p-3 rounded-2xl transition-all relative mb-3"
               style={{
                 background: useCustom ? "rgba(236,72,153,0.15)" : "rgba(255,255,255,0.05)",
                 backdropFilter: "blur(12px) saturate(150%)",
@@ -263,22 +262,28 @@ export default function AiVisualization() {
                 border: `1px solid ${useCustom ? "#EC4899" : "rgba(255,255,255,0.12)"}`,
               }}
             >
-              {useCustom && (
-                <div className="absolute top-2 right-2 w-5 h-5 rounded-full flex items-center justify-center" style={{ background: "#EC4899" }}>
-                  <Icon name="Check" size={12} className="text-white" />
+              <button
+                type="button"
+                onClick={toggleCustom}
+                disabled={!useCustom && selectedStyles.length >= MAX_SELECTED_STYLES}
+                className="w-full text-left disabled:opacity-35 disabled:cursor-not-allowed"
+              >
+                {useCustom && (
+                  <div className="absolute top-2 right-2 w-5 h-5 rounded-full flex items-center justify-center" style={{ background: "#EC4899" }}>
+                    <Icon name="Check" size={12} className="text-white" />
+                  </div>
+                )}
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: "#EC4899" }}>
+                    <Icon name="PenLine" size={15} className="text-white" />
+                  </div>
+                  <div className="font-bold text-white text-sm">Свой вариант — опишите словами</div>
                 </div>
-              )}
-              <div className="flex items-center gap-2 mb-1">
-                <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: "#EC4899" }}>
-                  <Icon name="PenLine" size={15} className="text-white" />
-                </div>
-                <div className="font-bold text-white text-sm">Свой вариант — опишите словами</div>
-              </div>
+              </button>
               {useCustom && (
                 <textarea
                   value={customDescription}
                   onChange={(e) => setCustomDescription(e.target.value)}
-                  onClick={(e) => e.stopPropagation()}
                   maxLength={500}
                   placeholder="Например: тёмно-синий глянцевый потолок с золотыми вставками и точечными светильниками по кругу"
                   className="w-full mt-2 p-3 rounded-xl text-sm resize-none"
@@ -290,7 +295,7 @@ export default function AiVisualization() {
                   }}
                 />
               )}
-            </button>
+            </div>
 
             <div className="grid grid-cols-2 gap-3 max-h-[300px] overflow-y-auto pr-1">
               {styles.map((s) => {

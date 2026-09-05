@@ -75,6 +75,7 @@ def handler(event: dict, context) -> dict:
     style = body.get('style', '')
     custom_description = (body.get('custom_description') or '').strip()
     client_id = (body.get('client_id') or '').strip()
+    count_usage = body.get('count_usage', True)
 
     if not image_data or (not style and not custom_description) or not client_id:
         return {'statusCode': 400, 'headers': cors_headers, 'body': json.dumps({'error': 'Нужно фото комнаты, стиль или описание потолка и идентификатор клиента'}, ensure_ascii=False)}
@@ -90,7 +91,7 @@ def handler(event: dict, context) -> dict:
     row = cur.fetchone()
     used = row[0] if row else 0
 
-    if used >= MAX_GENERATIONS:
+    if count_usage and used >= MAX_GENERATIONS:
         cur.close()
         conn.close()
         return {
@@ -151,19 +152,20 @@ def handler(event: dict, context) -> dict:
     s3.put_object(Bucket='files', Key=key, Body=result_bytes, ContentType='image/png')
     cdn_url = f"https://cdn.poehali.dev/projects/{os.environ['AWS_ACCESS_KEY_ID']}/bucket/{key}"
 
-    new_used = used + 1
-    cur.execute(
-        """
-        INSERT INTO ai_visualization_usage (client_id, generations_count, ip_address, updated_at)
-        VALUES (%s, 1, %s, NOW())
-        ON CONFLICT (client_id) DO UPDATE
-        SET generations_count = ai_visualization_usage.generations_count + 1,
-            ip_address = %s,
-            updated_at = NOW()
-        """,
-        (client_id, source_ip, source_ip)
-    )
-    conn.commit()
+    new_used = used + 1 if count_usage else used
+    if count_usage:
+        cur.execute(
+            """
+            INSERT INTO ai_visualization_usage (client_id, generations_count, ip_address, updated_at)
+            VALUES (%s, 1, %s, NOW())
+            ON CONFLICT (client_id) DO UPDATE
+            SET generations_count = ai_visualization_usage.generations_count + 1,
+                ip_address = %s,
+                updated_at = NOW()
+            """,
+            (client_id, source_ip, source_ip)
+        )
+        conn.commit()
     cur.close()
     conn.close()
 
