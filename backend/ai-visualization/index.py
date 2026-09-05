@@ -2,25 +2,16 @@ import json
 import os
 import base64
 import uuid
-import urllib.parse
 import boto3
 import requests
-import pg8000.native
+import psycopg2
 
 MAX_GENERATIONS = 5
 
 
 def get_conn():
     dsn = os.environ["DATABASE_URL"]
-    p = urllib.parse.urlparse(dsn)
-    return pg8000.native.Connection(
-        user=urllib.parse.unquote(p.username),
-        password=urllib.parse.unquote(p.password),
-        host=p.hostname,
-        port=p.port or 5432,
-        database=p.path.lstrip("/"),
-        ssl_context=False,
-    )
+    return psycopg2.connect(dsn)
 
 
 STYLE_PROMPTS = {
@@ -47,7 +38,7 @@ def handler(event: dict, context) -> dict:
             'statusCode': 200,
             'headers': {
                 'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'POST, OPTIONS',
+                'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
                 'Access-Control-Allow-Headers': 'Content-Type',
                 'Access-Control-Max-Age': '86400',
             },
@@ -64,12 +55,12 @@ def handler(event: dict, context) -> dict:
         if not client_id:
             return {'statusCode': 400, 'headers': cors_headers, 'body': json.dumps({'error': 'client_id обязателен'}, ensure_ascii=False)}
         conn = get_conn()
-        rows = conn.run(
-            "SELECT generations_count FROM ai_visualization_usage WHERE client_id = :cid",
-            cid=client_id
-        )
+        cur = conn.cursor()
+        cur.execute("SELECT generations_count FROM ai_visualization_usage WHERE client_id = %s", (client_id,))
+        row = cur.fetchone()
+        cur.close()
         conn.close()
-        used = rows[0][0] if rows else 0
+        used = row[0] if row else 0
         return {
             'statusCode': 200,
             'headers': cors_headers,
@@ -90,13 +81,13 @@ def handler(event: dict, context) -> dict:
     source_ip = (event.get('requestContext', {}) or {}).get('identity', {}).get('sourceIp', '')
 
     conn = get_conn()
-    rows = conn.run(
-        "SELECT generations_count FROM ai_visualization_usage WHERE client_id = :cid",
-        cid=client_id
-    )
-    used = rows[0][0] if rows else 0
+    cur = conn.cursor()
+    cur.execute("SELECT generations_count FROM ai_visualization_usage WHERE client_id = %s", (client_id,))
+    row = cur.fetchone()
+    used = row[0] if row else 0
 
     if used >= MAX_GENERATIONS:
+        cur.close()
         conn.close()
         return {
             'statusCode': 403,
@@ -131,6 +122,7 @@ def handler(event: dict, context) -> dict:
     )
 
     if resp.status_code != 200:
+        cur.close()
         conn.close()
         return {
             'statusCode': 502,
@@ -153,17 +145,19 @@ def handler(event: dict, context) -> dict:
     cdn_url = f"https://cdn.poehali.dev/projects/{os.environ['AWS_ACCESS_KEY_ID']}/bucket/{key}"
 
     new_used = used + 1
-    conn.run(
+    cur.execute(
         """
         INSERT INTO ai_visualization_usage (client_id, generations_count, ip_address, updated_at)
-        VALUES (:cid, 1, :ip, NOW())
+        VALUES (%s, 1, %s, NOW())
         ON CONFLICT (client_id) DO UPDATE
         SET generations_count = ai_visualization_usage.generations_count + 1,
-            ip_address = :ip,
+            ip_address = %s,
             updated_at = NOW()
         """,
-        cid=client_id, ip=source_ip
+        (client_id, source_ip, source_ip)
     )
+    conn.commit()
+    cur.close()
     conn.close()
 
     return {
