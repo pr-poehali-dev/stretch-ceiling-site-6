@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import Seo from "@/components/Seo";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 const images: string[] = [
   "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/3d678a67-fcdf-4602-aa63-b1250169204f.jpg",
@@ -40,7 +41,11 @@ export default function LightCeilings() {
         </div>
       </nav>
 
-      <div className="pt-28 pb-12 px-4 text-center">
+      <div className="max-w-7xl mx-auto px-4 pt-24">
+        <Breadcrumbs items={[{ label: "Портфолио", path: "/portfolio" }, { label: "Световые потолки" }]} />
+      </div>
+
+      <div className="pb-12 px-4 text-center">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-semibold mb-5"
           style={{ background: "rgba(6,182,212,0.15)", color: "#67e8f9", border: "1px solid rgba(6,182,212,0.3)" }}>
           <Icon name="Sun" size={14} />

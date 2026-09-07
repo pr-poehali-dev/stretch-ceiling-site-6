@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import Seo from "@/components/Seo";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 const images: string[] = [
   "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/d88715af-6354-42db-9728-b2bfacb46302.jpeg",
@@ -41,7 +42,11 @@ export default function HiddenCornices() {
         </div>
       </nav>
 
-      <div className="pt-28 pb-12 px-4 text-center">
+      <div className="max-w-7xl mx-auto px-4 pt-24">
+        <Breadcrumbs items={[{ label: "Портфолио", path: "/portfolio" }, { label: "Скрытые карнизы" }]} />
+      </div>
+
+      <div className="pb-12 px-4 text-center">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-semibold mb-5"
           style={{ background: "rgba(245,158,11,0.15)", color: "#fcd34d", border: "1px solid rgba(245,158,11,0.3)" }}>
           <Icon name="EyeOff" size={14} />

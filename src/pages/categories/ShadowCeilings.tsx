@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import Seo from "@/components/Seo";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 const images: string[] = [
   "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/415f424b-0a34-4bd5-bbfd-8cbbf9eaa7b7.jpg",
@@ -41,7 +42,11 @@ export default function ShadowCeilings() {
         </div>
       </nav>
 
-      <div className="pt-28 pb-12 px-4 text-center">
+      <div className="max-w-7xl mx-auto px-4 pt-24">
+        <Breadcrumbs items={[{ label: "Портфолио", path: "/portfolio" }, { label: "Теневые потолки" }]} />
+      </div>
+
+      <div className="pb-12 px-4 text-center">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-semibold mb-5"
           style={{ background: "rgba(124,58,237,0.2)", color: "#a78bfa", border: "1px solid rgba(124,58,237,0.3)" }}>
           <Icon name="Layers" size={14} />

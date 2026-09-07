@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import Seo from "@/components/Seo";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 const images: string[] = [
   "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/9dc7a610-130d-4312-9e13-d13f10327d37.jpg",
@@ -40,7 +41,11 @@ export default function ShadowVents() {
         </div>
       </nav>
 
-      <div className="pt-28 pb-12 px-4 text-center">
+      <div className="max-w-7xl mx-auto px-4 pt-24">
+        <Breadcrumbs items={[{ label: "Портфолио", path: "/portfolio" }, { label: "Теневые вытяжки" }]} />
+      </div>
+
+      <div className="pb-12 px-4 text-center">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-semibold mb-5"
           style={{ background: "rgba(16,185,129,0.15)", color: "#6ee7b7", border: "1px solid rgba(16,185,129,0.3)" }}>
           <Icon name="Wind" size={14} />

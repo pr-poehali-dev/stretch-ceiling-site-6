@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import Seo from "@/components/Seo";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 const catalogItems = [
   {
@@ -281,8 +282,12 @@ export default function Portfolio() {
         </div>
       </nav>
 
+      <div className="max-w-7xl mx-auto px-4 pt-24">
+        <Breadcrumbs items={[{ label: "Портфолио" }]} />
+      </div>
+
       {/* HERO */}
-      <div className="pt-28 pb-16 px-4 text-center relative overflow-hidden">
+      <div className="pb-16 px-4 text-center relative overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] opacity-20 pointer-events-none"
           style={{ background: "radial-gradient(ellipse, #7C3AED 0%, transparent 70%)", filter: "blur(60px)" }} />
         <SectionReveal>
