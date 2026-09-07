@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import Seo from "@/components/Seo";
 
 const PHONES = ["+79290326345", "+79950573757"];
 
@@ -155,6 +156,11 @@ export default function AiVisualization() {
 
   return (
     <div className="min-h-screen" style={{ background: "#1a1438", color: "#fff" }}>
+      <Seo
+        title="AI-визуализация натяжного потолка онлайн — примерка стиля | ПотолкиLeKo"
+        description="Загрузите фото своей комнаты — искусственный интеллект покажет, как будет смотреться натяжной потолок в выбранном стиле. Бесплатно, за 3 шага."
+        path="/ai-visualization"
+      />
       <nav className="fixed top-0 left-0 right-0 z-40 glass" style={{ borderBottom: "1px solid rgba(124,58,237,0.2)" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center gap-3">
           <button onClick={() => navigate("/")}

@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import VisitorCounter from "@/components/VisitorCounter";
+import Seo from "@/components/Seo";
 
 const HERO_IMG =
   "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/a02a971b-162d-411f-a319-6cf1ec4dffeb.jpg";
@@ -363,6 +364,11 @@ export default function Index() {
       className="min-h-screen"
       style={{ background: "#eae3f8", color: "#1a1a2e" }}
     >
+      <Seo
+        title="Натяжные потолки в Обнинске, Калуге, Боровске, Жукове, Наро-Фоминске под ключ | ПотолкиLeKo"
+        description="Монтаж натяжных потолков под ключ с гарантией. Теневые потолки, парящий профиль, ПВХ и тканевые полотна. Бесплатный замер и расчёт стоимости онлайн."
+        path="/"
+      />
       {/* NAVBAR */}
       <nav
         className="fixed top-0 left-0 right-0 z-50"

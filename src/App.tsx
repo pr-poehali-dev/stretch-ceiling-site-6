@@ -4,6 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
 import Index from "./pages/Index";
 import Portfolio from "./pages/Portfolio";
 import ShadowCeilings from "./pages/categories/ShadowCeilings";
@@ -24,33 +25,35 @@ import ContactsPopup from "./components/ContactsPopup";
 const queryClient = new QueryClient();
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <ContactsPopup />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/portfolio" element={<Portfolio />} />
-          <Route path="/portfolio/shadow" element={<ShadowCeilings />} />
-          <Route path="/portfolio/floating" element={<FloatingCeilings />} />
-          <Route path="/portfolio/cornices" element={<HiddenCornices />} />
-          <Route path="/portfolio/films" element={<FilmTypes />} />
-          <Route path="/portfolio/spotlights" element={<Spotlights />} />
-          <Route path="/portfolio/light-lines" element={<LightLines />} />
-          <Route path="/portfolio/track-lighting" element={<TrackLighting />} />
-          <Route path="/portfolio/light-ceilings" element={<LightCeilings />} />
-          <Route path="/portfolio/shadow-vents" element={<ShadowVents />} />
-          <Route path="/portfolio/curtain-niches" element={<CurtainNiches />} />
-          <Route path="/portfolio/builtin-cornices" element={<BuiltinCornices />} />
-          <Route path="/ai-visualization" element={<AiVisualization />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
+  <HelmetProvider>
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <ContactsPopup />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/portfolio/shadow" element={<ShadowCeilings />} />
+            <Route path="/portfolio/floating" element={<FloatingCeilings />} />
+            <Route path="/portfolio/cornices" element={<HiddenCornices />} />
+            <Route path="/portfolio/films" element={<FilmTypes />} />
+            <Route path="/portfolio/spotlights" element={<Spotlights />} />
+            <Route path="/portfolio/light-lines" element={<LightLines />} />
+            <Route path="/portfolio/track-lighting" element={<TrackLighting />} />
+            <Route path="/portfolio/light-ceilings" element={<LightCeilings />} />
+            <Route path="/portfolio/shadow-vents" element={<ShadowVents />} />
+            <Route path="/portfolio/curtain-niches" element={<CurtainNiches />} />
+            <Route path="/portfolio/builtin-cornices" element={<BuiltinCornices />} />
+            <Route path="/ai-visualization" element={<AiVisualization />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  </HelmetProvider>
 );
 
 export default App;

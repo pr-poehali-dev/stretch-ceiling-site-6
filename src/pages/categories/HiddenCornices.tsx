@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
+import Seo from "@/components/Seo";
 
 const images: string[] = [
   "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/d88715af-6354-42db-9728-b2bfacb46302.jpeg",
@@ -23,6 +24,11 @@ export default function HiddenCornices() {
   const navigate = useNavigate();
   return (
     <div className="min-h-screen" style={{ background: "#1a1438", color: "#fff" }}>
+      <Seo
+        title="Скрытые карнизы для штор в натяжном потолке | ПотолкиLeKo"
+        description="Карниз спрятан в специальной нише потолка — снаружи видна только штора. Аккуратное решение без видимых креплений и уголков."
+        path="/portfolio/cornices"
+      />
       <nav className="fixed top-0 left-0 right-0 z-40 glass" style={{ borderBottom: "1px solid rgba(124,58,237,0.2)" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center gap-3">
           <button onClick={() => navigate("/portfolio")}

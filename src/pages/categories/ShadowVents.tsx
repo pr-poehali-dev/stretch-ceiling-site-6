@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
+import Seo from "@/components/Seo";
 
 const images: string[] = [
   "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/9dc7a610-130d-4312-9e13-d13f10327d37.jpg",
@@ -22,6 +23,11 @@ export default function ShadowVents() {
   const navigate = useNavigate();
   return (
     <div className="min-h-screen" style={{ background: "#1a1438", color: "#fff" }}>
+      <Seo
+        title="Теневые вытяжки в натяжном потолке | ПотолкиLeKo"
+        description="Вентиляционная щель, спрятанная в теневом зазоре натяжного потолка — воздухообмен работает без единой видимой решётки."
+        path="/portfolio/shadow-vents"
+      />
       <nav className="fixed top-0 left-0 right-0 z-40 glass" style={{ borderBottom: "1px solid rgba(124,58,237,0.2)" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center gap-3">
           <button onClick={() => navigate("/portfolio")}

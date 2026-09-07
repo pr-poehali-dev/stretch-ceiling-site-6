@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
+import Seo from "@/components/Seo";
 
 const catalogItems = [
   {
@@ -249,6 +250,11 @@ export default function Portfolio() {
 
   return (
     <div className="min-h-screen" style={{ background: "#1a1438", color: "#fff" }}>
+      <Seo
+        title="Портфолио натяжных потолков — примеры работ | ПотолкиLeKo"
+        description="Реальные примеры натяжных потолков в квартирах и офисах Обнинска, Калуги, Боровска. Теневые потолки, парящий профиль, скрытые карнизы, световые линии."
+        path="/portfolio"
+      />
 
       {/* NAVBAR */}
       <nav className="fixed top-0 left-0 right-0 z-40 glass" style={{ borderBottom: "1px solid rgba(124,58,237,0.2)" }}>

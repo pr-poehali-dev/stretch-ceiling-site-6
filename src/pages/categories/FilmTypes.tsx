@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
+import Seo from "@/components/Seo";
 
 const images: string[] = [];
 
@@ -112,6 +113,11 @@ export default function FilmTypes() {
   const navigate = useNavigate();
   return (
     <div className="min-h-screen" style={{ background: "#1a1438", color: "#fff" }}>
+      <Seo
+        title="Виды плёнок для натяжных потолков — матовые, глянцевые, сатин | ПотолкиLeKo"
+        description="ПВХ-плёнки BAUF, MSD, Halead для натяжных потолков: матовые, глянцевые, сатиновые фактуры. Большой выбор цветов и текстур под ваш интерьер."
+        path="/portfolio/films"
+      />
       <nav className="fixed top-0 left-0 right-0 z-40 glass" style={{ borderBottom: "1px solid rgba(124,58,237,0.2)" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center gap-3">
           <button onClick={() => navigate("/portfolio")}
