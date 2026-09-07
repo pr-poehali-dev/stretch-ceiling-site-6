@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import Seo from "@/components/Seo";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import CityCoverage from "@/components/CityCoverage";
 
 const images: string[] = [
   "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/c141de12-7ce7-433e-96ec-e78bfbad6448.jpg",
@@ -85,6 +86,8 @@ export default function CurtainNiches() {
           ))}
         </div>
       </div>
+
+      <CityCoverage serviceName="Ниши для электрокарниза" serviceGenitive="натяжные потолки с нишей для электрокарниза" />
 
       {images.length > 0 ? (
         <div className="max-w-7xl mx-auto px-4 pb-24">

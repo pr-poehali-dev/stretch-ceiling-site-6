@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import Seo from "@/components/Seo";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import CityCoverage from "@/components/CityCoverage";
 
 const images: string[] = [];
 
@@ -343,6 +344,8 @@ export default function FilmTypes() {
           </div>
         </div>
       </div>
+
+      <CityCoverage serviceName="Плёночные натяжные потолки" serviceGenitive="натяжные потолки из различных плёнок" />
 
       {images.length > 0 ? (
         <div className="max-w-7xl mx-auto px-4 pb-24">

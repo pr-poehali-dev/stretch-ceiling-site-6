@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import Seo from "@/components/Seo";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import CityCoverage from "@/components/CityCoverage";
 
 const images: string[] = [
   "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/9960612c-20f0-4516-bf2b-a757da7a11c7.jpg",
@@ -96,6 +97,8 @@ export default function FloatingCeilings() {
           </div>
         </div>
       </div>
+
+      <CityCoverage serviceName="Парящие натяжные потолки" serviceGenitive="парящие натяжные потолки" />
 
       {images.length > 0 ? (
         <div className="max-w-7xl mx-auto px-4 pb-24">

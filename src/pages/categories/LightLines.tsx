@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import Seo from "@/components/Seo";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import CityCoverage from "@/components/CityCoverage";
 
 const images: string[] = [
   "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/9610b5aa-7d30-408d-a329-724e4789855d.jpg",
@@ -85,6 +86,8 @@ export default function LightLines() {
           ))}
         </div>
       </div>
+
+      <CityCoverage serviceName="Световые линии в натяжном потолке" serviceGenitive="натяжные потолки со световыми линиями" />
 
       {images.length > 0 ? (
         <div className="max-w-7xl mx-auto px-4 pb-24">

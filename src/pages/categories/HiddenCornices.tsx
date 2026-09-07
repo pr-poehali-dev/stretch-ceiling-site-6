@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import Seo from "@/components/Seo";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import CityCoverage from "@/components/CityCoverage";
 
 const images: string[] = [
   "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/d88715af-6354-42db-9728-b2bfacb46302.jpeg",
@@ -97,6 +98,8 @@ export default function HiddenCornices() {
           </div>
         </div>
       </div>
+
+      <CityCoverage serviceName="Скрытые карнизы для штор" serviceGenitive="скрытые карнизы для штор в натяжном потолке" />
 
       {images.length > 0 ? (
         <div className="max-w-7xl mx-auto px-4 pb-24">

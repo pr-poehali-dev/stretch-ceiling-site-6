@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import Seo from "@/components/Seo";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import CityCoverage from "@/components/CityCoverage";
 
 const images: string[] = [
   "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/files/524441c5-7988-4e74-8009-f490fb319f39.jpg",
@@ -85,6 +86,8 @@ export default function TrackLighting() {
           ))}
         </div>
       </div>
+
+      <CityCoverage serviceName="Трековое освещение на натяжном потолке" serviceGenitive="натяжные потолки с трековым освещением" />
 
       {images.length > 0 ? (
         <div className="max-w-7xl mx-auto px-4 pb-24">

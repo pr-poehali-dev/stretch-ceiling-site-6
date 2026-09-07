@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import Seo from "@/components/Seo";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import CityCoverage from "@/components/CityCoverage";
 
 const images: string[] = [
   "https://cdn.poehali.dev/projects/707775f1-2704-4286-b889-aa5532b2e0df/bucket/415f424b-0a34-4bd5-bbfd-8cbbf9eaa7b7.jpg",
@@ -108,6 +109,8 @@ export default function ShadowCeilings() {
           </div>
         </div>
       </div>
+
+      <CityCoverage serviceName="Теневые натяжные потолки" serviceGenitive="теневые натяжные потолки" />
 
       {images.length > 0 ? (
         <div className="max-w-7xl mx-auto px-4 pb-24">
