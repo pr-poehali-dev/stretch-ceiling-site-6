@@ -12,8 +12,8 @@ const SHOWN_KEY = "contacts_popup_shown";
 const DELAY_MS = 25000;
 
 const WHATSAPP_LINK = "https://wa.me/79290326345";
-const TELEGRAM_LINK = "https://t.me/79290326345";
-const MAX_LINK = "https://max.ru/79290326345";
+const TELEGRAM_LINK = "https://t.me/lekopotolkiobn";
+const MAX_LINK = "https://max.ru/u/79290326345";
 
 const CONTACTS = [
   {
